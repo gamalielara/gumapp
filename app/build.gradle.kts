@@ -65,4 +65,5 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
     implementation(project(":core:presentation:designsystem"))
+    implementation(project(":gumjournals:presentation"))
 }

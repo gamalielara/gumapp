@@ -3,6 +3,8 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="11">
       <module name="gumapp.core.designsystem" target="21" />
+      <module name="gumapp.gumrjournals.data" target="21" />
+      <module name="gumapp.gumrjournals.presentation" target="21" />
     </bytecodeTargetLevel>
   </component>
 </project>

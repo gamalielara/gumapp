@@ -1,6 +1,6 @@
 pluginManagement {
     includeBuild("build-logic")
-    
+
     repositories {
         google {
             content {
@@ -27,9 +27,9 @@ include(":gumrun")
 include(":gumbooks")
 include(":gumovies")
 include(":gumnotes")
-include(":gumrjournals:data")
-include(":gumrjournals:domain")
-include(":gumrjournals:presentation")
+include(":gumjournals:data")
+include(":gumjournals:domain")
+include(":gumjournals:presentation")
 include(":core:domain")
 include(":core:data")
 include(":core:presentation")

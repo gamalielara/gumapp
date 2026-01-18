@@ -31,12 +31,12 @@
             <option value="$PROJECT_DIR$/core/presentation" />
             <option value="$PROJECT_DIR$/core/presentation/designsystem" />
             <option value="$PROJECT_DIR$/gumbooks" />
+            <option value="$PROJECT_DIR$/gumjournals" />
+            <option value="$PROJECT_DIR$/gumjournals/data" />
+            <option value="$PROJECT_DIR$/gumjournals/domain" />
+            <option value="$PROJECT_DIR$/gumjournals/presentation" />
             <option value="$PROJECT_DIR$/gumnotes" />
             <option value="$PROJECT_DIR$/gumovies" />
-            <option value="$PROJECT_DIR$/gumrjournals" />
-            <option value="$PROJECT_DIR$/gumrjournals/data" />
-            <option value="$PROJECT_DIR$/gumrjournals/domain" />
-            <option value="$PROJECT_DIR$/gumrjournals/presentation" />
             <option value="$PROJECT_DIR$/gumrun" />
           </set>
         </option>
