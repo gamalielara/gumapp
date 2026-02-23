@@ -1,9 +1,7 @@
 plugins {
-    plugins {
-        alias(libs.plugins.gumapp.android.application.compose)
-        alias(libs.plugins.gumapp.jvm.ktor)
-        alias(libs.plugins.mapsplatform.secrets.plugin)
-    }
+    alias(libs.plugins.gumapp.android.application.compose)
+    alias(libs.plugins.gumapp.jvm.ktor)
+    alias(libs.plugins.mapsplatform.secrets.plugin)
 }
 
 android {
@@ -24,8 +22,7 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
@@ -66,4 +63,5 @@ dependencies {
 
     implementation(project(":core:presentation:designsystem"))
     implementation(project(":gumjournals:presentation"))
+    implementation(project(":gumrun:presentation"))
 }

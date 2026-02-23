@@ -1,5 +1,6 @@
 plugins {
-    alias(libs.plugins.gumapp.android.library.compose)
+//    alias(libs.plugins.gumapp.android.library.compose)
+    id("gumapp.android.library.compose")
 }
 
 android {

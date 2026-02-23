@@ -7,7 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.gumrindelwald.designsystem.GumAppTheme
-import com.gumrindelwald.gumjournals.presentation.GumjournalsDashboardScreen
+import com.gumrindelwald.presentation.GumrunDashboardRoot
 
 
 class MainActivity : ComponentActivity() {
@@ -16,7 +16,6 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             GumAppTheme {
-
                 GumAppStartActivityContent()
             }
         }
@@ -25,7 +24,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun GumAppStartActivityContent() {
-    GumjournalsDashboardScreen()
+    GumrunDashboardRoot()
 }
 
 

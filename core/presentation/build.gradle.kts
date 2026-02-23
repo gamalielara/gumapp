@@ -1,42 +1,23 @@
 plugins {
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.gumapp.android.library.compose)
     alias(libs.plugins.kotlin.android)
 }
 
 android {
-    namespace = "com.gumrindelwald.presentation"
-    compileSdk = 36
+    namespace = "com.gumrindelwald.core.presentation"
 
-    defaultConfig {
-        minSdk = 24
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
     kotlinOptions {
         jvmTarget = "11"
     }
 }
 
 dependencies {
+    implementation(project(":core:presentation:designsystem"))
+
     implementation(libs.androidx.core.ktx)
-    implementation(libs.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.graphics)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    api(libs.androidx.compose.material3)
 }

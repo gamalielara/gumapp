@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="go_back">Back</string>
+    <string name="open_menu">Open</string>
+    <string name="active_run">Active Run</string>
+    <string name="gumrun">GumRun</string>
+</resources>
