@@ -46,7 +46,7 @@ private fun Dashboard(
     var isMapLoaded by remember { mutableStateOf(false) }
 
     GumrunScaffold(
-        withGradient = true,
+        withGradient = false,
         topAppBar = {
             GumAppToolbar(
                 showBackButton = true,
@@ -57,7 +57,7 @@ private fun Dashboard(
     ) {
         Box(
             modifier = Modifier
-                .padding(it)
+                .padding()
                 .background(MaterialTheme.colorScheme.primary)
                 .fillMaxSize()
         ) {
