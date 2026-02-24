@@ -7,7 +7,7 @@ class AndroidFeatureUIConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         target.run {
             pluginManager.run {
-                apply("gumrun.android.library.compose")
+                apply("gumapp.android.library.compose")
             }
 
             dependencies {
