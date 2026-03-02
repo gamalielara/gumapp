@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.stateIn
 class DashboardViewModel(
     runningTracker: RunningTracker
 ) : ViewModel() {
+    val runTracker = runningTracker
     var state by mutableStateOf(ActiveRunState())
         private set
 
@@ -36,26 +37,44 @@ class DashboardViewModel(
     init {
         _hasLocationPerm.onEach { hasPerm ->
             if (hasPerm) {
-                runningTracker.startObserving()
+                runningTracker.startObservingLocation()
             } else {
-                runningTracker.stopObserving()
-
+                runningTracker.stopObservingLocation()
             }
         }.launchIn(viewModelScope)
 
-        isTracking.onEach { isTracking -> runningTracker.setIsTracking(isTracking) }
+        isTracking.onEach { isTracking ->
+            runningTracker.setIsTracking(isTracking)
+        }
             .launchIn(viewModelScope)
 
 
         // RunningTracker updating the state goes here
+        runningTracker.currentLocationFlow.onEach {
+            state = state.copy(currentLocation = it)
+        }.launchIn(viewModelScope)
+
+        runningTracker.runData.onEach {
+            state = state.copy(runData = it)
+        }.launchIn(viewModelScope)
+
+        runningTracker.elapsedTime.onEach {
+            state = state.copy(elapsedTime = it)
+        }.launchIn(viewModelScope)
     }
 
     fun onAction(action: RunningActiveScreenAction) {
         when (action) {
             RunningActiveScreenAction.DismissRationaleDialog -> {}
             RunningActiveScreenAction.OnBackClick -> {}
+
             RunningActiveScreenAction.OnFinishRun -> {}
-            RunningActiveScreenAction.OnResumeRun -> {}
+
+            RunningActiveScreenAction.OnResumeRun -> {
+                // When the state shouldTrack is changed, the flow that listens to shouldTrack & hasLocPerm will set the runningTracker to stop observing location
+                state = state.copy(shouldTrack = true)
+            }
+
             RunningActiveScreenAction.OnToggleRunStatus -> {}
         }
     }

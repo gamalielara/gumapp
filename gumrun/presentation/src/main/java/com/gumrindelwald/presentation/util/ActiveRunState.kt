@@ -14,6 +14,4 @@ data class ActiveRunState(
     val showLocationPermissionRationale: Boolean = false,
     val showNotiPermissionRationale: Boolean = false,
     val runData: RunData = RunData()
-
-
 )
