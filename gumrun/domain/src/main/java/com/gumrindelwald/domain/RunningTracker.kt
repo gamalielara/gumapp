@@ -1,6 +1,5 @@
 package com.gumrindelwald.domain
 
-import com.gumrindelwald.domain.location.LocationObserver
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow

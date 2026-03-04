@@ -40,6 +40,7 @@
             <option value="$PROJECT_DIR$/gumrun" />
             <option value="$PROJECT_DIR$/gumrun/data" />
             <option value="$PROJECT_DIR$/gumrun/domain" />
+            <option value="$PROJECT_DIR$/gumrun/location" />
             <option value="$PROJECT_DIR$/gumrun/presentation" />
           </set>
         </option>

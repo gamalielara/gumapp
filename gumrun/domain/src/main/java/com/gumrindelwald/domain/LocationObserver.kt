@@ -1,6 +1,5 @@
-package com.gumrindelwald.domain.location
+package com.gumrindelwald.domain
 
-import com.gumrindelwald.domain.RunLocation
 import kotlinx.coroutines.flow.Flow
 
 interface LocationObserver {
