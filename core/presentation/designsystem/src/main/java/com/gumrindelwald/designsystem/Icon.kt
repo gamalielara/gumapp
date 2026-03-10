@@ -12,6 +12,11 @@ import com.gumrindelwald.gumapp.core.presentation.designsystem.R
 val ArrowLeftIcon: ImageVector
     @Composable
     get() = ImageVector.vectorResource(id = R.drawable.back_arrow)
+
+val RunIcon: ImageVector
+    @Composable
+    get() = ImageVector.vectorResource(id = R.drawable.run)
+
 //
 //val ArrowRightIcon: ImageVector
 //    @Composable
@@ -85,10 +90,7 @@ val ArrowLeftIcon: ImageVector
 //    @Composable
 //    get() = ImageVector.vectorResource(id = R.drawable.run_outlined)
 //
-//val RunIcon: ImageVector
-//    @Composable
-//    get() = ImageVector.vectorResource(id = R.drawable.run)
-//
+
 //val StartIcon: ImageVector
 //    @Composable
 //    get() = ImageVector.vectorResource(id = R.drawable.start)

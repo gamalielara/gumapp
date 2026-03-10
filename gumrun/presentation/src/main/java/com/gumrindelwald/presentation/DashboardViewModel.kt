@@ -20,7 +20,7 @@ class DashboardViewModel(
     runningTracker: RunningTracker
 ) : ViewModel() {
     val runTracker = runningTracker
-    var state by mutableStateOf(ActiveRunState())
+    var state by mutableStateOf(ActiveRunState(shouldTrack = true))
         private set
 
     private val shouldTrack = snapshotFlow { state.shouldTrack }.stateIn(
@@ -65,7 +65,13 @@ class DashboardViewModel(
 
     fun onAction(action: RunningActiveScreenAction) {
         when (action) {
-            RunningActiveScreenAction.DismissRationaleDialog -> {}
+            RunningActiveScreenAction.DismissRationaleDialog -> {
+                state = state.copy(
+                    showNotiPermissionRationale = false,
+                    showLocationPermissionRationale = false
+                )
+            }
+
             RunningActiveScreenAction.OnBackClick -> {}
 
             RunningActiveScreenAction.OnFinishRun -> {}
@@ -76,6 +82,21 @@ class DashboardViewModel(
             }
 
             RunningActiveScreenAction.OnToggleRunStatus -> {}
+
+            is RunningActiveScreenAction.SubmitLocationInfo -> {
+                _hasLocationPerm.value = action.acceptedLocationPermission
+
+                state = state.copy(
+                    showLocationPermissionRationale = action.showLocationRationale
+                )
+            }
+
+            is RunningActiveScreenAction.SubmitNotificationPermissionInfo -> {
+                state = state.copy(
+                    showNotiPermissionRationale = action.showNotiRationale
+                )
+            }
+            
         }
     }
 }

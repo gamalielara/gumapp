@@ -203,5 +203,3 @@ fun PreviewGumjournalsDashboardScreen() {
         GumjournalsDashboardScreen()
     }
 }
-
-

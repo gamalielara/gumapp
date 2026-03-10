@@ -50,11 +50,12 @@ class AndroidLocationObserver(private val context: Context) : LocationObserver {
                 context,
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
+
             val isCoarseLocationGranted = ActivityCompat.checkSelfPermission(
                 context,
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
-
+            
             if (!isFineLocationGranted && !isCoarseLocationGranted) {
                 close()
             } else {

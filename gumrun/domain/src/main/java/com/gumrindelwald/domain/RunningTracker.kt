@@ -20,7 +20,8 @@ import kotlin.time.Duration.Companion.seconds
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class RunningTracker(
-    private val observer: LocationObserver, private val appScope: CoroutineScope
+    private val observer: LocationObserver,
+    private val appScope: CoroutineScope
 ) {
     private val _runData = MutableStateFlow(RunData())
     private val _isObservingLocation = MutableStateFlow<Boolean>(false)

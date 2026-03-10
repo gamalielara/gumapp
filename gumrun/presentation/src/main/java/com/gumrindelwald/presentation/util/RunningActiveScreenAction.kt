@@ -7,5 +7,13 @@ sealed interface RunningActiveScreenAction {
     data object OnBackClick : RunningActiveScreenAction
     data object DismissRationaleDialog : RunningActiveScreenAction
 
+    data class SubmitLocationInfo(
+        val acceptedLocationPermission: Boolean,
+        val showLocationRationale: Boolean
+    ) : RunningActiveScreenAction
 
+    data class SubmitNotificationPermissionInfo(
+        val acceptedNotiPermission: Boolean,
+        val showNotiRationale: Boolean
+    ) : RunningActiveScreenAction
 }
