@@ -13,7 +13,6 @@ sealed interface RunningActiveScreenAction {
     ) : RunningActiveScreenAction
 
     data class SubmitNotificationPermissionInfo(
-        val acceptedNotiPermission: Boolean,
         val showNotiRationale: Boolean
     ) : RunningActiveScreenAction
 }

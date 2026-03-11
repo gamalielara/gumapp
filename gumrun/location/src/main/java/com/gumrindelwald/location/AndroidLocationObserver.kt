@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.LocationManager
+import android.os.Looper
 import androidx.annotation.RequiresPermission
 import androidx.core.app.ActivityCompat
 import androidx.core.content.getSystemService
@@ -23,10 +24,7 @@ class AndroidLocationObserver(private val context: Context) : LocationObserver {
     private val client = LocationServices.getFusedLocationProviderClient(context)
 
     @RequiresPermission(
-        anyOf = [
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.ACCESS_COARSE_LOCATION
-        ]
+        anyOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION]
     )
     override fun observeLocation(interval: Long): Flow<RunLocation> {
         // Make sure if we have permission otherwise it might break/crash
@@ -47,15 +45,13 @@ class AndroidLocationObserver(private val context: Context) : LocationObserver {
             }
 
             val isFineLocationGranted = ActivityCompat.checkSelfPermission(
-                context,
-                Manifest.permission.ACCESS_FINE_LOCATION
+                context, Manifest.permission.ACCESS_FINE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
 
             val isCoarseLocationGranted = ActivityCompat.checkSelfPermission(
-                context,
-                Manifest.permission.ACCESS_COARSE_LOCATION
+                context, Manifest.permission.ACCESS_COARSE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
-            
+
             if (!isFineLocationGranted && !isCoarseLocationGranted) {
                 close()
             } else {
@@ -78,7 +74,7 @@ class AndroidLocationObserver(private val context: Context) : LocationObserver {
                     }
                 }
 
-                client.requestLocationUpdates(request, locationCalback, null)
+                client.requestLocationUpdates(request, locationCalback, Looper.getMainLooper())
 
                 awaitClose {
                     client.removeLocationUpdates(locationCalback)

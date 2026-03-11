@@ -1,6 +1,8 @@
 package com.gumrindelwald.presentation
 
 import android.Manifest
+import android.app.Activity
+import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.util.Log
@@ -33,12 +35,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.maps.android.compose.GoogleMap
+import com.google.maps.android.compose.GoogleMapComposable
 import com.google.maps.android.compose.MapProperties
 import com.google.maps.android.compose.MapUiSettings
 import com.google.maps.android.compose.MarkerComposable
+import com.google.maps.android.compose.rememberCameraPositionState
 import com.google.maps.android.compose.rememberMarkerState
 import com.gumrindelwald.designsystem.GumAppActionButton
 import com.gumrindelwald.designsystem.GumAppDialog
@@ -64,6 +69,7 @@ fun GumrunDashboardRoot(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+@GoogleMapComposable
 private fun Dashboard(
     state: ActiveRunState, onClick: (RunningActiveScreenAction) -> Unit
 ) {
@@ -79,6 +85,8 @@ private fun Dashboard(
     var isMapLoaded by remember { mutableStateOf(false) }
 
     val markerState = rememberMarkerState()
+    val cameraPositionState = rememberCameraPositionState()
+
 
     val markerPositionLat by animateFloatAsState(
         targetValue = currentLocation?.lat?.toFloat() ?: 0f, animationSpec = tween(500)
@@ -88,13 +96,63 @@ private fun Dashboard(
         targetValue = currentLocation?.long?.toFloat() ?: 0f, animationSpec = tween(500)
     )
 
-    LaunchedEffect(isMapLoaded, markerPositionLat, markerPositionLng) {
-        markerState.position = LatLng(markerPositionLat.toDouble(), markerPositionLng.toDouble())
-        Log.d("test", "Haha ${markerState.position}")
-        Log.d("test", "Haha ${currentLocation}")
+    val permLauncher = handleLocationNotiPermission(onAction = onClick)
+
+    LaunchedEffect(true) {
+        val activity = context as Activity
+
+        val hasCourseLocationPermission =
+            context.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+        val hasFineLocationPermission =
+            context.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+
+        if (Build.VERSION.SDK_INT >= 33) context.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED else true
+        val hasLocationPermission = hasFineLocationPermission && hasCourseLocationPermission
+
+
+        val shouldShowLocationPermissionRationale = shouldShowRequestPermissionRationale(
+            activity, Manifest.permission.ACCESS_FINE_LOCATION
+        )
+        val shouldShowNotiPermissionRationale =
+            Build.VERSION.SDK_INT >= 33 && shouldShowRequestPermissionRationale(
+                activity, Manifest.permission.POST_NOTIFICATIONS
+            )
+
+        onClick(
+            RunningActiveScreenAction.SubmitLocationInfo(
+                acceptedLocationPermission = hasLocationPermission,
+                showLocationRationale = shouldShowLocationPermissionRationale,
+            )
+        )
+
+        onClick(
+            RunningActiveScreenAction.SubmitNotificationPermissionInfo(
+                showNotiRationale = shouldShowNotiPermissionRationale
+            )
+        )
+
+        if (!shouldShowLocationPermissionRationale && !shouldShowNotiPermissionRationale) {
+            permLauncher.requestGumrunPermissions(context)
+        }
     }
 
-    val permLauncher = handleLocationNotiPermission(onAction = onClick)
+    LaunchedEffect(isMapLoaded, markerPositionLat, markerPositionLng) {
+        markerState.position = LatLng(markerPositionLat.toDouble(), markerPositionLng.toDouble())
+    }
+
+    LaunchedEffect(isMapLoaded, currentLocation) {
+        if (isMapLoaded) {
+            cameraPositionState.animate(
+                CameraUpdateFactory.newLatLngZoom(
+                    LatLng(
+                        currentLocation?.lat?.toDouble() ?: 0.0,
+                        currentLocation?.long?.toDouble() ?: 0.0
+                    ), 20f
+                )
+            )
+        }
+    }
+
 
     GumrunScaffold(
         withGradient = false, topAppBar = {
@@ -111,13 +169,17 @@ private fun Dashboard(
                 .fillMaxSize()
         ) {
             GoogleMap(
+                cameraPositionState = cameraPositionState,
                 properties = MapProperties(
                     mapStyleOptions = mapStyle
-                ), uiSettings = MapUiSettings(
+                ),
+                uiSettings = MapUiSettings(
                     zoomControlsEnabled = false
-                ), onMapLoaded = {
+                ),
+                onMapLoaded = {
                     isMapLoaded = true
-                }) {
+                }
+            ) {
                 if (currentLocation != null) {
                     MarkerComposable(
                         currentLocation, state = markerState
@@ -143,8 +205,7 @@ private fun Dashboard(
     }
 
     Log.d(
-        "test",
-        "Haha $state"
+        "test", "Haha $state"
     )
 
     if (state.showNotiPermissionRationale || state.showLocationPermissionRationale) {
@@ -160,36 +221,7 @@ private fun Dashboard(
                     onClick = {
                         onClick(RunningActiveScreenAction.DismissRationaleDialog)
 
-                        val hasCourseLocationPermission =
-                            context.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                        val hasFineLocationPermission =
-                            context.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-
-                        val hasNotiPermission =
-                            if (Build.VERSION.SDK_INT >= 33) context.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED else true
-                        val hasLocationPermission =
-                            hasFineLocationPermission && hasCourseLocationPermission
-
-                        val locationPermissions = arrayOf(
-                            Manifest.permission.ACCESS_COARSE_LOCATION,
-                            Manifest.permission.ACCESS_FINE_LOCATION
-                        )
-
-                        val notiPermission = if (Build.VERSION.SDK_INT >= 33) arrayOf(
-                            Manifest.permission.POST_NOTIFICATIONS
-                        ) else emptyArray()
-
-                        var permissionToAsk: Array<String> = arrayOf()
-
-                        if (!hasLocationPermission && !hasNotiPermission) {
-                            permissionToAsk = notiPermission + locationPermissions
-                        } else if (!hasNotiPermission) {
-                            permissionToAsk = notiPermission
-                        } else if (!hasLocationPermission) {
-                            permissionToAsk = locationPermissions
-                        }
-
-                        permLauncher.launch(permissionToAsk)
+                        permLauncher.requestGumrunPermissions(context)
                     })
             },
             modifier = Modifier,
@@ -209,6 +241,10 @@ private fun handleLocationNotiPermission(onAction: (RunningActiveScreenAction) -
         val hasNotiPermission =
             if (Build.VERSION.SDK_INT >= 33) perms[Manifest.permission.POST_NOTIFICATIONS] == true else true
 
+        Log.d(
+            "test",
+            "Haha handle perm $hasCourseLocationPermission $hasFineLocationPermission $hasNotiPermission"
+        )
 
         val activity = context as ComponentActivity
 
@@ -229,7 +265,6 @@ private fun handleLocationNotiPermission(onAction: (RunningActiveScreenAction) -
 
         onAction(
             RunningActiveScreenAction.SubmitNotificationPermissionInfo(
-                acceptedNotiPermission = hasNotiPermission,
                 showNotiRationale = shouldShowNotiPermissionRationale
             )
         )
@@ -237,6 +272,44 @@ private fun handleLocationNotiPermission(onAction: (RunningActiveScreenAction) -
 
     return permissionLauncher
 }
+
+private fun ActivityResultLauncher<Array<String>>.requestGumrunPermissions(
+    context: Context,
+) {
+    val hasLocationPermission = context.checkHaslocationPermission()
+    val hasNotiPermission = context.hasNotiPermission()
+
+    val locationPermissions = arrayOf(
+        Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION
+    )
+    val notiPermission =
+        if (Build.VERSION.SDK_INT >= 33) arrayOf(Manifest.permission.POST_NOTIFICATIONS) else emptyArray()
+
+    when {
+        !hasLocationPermission && !hasNotiPermission -> {
+            launch(locationPermissions + notiPermission)
+        }
+
+        !hasLocationPermission -> launch(locationPermissions)
+        !hasNotiPermission -> launch(notiPermission)
+    }
+}
+
+private fun Context.hasNotiPermission(): Boolean {
+    return if (Build.VERSION.SDK_INT >= 33) {
+        checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
+    } else {
+        true
+    }
+}
+
+private fun Context.checkHaslocationPermission(): Boolean {
+    return checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && checkSelfPermission(
+        Manifest.permission.ACCESS_COARSE_LOCATION
+    ) == PackageManager.PERMISSION_GRANTED
+
+}
+
 
 @Preview
 @Composable

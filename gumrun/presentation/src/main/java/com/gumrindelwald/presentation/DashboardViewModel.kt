@@ -19,7 +19,7 @@ import kotlinx.coroutines.flow.stateIn
 class DashboardViewModel(
     runningTracker: RunningTracker
 ) : ViewModel() {
-    val runTracker = runningTracker
+    // TODO: delete shoudlTrack
     var state by mutableStateOf(ActiveRunState(shouldTrack = true))
         private set
 
@@ -96,7 +96,7 @@ class DashboardViewModel(
                     showNotiPermissionRationale = action.showNotiRationale
                 )
             }
-            
+
         }
     }
 }
