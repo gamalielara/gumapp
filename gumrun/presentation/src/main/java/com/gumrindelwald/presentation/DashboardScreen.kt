@@ -180,6 +180,8 @@ private fun Dashboard(
                     isMapLoaded = true
                 }
             ) {
+                GumRunPolylines(location = state.runData.locations)
+
                 if (currentLocation != null) {
                     MarkerComposable(
                         currentLocation, state = markerState
