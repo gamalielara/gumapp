@@ -20,7 +20,7 @@ class DashboardViewModel(
     runningTracker: RunningTracker
 ) : ViewModel() {
     // TODO: delete shoudlTrack
-    var state by mutableStateOf(ActiveRunState(shouldTrack = true))
+    var state by mutableStateOf(ActiveRunState())
         private set
 
     private val shouldTrack = snapshotFlow { state.shouldTrack }.stateIn(
@@ -81,7 +81,9 @@ class DashboardViewModel(
                 state = state.copy(shouldTrack = true)
             }
 
-            RunningActiveScreenAction.OnToggleRunStatus -> {}
+            RunningActiveScreenAction.OnToggleRunStatus -> {
+                state = state.copy(shouldTrack = !state.shouldTrack)
+            }
 
             is RunningActiveScreenAction.SubmitLocationInfo -> {
                 _hasLocationPerm.value = action.acceptedLocationPermission

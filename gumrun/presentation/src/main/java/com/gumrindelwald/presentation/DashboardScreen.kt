@@ -13,11 +13,22 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Pause
+import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -29,11 +40,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.zIndex
 import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.LatLng
@@ -89,11 +102,11 @@ private fun Dashboard(
 
 
     val markerPositionLat by animateFloatAsState(
-        targetValue = currentLocation?.lat?.toFloat() ?: 0f, animationSpec = tween(500)
+        targetValue = currentLocation?.lat?.toFloat() ?: 0f, animationSpec = tween(300)
     )
 
     val markerPositionLng by animateFloatAsState(
-        targetValue = currentLocation?.long?.toFloat() ?: 0f, animationSpec = tween(500)
+        targetValue = currentLocation?.long?.toFloat() ?: 0f, animationSpec = tween(300)
     )
 
     val permLauncher = handleLocationNotiPermission(onAction = onClick)
@@ -138,6 +151,7 @@ private fun Dashboard(
 
     LaunchedEffect(isMapLoaded, markerPositionLat, markerPositionLng) {
         markerState.position = LatLng(markerPositionLat.toDouble(), markerPositionLng.toDouble())
+
     }
 
     LaunchedEffect(isMapLoaded, currentLocation) {
@@ -153,7 +167,6 @@ private fun Dashboard(
         }
     }
 
-
     GumrunScaffold(
         withGradient = false, topAppBar = {
             GumAppToolbar(
@@ -168,18 +181,15 @@ private fun Dashboard(
                 .background(MaterialTheme.colorScheme.primary)
                 .fillMaxSize()
         ) {
+
             GoogleMap(
-                cameraPositionState = cameraPositionState,
-                properties = MapProperties(
+                cameraPositionState = cameraPositionState, properties = MapProperties(
                     mapStyleOptions = mapStyle
-                ),
-                uiSettings = MapUiSettings(
+                ), uiSettings = MapUiSettings(
                     zoomControlsEnabled = false
-                ),
-                onMapLoaded = {
+                ), onMapLoaded = {
                     isMapLoaded = true
-                }
-            ) {
+                }) {
                 GumRunPolylines(location = state.runData.locations)
 
                 if (currentLocation != null) {
@@ -203,12 +213,59 @@ private fun Dashboard(
                     }
                 }
             }
-        }
-    }
+            Box(
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(
+                        vertical = it.calculateBottomPadding() + 10.dp,
+                        horizontal = it.calculateBottomPadding()
+                    )
+                    .clip(shape = RoundedCornerShape(15.dp))
+                    .height(100.dp)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .zIndex(10f)
+                        .background(MaterialTheme.colorScheme.background.copy(alpha = .75f))
+                        .blur(100.dp)
+                )
 
-    Log.d(
-        "test", "Haha $state"
-    )
+                Row(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .zIndex(100f)
+                        .padding(10.dp),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .weight(3f)
+                            .fillMaxHeight(),
+                    ) { }
+                    Button(
+                        onClick = {
+                            onClick(RunningActiveScreenAction.OnToggleRunStatus)
+                        },
+                        shape = CircleShape,
+                        modifier = Modifier
+                            .size(56.dp),
+                        contentPadding = PaddingValues(10.dp),
+                    ) {
+                        Icon(
+                            imageVector = if (state.shouldTrack) Icons.Default.Pause else Icons.Default.PlayArrow,
+                            contentDescription = null,
+                            modifier = Modifier.size(50.dp)
+                        )
+                    }
+                }
+            }
+
+        }
+
+
+    }
 
     if (state.showNotiPermissionRationale || state.showLocationPermissionRationale) {
         GumAppDialog(

@@ -1,6 +1,5 @@
 package com.gumrindelwald.presentation
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import com.google.android.gms.maps.model.JointType
@@ -30,8 +29,6 @@ fun GumRunPolylines(location: List<List<RunLocationTimestamp>>) {
         }.flatten()
     }
 
-    // [Polyline, PolyLine, Polyline]
-    Log.d("test", "polylines: $polylines $location")
 
     polylines.forEach { polyline ->
         Polyline(
