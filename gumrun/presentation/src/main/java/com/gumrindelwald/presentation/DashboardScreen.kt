@@ -18,11 +18,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -32,6 +34,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -46,6 +49,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -58,12 +62,16 @@ import com.google.maps.android.compose.MapUiSettings
 import com.google.maps.android.compose.MarkerComposable
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.google.maps.android.compose.rememberMarkerState
+import com.gumrindelwald.core.domain.formatted
+import com.gumrindelwald.core.domain.roundToDecimals
 import com.gumrindelwald.designsystem.GumAppActionButton
 import com.gumrindelwald.designsystem.GumAppDialog
 import com.gumrindelwald.designsystem.RunIcon
 import com.gumrindelwald.gumapp.core.presentation.designsystem.R
 import com.gumrindelwald.presentation.util.ActiveRunState
+import com.gumrindelwald.presentation.util.KILOMETER_TO_METER
 import com.gumrindelwald.presentation.util.RunningActiveScreenAction
+import com.gumrindelwald.presentation.util.toFormattedPace
 import org.koin.androidx.compose.koinViewModel
 
 
@@ -239,11 +247,76 @@ private fun Dashboard(
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Column(
-                        modifier = Modifier
-                            .weight(3f)
-                            .fillMaxHeight(),
-                    ) { }
+                    Row(
+                        modifier = Modifier.weight(7f),
+                        verticalAlignment = Alignment.CenterVertically,
+
+                        ) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxHeight(),
+                            verticalArrangement = Arrangement.Center,
+                        ) {
+                            Text(
+                                text = stringResource(R.string.time_elapsed),
+                                fontSize = 12.sp,
+                            )
+                            Text(
+                                text = state.elapsedTime.formatted(),
+                                fontSize = 18.sp,
+                            )
+
+                        }
+
+                        Spacer(modifier = Modifier.width(10.dp))
+
+                        Column(
+                            modifier = Modifier
+                                .fillMaxHeight(),
+                            verticalArrangement = Arrangement.Center,
+                        ) {
+                            Text(
+                                text = stringResource(R.string.distance),
+                                fontSize = 12.sp,
+                            )
+                            Text(
+                                text = (state.runData.distanceMeters / KILOMETER_TO_METER)
+                                    .roundToDecimals(2)
+                                    .toString() + " km",
+                                fontSize = 18.sp,
+                            )
+
+                        }
+
+                        Spacer(modifier = Modifier.width(12.dp))
+
+                        Column(
+                            modifier = Modifier
+                                .fillMaxHeight(),
+                            verticalArrangement = Arrangement.Center,
+                        ) {
+                            Text(
+                                text = stringResource(R.string.pace),
+                                fontSize = 12.sp,
+                            )
+                            Row(
+                                verticalAlignment = Alignment.Bottom,
+                            ) {
+                                Text(
+                                    text = state.elapsedTime.toFormattedPace(
+                                        (state.runData.distanceMeters / KILOMETER_TO_METER)
+                                    ),
+                                    fontSize = 18.sp,
+                                )
+                                if (state.runData.distanceMeters > 0) {
+                                    Text(
+                                        text = "/km",
+                                        fontSize = 12.sp,
+                                    )
+                                }
+                            }
+                        }
+                    }
                     Button(
                         onClick = {
                             onClick(RunningActiveScreenAction.OnToggleRunStatus)
@@ -251,7 +324,7 @@ private fun Dashboard(
                         shape = CircleShape,
                         modifier = Modifier
                             .size(56.dp),
-                        contentPadding = PaddingValues(10.dp),
+                        contentPadding = PaddingValues(12.dp),
                     ) {
                         Icon(
                             imageVector = if (state.shouldTrack) Icons.Default.Pause else Icons.Default.PlayArrow,

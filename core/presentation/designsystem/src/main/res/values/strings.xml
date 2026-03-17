@@ -6,4 +6,7 @@
     <string name="gumrun">GumRun</string>
     <string name="permission">Permission Required</string>
     <string name="okay">Okay</string>
+    <string name="pace">Pace</string>
+    <string name="time_elapsed">Time elapsed:</string>
+    <string name="distance">Distance</string>
 </resources>
