@@ -25,7 +25,9 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun GumAppStartActivityContent() {
-    GumrunDashboardRoot()
+    GumrunDashboardRoot(
+        mainActivityClass = MainActivity::class.java
+    )
 }
 
 

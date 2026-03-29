@@ -7,9 +7,15 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
 
+
     <application>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${API_KEY}" />
+        <service
+            android:name="com.gumrindelwald.presentation.util.RunningTrackerService"
+            android:foregroundServiceType="location" />
     </application>
+
+
 </manifest>

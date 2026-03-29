@@ -5,7 +5,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResultLauncher
@@ -71,6 +70,7 @@ import com.gumrindelwald.gumapp.core.presentation.designsystem.R
 import com.gumrindelwald.presentation.util.ActiveRunState
 import com.gumrindelwald.presentation.util.KILOMETER_TO_METER
 import com.gumrindelwald.presentation.util.RunningActiveScreenAction
+import com.gumrindelwald.presentation.util.RunningTrackerService
 import com.gumrindelwald.presentation.util.toFormattedPace
 import org.koin.androidx.compose.koinViewModel
 
@@ -78,13 +78,13 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 
 fun GumrunDashboardRoot(
+    mainActivityClass: Class<*>
 ) {
     val viewModel: DashboardViewModel = koinViewModel()
 
-    Log.d("test", "Haha ${viewModel.state}")
-
     Dashboard(
-        state = viewModel.state, onClick = viewModel::onAction
+        state = viewModel.state, onClick = viewModel::onAction,
+        mainActivityClass
     )
 }
 
@@ -92,7 +92,8 @@ fun GumrunDashboardRoot(
 @Composable
 @GoogleMapComposable
 private fun Dashboard(
-    state: ActiveRunState, onClick: (RunningActiveScreenAction) -> Unit
+    state: ActiveRunState, onClick: (RunningActiveScreenAction) -> Unit,
+    mainActivityClass: Class<*>,
 ) {
     val context = LocalContext.current
     val currentLocation = state.currentLocation
@@ -189,7 +190,6 @@ private fun Dashboard(
                 .background(MaterialTheme.colorScheme.primary)
                 .fillMaxSize()
         ) {
-
             GoogleMap(
                 cameraPositionState = cameraPositionState, properties = MapProperties(
                     mapStyleOptions = mapStyle
@@ -250,12 +250,13 @@ private fun Dashboard(
                     Row(
                         modifier = Modifier.weight(7f),
                         verticalAlignment = Alignment.CenterVertically,
-
-                        ) {
+                    ) {
                         Column(
                             modifier = Modifier
-                                .fillMaxHeight(),
+                                .fillMaxHeight()
+                                .weight(1f),
                             verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
                             Text(
                                 text = stringResource(R.string.time_elapsed),
@@ -272,17 +273,19 @@ private fun Dashboard(
 
                         Column(
                             modifier = Modifier
-                                .fillMaxHeight(),
+                                .fillMaxHeight()
+                                .weight(1f),
                             verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
                             Text(
                                 text = stringResource(R.string.distance),
                                 fontSize = 12.sp,
                             )
                             Text(
-                                text = (state.runData.distanceMeters / KILOMETER_TO_METER)
-                                    .roundToDecimals(2)
-                                    .toString() + " km",
+                                text = (state.runData.distanceMeters / KILOMETER_TO_METER).roundToDecimals(
+                                    2
+                                ).toString() + " km",
                                 fontSize = 18.sp,
                             )
 
@@ -292,8 +295,10 @@ private fun Dashboard(
 
                         Column(
                             modifier = Modifier
-                                .fillMaxHeight(),
+                                .fillMaxHeight()
+                                .weight(1f),
                             verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
                             Text(
                                 text = stringResource(R.string.pace),
@@ -320,10 +325,22 @@ private fun Dashboard(
                     Button(
                         onClick = {
                             onClick(RunningActiveScreenAction.OnToggleRunStatus)
+
+                            if (state.shouldTrack) {
+                                context.startService(
+                                    RunningTrackerService.createStartIntent(
+                                        context,
+                                        mainActivityClass
+                                    )
+                                )
+                            } else {
+                                context.startService(
+                                    RunningTrackerService.createStopIntent(context)
+                                )
+                            }
                         },
                         shape = CircleShape,
-                        modifier = Modifier
-                            .size(56.dp),
+                        modifier = Modifier.size(56.dp),
                         contentPadding = PaddingValues(12.dp),
                     ) {
                         Icon(
@@ -370,13 +387,8 @@ private fun handleLocationNotiPermission(onAction: (RunningActiveScreenAction) -
     ) { perms ->
         val hasCourseLocationPermission = perms[Manifest.permission.ACCESS_COARSE_LOCATION] == true
         val hasFineLocationPermission = perms[Manifest.permission.ACCESS_FINE_LOCATION] == true
-        val hasNotiPermission =
-            if (Build.VERSION.SDK_INT >= 33) perms[Manifest.permission.POST_NOTIFICATIONS] == true else true
+        if (Build.VERSION.SDK_INT >= 33) perms[Manifest.permission.POST_NOTIFICATIONS] == true else true
 
-        Log.d(
-            "test",
-            "Haha handle perm $hasCourseLocationPermission $hasFineLocationPermission $hasNotiPermission"
-        )
 
         val activity = context as ComponentActivity
 
@@ -447,6 +459,7 @@ private fun Context.checkHaslocationPermission(): Boolean {
 @Composable
 private fun DashboardPreview() {
     Dashboard(
-        state = ActiveRunState(), onClick = {})
+        state = ActiveRunState(), onClick = {}, mainActivityClass = ComponentActivity::class.java
+    )
 
 }

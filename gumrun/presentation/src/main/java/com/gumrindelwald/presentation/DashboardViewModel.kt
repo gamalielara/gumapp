@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.gumrindelwald.domain.RunningTracker
 import com.gumrindelwald.presentation.util.ActiveRunState
 import com.gumrindelwald.presentation.util.RunningActiveScreenAction
+import com.gumrindelwald.presentation.util.RunningTrackerService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
@@ -19,8 +20,11 @@ import kotlinx.coroutines.flow.stateIn
 class DashboardViewModel(
     runningTracker: RunningTracker
 ) : ViewModel() {
-    // TODO: delete shoudlTrack
-    var state by mutableStateOf(ActiveRunState())
+    var state by mutableStateOf(
+        ActiveRunState(
+            shouldTrack = RunningTrackerService.isTracking
+        )
+    )
         private set
 
     private val shouldTrack = snapshotFlow { state.shouldTrack }.stateIn(
