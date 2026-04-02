@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.gumrindelwald.domain.RunningTracker
 import com.gumrindelwald.presentation.util.ActiveRunState
 import com.gumrindelwald.presentation.util.RunningActiveScreenAction
+import com.gumrindelwald.presentation.util.RunningStatusTracker
 import com.gumrindelwald.presentation.util.RunningTrackerService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -18,7 +19,8 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 
 class DashboardViewModel(
-    runningTracker: RunningTracker
+    runningTracker: RunningTracker,
+    val runningStatusTracker: RunningStatusTracker
 ) : ViewModel() {
     var state by mutableStateOf(
         ActiveRunState(
@@ -65,6 +67,10 @@ class DashboardViewModel(
         runningTracker.elapsedTime.onEach {
             state = state.copy(elapsedTime = it)
         }.launchIn(viewModelScope)
+
+        runningStatusTracker.isRunning.onEach {
+            state = state.copy(shouldTrack = it)
+        }.launchIn(viewModelScope)
     }
 
     fun onAction(action: RunningActiveScreenAction) {
@@ -86,7 +92,17 @@ class DashboardViewModel(
             }
 
             RunningActiveScreenAction.OnToggleRunStatus -> {
-                state = state.copy(shouldTrack = !state.shouldTrack)
+                if (!state.hasStartedRunning && !state.shouldTrack) {
+                    state = state.copy(hasStartedRunning = true)
+                }
+
+                if (state.shouldTrack) {
+                    runningStatusTracker.stopTracking()
+                } else {
+                    runningStatusTracker.startTracking()
+                }
+
+
             }
 
             is RunningActiveScreenAction.SubmitLocationInfo -> {

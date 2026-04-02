@@ -18,6 +18,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.android.ext.android.inject
@@ -27,14 +28,34 @@ class RunningTrackerService() : Service() {
         getSystemService<NotificationManager>()!!
     }
 
-    var serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+    var serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
     private val runningTracker by inject<RunningTracker>()
+    private val runningStatusTracker by inject<RunningStatusTracker>()
 
-    // By the time the noti is created, the app scope might not yet available. We need to put this as lazy
-    private val noti by lazy(LazyThreadSafetyMode.NONE) {
-        NotificationCompat.Builder(this, NOTI_CHANNEL_ID).setSmallIcon(R.drawable.run)
-            .setContentTitle(getString(R.string.gumrun))
-    }
+
+    private fun buildNotification(
+        activityClass: Class<*>,
+        elapsedTimeText: String,
+        isRunning: Boolean
+    ) = NotificationCompat.Builder(this, NOTI_CHANNEL_ID)
+        .setSmallIcon(R.drawable.run)
+        .setContentTitle(getString(R.string.gumrun))
+        .setContentText(elapsedTimeText)
+        .setContentIntent(
+            PendingIntent.getActivity(
+                this,
+                1,
+                Intent(this, activityClass),
+                PendingIntent.FLAG_IMMUTABLE
+            )
+        )
+        .setSilent(true)
+        .addAction(
+            R.drawable.run,
+            if (isRunning) "Pause" else "Continue",
+            createActivityIntentActionNoti(activityClass)
+        )
+        .build()
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
@@ -55,9 +76,30 @@ class RunningTrackerService() : Service() {
             ACTION_STOP -> {
                 stopService()
             }
+
+            TOGGLE_RUN_STATUS -> {
+
+                if (runningStatusTracker.isRunning.value) {
+                    isTracking = false
+                    runningStatusTracker.stopTracking()
+                } else {
+                    isTracking = true
+                    runningStatusTracker.startTracking()
+                }
+
+                Log.d("RunningTrackerService", "Toggled running status $isTracking")
+            }
         }
 
         return START_STICKY
+    }
+
+    fun createActivityIntentActionNoti(activityClass: Class<*>): PendingIntent {
+        val activityIntent = Intent(applicationContext, RunningTrackerService::class.java).also {
+            it.action = TOGGLE_RUN_STATUS
+        }
+
+        return PendingIntent.getService(this, 1, activityIntent, PendingIntent.FLAG_IMMUTABLE)
     }
 
     private fun startNotiService(activityClass: Class<*>) {
@@ -65,20 +107,23 @@ class RunningTrackerService() : Service() {
 
         val activityIntent = Intent(applicationContext, activityClass)
 
-        val pendingIntent =
-            PendingIntent.getActivity(this, 1, activityIntent, PendingIntent.FLAG_IMMUTABLE)
+        PendingIntent.getActivity(this, 1, activityIntent, PendingIntent.FLAG_IMMUTABLE)
 
-        val notification =
-            noti
-                .setContentText("00:00:00")
-                .setContentIntent(pendingIntent)
-                .setSilent(true)
-                .build()
+
+        // Initial notification
+        val notification = buildNotification(activityClass, "00:00:00", false)
 
         startForeground(NOTI_ID, notification)
 
-        runningTracker.elapsedTime.onEach {
-            notiManager.notify(NOTI_ID, noti.setContentText(it.formatted()).build())
+        combine(
+            runningTracker.elapsedTime,
+            runningStatusTracker.isRunning
+        ) { elapsedTime, isRunning ->
+            // Build notification every time the elapsed time changes and notify it
+            buildNotification(activityClass, elapsedTime.formatted(), isRunning)
+
+        }.onEach { notification ->
+            notiManager.notify(NOTI_ID, notification)
         }.launchIn(serviceScope)
     }
 
@@ -110,6 +155,8 @@ class RunningTrackerService() : Service() {
         const val ACTION_START = "start_gumrun_track"
         const val ACTION_STOP = "stop_gumrun_track"
         const val ACTIVITY_CLASSS = "activity_class"
+
+        const val TOGGLE_RUN_STATUS = "toggle_run_status"
 
         fun createStartIntent(context: Context, activityClass: Class<*>): Intent {
             return Intent(context, RunningTrackerService::class.java).apply {

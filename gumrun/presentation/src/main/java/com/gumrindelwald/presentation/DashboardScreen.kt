@@ -326,16 +326,14 @@ private fun Dashboard(
                         onClick = {
                             onClick(RunningActiveScreenAction.OnToggleRunStatus)
 
-                            if (state.shouldTrack) {
+                            // The lambda still refers to the old shouldTrack value
+                            // Fire only once
+                            if (!state.hasStartedRunning) {
                                 context.startService(
                                     RunningTrackerService.createStartIntent(
                                         context,
                                         mainActivityClass
                                     )
-                                )
-                            } else {
-                                context.startService(
-                                    RunningTrackerService.createStopIntent(context)
                                 )
                             }
                         },
