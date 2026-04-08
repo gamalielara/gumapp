@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -29,6 +30,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Stop
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -221,6 +223,61 @@ private fun Dashboard(
                     }
                 }
             }
+
+            Row(
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(
+                        vertical = 100.dp + 10.dp,
+                        horizontal = it.calculateBottomPadding()
+                    )
+                    .fillMaxWidth()
+                    .height(100.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+            ) {
+
+                Button(
+                    onClick = {
+                        // TODO
+                    },
+                    shape = CircleShape,
+                    modifier = Modifier.size(56.dp),
+                    contentPadding = PaddingValues(12.dp),
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Stop,
+                        contentDescription = null,
+                        modifier = Modifier.size(50.dp)
+                    )
+                }
+
+                Button(
+                    onClick = {
+                        onClick(RunningActiveScreenAction.OnToggleRunStatus)
+
+                        // The lambda still refers to the old shouldTrack value
+                        // Fire only once
+                        if (!state.hasStartedRunning) {
+                            context.startService(
+                                RunningTrackerService.createStartIntent(
+                                    context,
+                                    mainActivityClass
+                                )
+                            )
+                        }
+                    },
+                    shape = CircleShape,
+                    modifier = Modifier.size(56.dp),
+                    contentPadding = PaddingValues(12.dp),
+                ) {
+                    Icon(
+                        imageVector = if (state.shouldTrack) Icons.Default.Pause else Icons.Default.PlayArrow,
+                        contentDescription = null,
+                        modifier = Modifier.size(50.dp)
+                    )
+                }
+            }
+
             Box(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
@@ -228,9 +285,11 @@ private fun Dashboard(
                         vertical = it.calculateBottomPadding() + 10.dp,
                         horizontal = it.calculateBottomPadding()
                     )
-                    .clip(shape = RoundedCornerShape(15.dp))
+                    .clip(shape = RoundedCornerShape(20.dp))
                     .height(100.dp)
             ) {
+
+
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
@@ -322,31 +381,7 @@ private fun Dashboard(
                             }
                         }
                     }
-                    Button(
-                        onClick = {
-                            onClick(RunningActiveScreenAction.OnToggleRunStatus)
 
-                            // The lambda still refers to the old shouldTrack value
-                            // Fire only once
-                            if (!state.hasStartedRunning) {
-                                context.startService(
-                                    RunningTrackerService.createStartIntent(
-                                        context,
-                                        mainActivityClass
-                                    )
-                                )
-                            }
-                        },
-                        shape = CircleShape,
-                        modifier = Modifier.size(56.dp),
-                        contentPadding = PaddingValues(12.dp),
-                    ) {
-                        Icon(
-                            imageVector = if (state.shouldTrack) Icons.Default.Pause else Icons.Default.PlayArrow,
-                            contentDescription = null,
-                            modifier = Modifier.size(50.dp)
-                        )
-                    }
                 }
             }
 
