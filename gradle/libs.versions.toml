@@ -141,16 +141,16 @@ jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jet
 androidDynamicFeature = { id = "com.android.dynamic-feature", version.ref = "agp" }
 mapsplatform-secrets-plugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secretsPlugin" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-gumapp-android-application = { id = "gumapp.android.application", version = "unspecified" }
-gumapp-android-application-compose = { id = "gumapp.androidApplication.compose", version = "unspecified" }
-gumapp-android-library = { id = "gumapp.android.library", version = "unspecified" }
-gumapp-android-library-compose = { id = "gumapp.android.library.compose", version = "unspecified" }
-gumapp-android-feature-ui = { id = "gumapp.android.library.feature.ui", version = "unspecified" }
-gumapp-android-room = { id = "gumapp.android.room", version = "unspecified" }
-gumapp-android-dynamic-feature = { id = "gumapp.android.dynamic.feature", version = "unspecified" }
-gumapp-jvm-library = { id = "gumapp.jvm.library", version = "unspecified" }
-gumapp-jvm-ktor = { id = "gumapp.jvm.ktor", version = "unspecified" }
-gumapp-android-application-wear-compose = { id = "gumapp.android.application.wear.compose", version = "unspecified" }
+gumapp-android-application = { id = "gumapp.android.application" }
+gumapp-android-application-compose = { id = "gumapp.androidApplication.compose" }
+gumapp-android-library = { id = "gumapp.android.library" }
+gumapp-android-library-compose = { id = "gumapp.android.library.compose" }
+gumapp-android-feature-ui = { id = "gumapp.android.library.feature.ui" }
+gumapp-android-room = { id = "gumapp.android.room" }
+gumapp-android-dynamic-feature = { id = "gumapp.android.dynamic.feature" }
+gumapp-jvm-library = { id = "gumapp.jvm.library" }
+gumapp-jvm-ktor = { id = "gumapp.jvm.ktor" }
+gumapp-android-application-wear-compose = { id = "gumapp.android.application.wear.compose" }
 
 
 [bundles]

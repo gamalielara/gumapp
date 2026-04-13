@@ -68,13 +68,20 @@ import com.gumrindelwald.core.domain.roundToDecimals
 import com.gumrindelwald.designsystem.GumAppActionButton
 import com.gumrindelwald.designsystem.GumAppDialog
 import com.gumrindelwald.designsystem.RunIcon
+import com.gumrindelwald.domain.RunLocation
+import com.gumrindelwald.domain.run.Run
 import com.gumrindelwald.gumapp.core.presentation.designsystem.R
+import com.gumrindelwald.presentation.run.toRunUI
+import com.gumrindelwald.presentation.run_overview.component.RunListItem
 import com.gumrindelwald.presentation.util.ActiveRunState
 import com.gumrindelwald.presentation.util.KILOMETER_TO_METER
 import com.gumrindelwald.presentation.util.RunningActiveScreenAction
 import com.gumrindelwald.presentation.util.RunningTrackerService
 import com.gumrindelwald.presentation.util.toFormattedPace
 import org.koin.androidx.compose.koinViewModel
+import java.time.ZonedDateTime
+import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 
 
 @Composable
@@ -84,9 +91,22 @@ fun GumrunDashboardRoot(
 ) {
     val viewModel: DashboardViewModel = koinViewModel()
 
-    Dashboard(
-        state = viewModel.state, onClick = viewModel::onAction,
-        mainActivityClass
+//    Dashboard(
+//        state = viewModel.state, onClick = viewModel::onAction, mainActivityClass
+//    )
+
+    RunListItem(
+        runUI = Run(
+            id = "1",
+            duration = 10.minutes + 30.seconds,
+            dateTimeUTC = ZonedDateTime.now(),
+            distanceMeters = 5000,
+            location = RunLocation(0.0, 0.0),
+            maxSpeedKmH = 15.28372,
+            totalElevationMeters = 12,
+            mapPictureURL = null
+        ).toRunUI(),
+        onDeleteClick = {},
     )
 }
 
@@ -228,8 +248,7 @@ private fun Dashboard(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .padding(
-                        vertical = 100.dp + 10.dp,
-                        horizontal = it.calculateBottomPadding()
+                        vertical = 100.dp + 10.dp, horizontal = it.calculateBottomPadding()
                     )
                     .fillMaxWidth()
                     .height(100.dp),
@@ -260,8 +279,7 @@ private fun Dashboard(
                         if (!state.hasStartedRunning) {
                             context.startService(
                                 RunningTrackerService.createStartIntent(
-                                    context,
-                                    mainActivityClass
+                                    context, mainActivityClass
                                 )
                             )
                         }

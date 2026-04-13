@@ -7,7 +7,7 @@ import org.gradle.kotlin.dsl.project
 fun DependencyHandlerScope.addUILayerDependencies(project: Project) {
 //    "implementation"(project(":core:presentation:ui"))
     "implementation"(project(":core:presentation:designsystem"))
-
+    "implementation"(project.libs.findLibrary("coil.compose").get())
     "implementation"(project.libs.findBundle("koin.compose").get())
     "implementation"(project.libs.findBundle("compose").get())
     "debugImplementation"(project.libs.findBundle("compose.debug").get())

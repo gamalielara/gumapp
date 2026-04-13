@@ -10,6 +10,10 @@ const val KILOMETER_TO_METER = 1000.0
 
 fun Double.toFormattedKilometers(): String = "${this.roundToDecimals(1)} km"
 
+fun Double.toFormattedKmH(): String = "${roundToDecimals(1)} km/h"
+
+fun Int.toFormattedMeters(): String = "$this m"
+
 fun Duration.toFormattedPace(distanceKm: Double): String {
     if (this == Duration.ZERO || distanceKm <= 0.0) {
         return "-"
