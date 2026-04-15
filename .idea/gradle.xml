@@ -39,7 +39,7 @@
             <option value="$PROJECT_DIR$/gumnotes" />
             <option value="$PROJECT_DIR$/gumovies" />
             <option value="$PROJECT_DIR$/gumrun" />
-            <option value="$PROJECT_DIR$/gumrun/data" />
+            <option value="$PROJECT_DIR$/gumrun/database" />
             <option value="$PROJECT_DIR$/gumrun/domain" />
             <option value="$PROJECT_DIR$/gumrun/location" />
             <option value="$PROJECT_DIR$/gumrun/presentation" />

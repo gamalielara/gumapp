@@ -85,4 +85,5 @@ dependencies {
     implementation(project(":gumjournals:presentation"))
     implementation(project(":gumrun:presentation"))
     implementation(project(":gumrun:location"))
+    implementation(project(":gumrun:database"))
 }

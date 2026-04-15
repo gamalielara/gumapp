@@ -21,6 +21,7 @@ class AndroidRoomConventionPlugin : Plugin<Project> {
             dependencies {
                 "implementation"(libs.findLibrary("room.runtime").get())
                 "implementation"(libs.findLibrary("room.ktx").get())
+                "implementation"(libs.findLibrary("mongodb.bson").get())
                 "ksp"(libs.findLibrary("room.compiler").get())
             }
         }

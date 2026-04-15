@@ -28,8 +28,9 @@ class GumAppModules : Application() {
             modules(
                 appModule,
                 GumRunPresentationModule,
-                LocationModule
-            )
+                LocationModule,
+
+                )
         }
     }
 }
