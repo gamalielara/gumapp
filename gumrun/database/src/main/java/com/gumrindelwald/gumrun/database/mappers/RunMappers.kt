@@ -3,8 +3,8 @@ package com.gumrindelwald.gumrun.database.mappers
 import com.gumrindelwald.domain.RunLocation
 import com.gumrindelwald.domain.run.Run
 import com.gumrindelwald.gumrun.database.entity.RunEntity
-import org.bson.types.ObjectId
 import java.time.ZonedDateTime
+import java.util.UUID
 import kotlin.time.Duration.Companion.milliseconds
 
 fun RunEntity.toRun(): Run {
@@ -22,7 +22,7 @@ fun RunEntity.toRun(): Run {
 
 fun Run.toRunEntity(): RunEntity {
     return RunEntity(
-        id = id ?: ObjectId().toHexString(),
+        id = id ?: UUID.randomUUID().toString(),
         durationMillis = duration.inWholeMilliseconds,
         dateTimeUTC = dateTimeUTC.toString(),
         distanceMeters = distanceMeters,

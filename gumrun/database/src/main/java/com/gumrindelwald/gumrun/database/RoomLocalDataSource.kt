@@ -22,9 +22,11 @@ class RoomLocalDataSource(
 
     override suspend fun upsertRun(run: Run): RunId {
         return try {
-            runDao.upsertRun(run.toRunEntity())
+            val entity = run.toRunEntity()
+            runDao.upsertRun(entity)
+            entity.id
         } catch (e: SQLiteFullException) {
-            return ""
+            ""
         }
     }
 
@@ -32,8 +34,9 @@ class RoomLocalDataSource(
         return try {
             val entities = runs.map { it.toRunEntity() }
             runDao.upsertRuns(entities)
+            entities.firstOrNull()?.id ?: ""
         } catch (e: SQLiteFullException) {
-            return ""
+            ""
         }
     }
 

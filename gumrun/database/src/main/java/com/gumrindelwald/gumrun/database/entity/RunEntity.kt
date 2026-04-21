@@ -2,12 +2,12 @@ package com.gumrindelwald.gumrun.database.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import org.bson.types.ObjectId
+import java.util.UUID
 
 @Entity
 data class RunEntity(
     @PrimaryKey(autoGenerate = false)
-    val id: String = ObjectId().toHexString(),
+    val id: String = UUID.randomUUID().toString(),
 
     val durationMillis: Long,
     val distanceMeters: Int,
