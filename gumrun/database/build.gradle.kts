@@ -10,5 +10,6 @@ android {
 
 dependencies {
     implementation(project(":gumrun:domain"))
+    implementation(project(":core:domain"))
     implementation(libs.bundles.koin)
 }

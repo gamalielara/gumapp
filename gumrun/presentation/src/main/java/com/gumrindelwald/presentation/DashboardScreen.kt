@@ -4,13 +4,13 @@ import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.os.Build
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -38,10 +38,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
@@ -53,60 +49,60 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MapStyleOptions
-import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.GoogleMapComposable
-import com.google.maps.android.compose.MapProperties
-import com.google.maps.android.compose.MapUiSettings
-import com.google.maps.android.compose.MarkerComposable
-import com.google.maps.android.compose.rememberCameraPositionState
-import com.google.maps.android.compose.rememberMarkerState
 import com.gumrindelwald.core.domain.formatted
 import com.gumrindelwald.core.domain.roundToDecimals
 import com.gumrindelwald.designsystem.GumAppActionButton
 import com.gumrindelwald.designsystem.GumAppDialog
-import com.gumrindelwald.designsystem.RunIcon
-import com.gumrindelwald.domain.RunLocation
-import com.gumrindelwald.domain.run.Run
 import com.gumrindelwald.gumapp.core.presentation.designsystem.R
-import com.gumrindelwald.presentation.run.toRunUI
-import com.gumrindelwald.presentation.run_overview.component.RunListItem
 import com.gumrindelwald.presentation.util.ActiveRunState
 import com.gumrindelwald.presentation.util.KILOMETER_TO_METER
 import com.gumrindelwald.presentation.util.RunningActiveScreenAction
 import com.gumrindelwald.presentation.util.RunningTrackerService
 import com.gumrindelwald.presentation.util.toFormattedPace
 import org.koin.androidx.compose.koinViewModel
-import java.time.ZonedDateTime
-import kotlin.time.Duration.Companion.minutes
-import kotlin.time.Duration.Companion.seconds
+import java.io.ByteArrayOutputStream
 
 
 @Composable
 
 fun GumrunDashboardRoot(
-    mainActivityClass: Class<*>
+    mainActivityClass: Class<*>,
+    onRunFinished: () -> Unit,
+    onBack: () -> Unit
 ) {
     val viewModel: DashboardViewModel = koinViewModel()
+    val context = LocalContext.current
 
-//    Dashboard(
-//        state = viewModel.state, onClick = viewModel::onAction, mainActivityClass
-//    )
+    ObserveAsEvents(flow = viewModel.eventFlow) { event ->
+        when (event) {
+            is ActiveRunEventChannel.Error -> Toast.makeText(
+                context,
+                event.error.asString(context),
+                Toast.LENGTH_LONG
+            ).show()
 
-    RunListItem(
-        runUI = Run(
-            id = "1",
-            duration = 10.minutes + 30.seconds,
-            dateTimeUTC = ZonedDateTime.now(),
-            distanceMeters = 5000,
-            location = RunLocation(0.0, 0.0),
-            maxSpeedKmH = 15.28372,
-            totalElevationMeters = 12,
-            mapPictureURL = null
-        ).toRunUI(),
-        onDeleteClick = {},
+            ActiveRunEventChannel.RunSaved -> {
+                onRunFinished()
+            }
+        }
+    }
+
+    Dashboard(
+        state = viewModel.state,
+        onClick = { action ->
+            when (action) {
+                is RunningActiveScreenAction.OnBackClick -> {
+                    if (!viewModel.state.hasStartedRunning) {
+                        onBack()
+                    }
+                }
+
+                else -> Unit
+            }
+            viewModel.onAction(action)
+        },
+        mainActivityClass
     )
 }
 
@@ -114,31 +110,12 @@ fun GumrunDashboardRoot(
 @Composable
 @GoogleMapComposable
 private fun Dashboard(
-    state: ActiveRunState, onClick: (RunningActiveScreenAction) -> Unit,
+    state: ActiveRunState,
+    onClick: (RunningActiveScreenAction) -> Unit,
     mainActivityClass: Class<*>,
 ) {
     val context = LocalContext.current
     val currentLocation = state.currentLocation
-
-    val mapStyle = remember {
-        MapStyleOptions.loadRawResourceStyle(
-            context, com.gumrindelwald.gumrun.presentation.R.raw.map_style
-        )
-    }
-
-    var isMapLoaded by remember { mutableStateOf(false) }
-
-    val markerState = rememberMarkerState()
-    val cameraPositionState = rememberCameraPositionState()
-
-
-    val markerPositionLat by animateFloatAsState(
-        targetValue = currentLocation?.lat?.toFloat() ?: 0f, animationSpec = tween(300)
-    )
-
-    val markerPositionLng by animateFloatAsState(
-        targetValue = currentLocation?.long?.toFloat() ?: 0f, animationSpec = tween(300)
-    )
 
     val permLauncher = handleLocationNotiPermission(onAction = onClick)
 
@@ -180,24 +157,6 @@ private fun Dashboard(
         }
     }
 
-    LaunchedEffect(isMapLoaded, markerPositionLat, markerPositionLng) {
-        markerState.position = LatLng(markerPositionLat.toDouble(), markerPositionLng.toDouble())
-
-    }
-
-    LaunchedEffect(isMapLoaded, currentLocation) {
-        if (isMapLoaded) {
-            cameraPositionState.animate(
-                CameraUpdateFactory.newLatLngZoom(
-                    LatLng(
-                        currentLocation?.lat?.toDouble() ?: 0.0,
-                        currentLocation?.long?.toDouble() ?: 0.0
-                    ), 20f
-                )
-            )
-        }
-    }
-
     GumrunScaffold(
         withGradient = false, topAppBar = {
             GumAppToolbar(
@@ -205,50 +164,37 @@ private fun Dashboard(
                 title = stringResource(R.string.active_run),
                 onBackClick = {},
             )
-        }) {
+        }) { paddingValues ->
         Box(
             modifier = Modifier
                 .padding()
                 .background(MaterialTheme.colorScheme.primary)
                 .fillMaxSize()
         ) {
-            GoogleMap(
-                cameraPositionState = cameraPositionState, properties = MapProperties(
-                    mapStyleOptions = mapStyle
-                ), uiSettings = MapUiSettings(
-                    zoomControlsEnabled = false
-                ), onMapLoaded = {
-                    isMapLoaded = true
-                }) {
-                GumRunPolylines(location = state.runData.locations)
-
-                if (currentLocation != null) {
-                    MarkerComposable(
-                        currentLocation, state = markerState
-                    ) {
-                        Box(
-                            modifier = Modifier
-                                .size(35.dp)
-                                .clip(CircleShape)
-                                .background(MaterialTheme.colorScheme.primary),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Icon(
-                                imageVector = RunIcon,
-                                contentDescription = null,
-                                tint = MaterialTheme.colorScheme.onPrimary,
-                                modifier = Modifier.size(20.dp)
-                            )
-                        }
+            GumrunMap(
+                currentLocation = state.currentLocation,
+                allLocations = state.runData.locations,
+                isRunFinished = state.isRunFinished,
+                modifier = Modifier,
+                context = context,
+                onSnapshot = { bmp ->
+                    val stream = ByteArrayOutputStream()
+                    stream.use {
+                        bmp.compress(
+                            Bitmap.CompressFormat.JPEG, 100, it
+                        )
                     }
+
+                    onClick(RunningActiveScreenAction.OnRunProcessed(stream.toByteArray()))
                 }
-            }
+            )
 
             Row(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .padding(
-                        vertical = 100.dp + 10.dp, horizontal = it.calculateBottomPadding()
+                        vertical = 100.dp + 10.dp,
+                        horizontal = paddingValues.calculateBottomPadding()
                     )
                     .fillMaxWidth()
                     .height(100.dp),
@@ -300,8 +246,8 @@ private fun Dashboard(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .padding(
-                        vertical = it.calculateBottomPadding() + 10.dp,
-                        horizontal = it.calculateBottomPadding()
+                        vertical = paddingValues.calculateBottomPadding() + 10.dp,
+                        horizontal = paddingValues.calculateBottomPadding()
                     )
                     .clip(shape = RoundedCornerShape(20.dp))
                     .height(100.dp)

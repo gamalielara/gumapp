@@ -86,8 +86,6 @@ class HttpClientFactory(
                         } else {
                             BearerTokens(refreshToken = "", accessToken = "")
                         }
-
-
                     }
                 }
             }

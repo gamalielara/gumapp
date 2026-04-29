@@ -1,7 +1,7 @@
 package com.gumrindelwald.gumrun.database.di
 
 import androidx.room.Room
-import com.gumrindelwald.domain.run.LocalRunDatabase
+import com.gumrindelwald.domain.run.LocalRunDataSource
 import com.gumrindelwald.gumrun.database.GumRunDatabase
 import com.gumrindelwald.gumrun.database.RoomLocalDataSource
 import org.koin.android.ext.koin.androidApplication
@@ -22,5 +22,5 @@ val DatabaseModule = module {
         get<GumRunDatabase>().runDao
     }
 
-    singleOf(::RoomLocalDataSource).bind<LocalRunDatabase>()
+    singleOf(::RoomLocalDataSource).bind<LocalRunDataSource>()
 }

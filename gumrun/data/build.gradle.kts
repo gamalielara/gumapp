@@ -4,13 +4,10 @@ plugins {
 }
 
 android {
-    namespace = "com.gumrindelwald.network"
+    namespace = "com.gumrindelwald.data"
 }
 
 dependencies {
-    implementation(libs.bundles.koin)
-    implementation(libs.timber)
-
     implementation(project(":core:data"))
     implementation(project(":core:domain"))
     implementation(project(":gumrun:domain"))

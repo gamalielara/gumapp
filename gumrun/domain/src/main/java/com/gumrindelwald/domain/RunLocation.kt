@@ -7,7 +7,8 @@ import kotlin.math.sqrt
 
 data class RunLocation(
     val lat: Double,
-    val long: Double
+    val long: Double,
+    val altitude: Double = 0.0
 ) {
     // Got this calculation from Phillip Lackner's course. No need to understand this.
     fun distanceTo(other: RunLocation): Float {

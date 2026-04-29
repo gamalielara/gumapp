@@ -13,6 +13,7 @@ android {
 
 dependencies {
     implementation(project(":core:presentation:designsystem"))
+    implementation(project(":core:domain"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.compose.ui)

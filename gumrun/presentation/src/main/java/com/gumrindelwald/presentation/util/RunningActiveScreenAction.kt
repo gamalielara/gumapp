@@ -8,11 +8,12 @@ sealed interface RunningActiveScreenAction {
     data object DismissRationaleDialog : RunningActiveScreenAction
 
     data class SubmitLocationInfo(
-        val acceptedLocationPermission: Boolean,
-        val showLocationRationale: Boolean
+        val acceptedLocationPermission: Boolean, val showLocationRationale: Boolean
     ) : RunningActiveScreenAction
 
     data class SubmitNotificationPermissionInfo(
         val showNotiRationale: Boolean
     ) : RunningActiveScreenAction
+
+    class OnRunProcessed(val mapPictureBytes: ByteArray) : RunningActiveScreenAction
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_disk_full">Disk Full</string>
+    <string name="error_request_timeout">Request timeout</string>
+    <string name="error_unauthorized">Unauthorized</string>
+    <string name="error_conflict">There are conflicts occured</string>
+    <string name="error_too_many_request">Too many request</string>
+    <string name="error_no_internet">"Not connected to internet "</string>
+    <string name="error_payload_too_large_request">Payload too large</string>
+    <string name="error_server_error">Server error</string>
+    <string name="error_serialization">Error serialization</string>
+    <string name="error_unknown">Unknown</string>
+</resources>
