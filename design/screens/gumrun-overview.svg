@@ -1,0 +1,111 @@
+<svg viewBox="0 0 375 812" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, sans-serif">
+<rect width="375" height="812" fill="#1a1c16"/>
+
+<!-- Status Bar -->
+<text x="28" y="32" fill="#eaebe0" font-size="14" font-weight="600">9:41</text>
+<text x="310" y="32" fill="#9a9c90" font-size="11">●●● ▲ ■</text>
+
+<!-- Header -->
+<text x="20" y="68" fill="#9a9c90" font-size="20">←</text>
+<text x="187" y="68" fill="#eaebe0" font-size="17" font-weight="700" text-anchor="middle">GumRun</text>
+<text x="350" y="68" fill="#9a9c90" font-size="18">⚙</text>
+
+<!-- Weekly Summary Card -->
+<rect x="16" y="86" width="343" height="110" rx="16" fill="#232520" stroke="#333530" stroke-width="1"/>
+<text x="187" y="110" fill="#6a6c62" font-size="11" font-weight="600" text-anchor="middle" letter-spacing="0.8">THIS WEEK</text>
+<text x="187" y="148" fill="#cdeda3" font-size="36" font-weight="900" text-anchor="middle" letter-spacing="-2">24.8 km</text>
+<text x="187" y="166" fill="#6a6c62" font-size="12" text-anchor="middle">Goal: 30 km • 83%</text>
+<!-- Progress bar -->
+<rect x="40" y="176" width="295" height="6" rx="3" fill="#333530"/>
+<rect x="40" y="176" width="245" height="6" rx="3" fill="#cdeda3"/>
+
+<!-- Weekly Overview -->
+<text x="20" y="226" fill="#eaebe0" font-size="16" font-weight="700">Weekly overview</text>
+
+<!-- Bar Chart -->
+<g text-anchor="middle">
+  <!-- M -->
+  <text x="38" y="244" fill="#9a9c90" font-size="8" font-weight="600">5.2</text>
+  <rect x="28" y="250" width="20" height="52" rx="6" fill="#cdeda3"/>
+  <text x="38" y="314" fill="#6a6c62" font-size="9" font-weight="500">M</text>
+
+  <!-- T -->
+  <text x="86" y="258" fill="#9a9c90" font-size="8" font-weight="600">3.8</text>
+  <rect x="76" y="264" width="20" height="38" rx="6" fill="#cdeda3"/>
+  <text x="86" y="314" fill="#6a6c62" font-size="9" font-weight="500">T</text>
+
+  <!-- W -->
+  <text x="134" y="298" fill="#9a9c90" font-size="8" font-weight="600">0</text>
+  <rect x="124" y="300" width="20" height="2" rx="1" fill="#333530"/>
+  <text x="134" y="314" fill="#6a6c62" font-size="9" font-weight="500">W</text>
+
+  <!-- T -->
+  <text x="182" y="232" fill="#9a9c90" font-size="8" font-weight="600">8.1</text>
+  <rect x="172" y="232" width="20" height="70" rx="6" fill="#cdeda3"/>
+  <text x="182" y="314" fill="#6a6c62" font-size="9" font-weight="500">T</text>
+
+  <!-- F -->
+  <text x="230" y="257" fill="#9a9c90" font-size="8" font-weight="600">4.5</text>
+  <rect x="220" y="257" width="20" height="45" rx="6" fill="#cdeda3"/>
+  <text x="230" y="314" fill="#6a6c62" font-size="9" font-weight="500">F</text>
+
+  <!-- S -->
+  <text x="278" y="270" fill="#9a9c90" font-size="8" font-weight="600">3.2</text>
+  <rect x="268" y="270" width="20" height="32" rx="6" fill="#cdeda3"/>
+  <text x="278" y="314" fill="#6a6c62" font-size="9" font-weight="500">S</text>
+
+  <!-- S -->
+  <text x="326" y="298" fill="#9a9c90" font-size="8" font-weight="600">—</text>
+  <rect x="316" y="300" width="20" height="2" rx="1" fill="#333530"/>
+  <text x="326" y="314" fill="#6a6c62" font-size="9" font-weight="500">S</text>
+</g>
+
+<!-- Recent Runs -->
+<text x="20" y="348" fill="#eaebe0" font-size="16" font-weight="700">Recent runs</text>
+<text x="355" y="348" fill="#cdeda3" font-size="12" font-weight="600" text-anchor="end">See all</text>
+
+<!-- Run Entry 1 -->
+<rect x="20" y="362" width="4" height="56" rx="2" fill="#cdeda3"/>
+<text x="36" y="378" fill="#eaebe0" font-size="14" font-weight="600">Morning Run</text>
+<text x="340" y="378" fill="#6a6c62" font-size="11" text-anchor="end">Today, 6:30 AM</text>
+<rect x="36" y="388" width="56" height="22" rx="50" fill="rgba(205,237,163,0.12)"/>
+<text x="64" y="403" fill="#cdeda3" font-size="10" font-weight="600" text-anchor="middle">5.2 km</text>
+<rect x="98" y="388" width="52" height="22" rx="50" fill="rgba(205,237,163,0.12)"/>
+<text x="124" y="403" fill="#cdeda3" font-size="10" font-weight="600" text-anchor="middle">29:34</text>
+<rect x="156" y="388" width="62" height="22" rx="50" fill="rgba(205,237,163,0.12)"/>
+<text x="187" y="403" fill="#cdeda3" font-size="10" font-weight="600" text-anchor="middle">5'41"/km</text>
+<text x="355" y="398" fill="#6a6c62" font-size="16" text-anchor="end">›</text>
+
+<!-- Divider -->
+<line x1="36" y1="424" x2="355" y2="424" stroke="#333530" stroke-width="0.5"/>
+
+<!-- Run Entry 2 -->
+<rect x="20" y="434" width="4" height="56" rx="2" fill="#cdeda3"/>
+<text x="36" y="450" fill="#eaebe0" font-size="14" font-weight="600">Evening Jog</text>
+<text x="340" y="450" fill="#6a6c62" font-size="11" text-anchor="end">Yesterday, 5:45 PM</text>
+<rect x="36" y="460" width="56" height="22" rx="50" fill="rgba(205,237,163,0.12)"/>
+<text x="64" y="475" fill="#cdeda3" font-size="10" font-weight="600" text-anchor="middle">3.8 km</text>
+<rect x="98" y="460" width="52" height="22" rx="50" fill="rgba(205,237,163,0.12)"/>
+<text x="124" y="475" fill="#cdeda3" font-size="10" font-weight="600" text-anchor="middle">22:15</text>
+<rect x="156" y="460" width="62" height="22" rx="50" fill="rgba(205,237,163,0.12)"/>
+<text x="187" y="475" fill="#cdeda3" font-size="10" font-weight="600" text-anchor="middle">5'51"/km</text>
+<text x="355" y="470" fill="#6a6c62" font-size="16" text-anchor="end">›</text>
+
+<line x1="36" y1="496" x2="355" y2="496" stroke="#333530" stroke-width="0.5"/>
+
+<!-- Run Entry 3 -->
+<rect x="20" y="506" width="4" height="56" rx="2" fill="#cdeda3"/>
+<text x="36" y="522" fill="#eaebe0" font-size="14" font-weight="600">Trail Run</text>
+<text x="340" y="522" fill="#6a6c62" font-size="11" text-anchor="end">May 5, 7:00 AM</text>
+<rect x="36" y="532" width="56" height="22" rx="50" fill="rgba(205,237,163,0.12)"/>
+<text x="64" y="547" fill="#cdeda3" font-size="10" font-weight="600" text-anchor="middle">8.1 km</text>
+<rect x="98" y="532" width="52" height="22" rx="50" fill="rgba(205,237,163,0.12)"/>
+<text x="124" y="547" fill="#cdeda3" font-size="10" font-weight="600" text-anchor="middle">48:22</text>
+<rect x="156" y="532" width="62" height="22" rx="50" fill="rgba(205,237,163,0.12)"/>
+<text x="187" y="547" fill="#cdeda3" font-size="10" font-weight="600" text-anchor="middle">5'58"/km</text>
+<text x="355" y="540" fill="#6a6c62" font-size="16" text-anchor="end">›</text>
+
+<!-- FAB — Start Run -->
+<circle cx="187" cy="640" r="30" fill="#4c662b"/>
+<text x="187" y="647" fill="#fff" font-size="28" text-anchor="middle">▶</text>
+</svg>

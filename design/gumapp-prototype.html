@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GumApp v4 — Daily Bean Inspired</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #4c662b;
+  --primary-soft: #6b8c42;
+  --primary-container: #cdeda3;
+  --on-primary-container: #354e16;
+
+  --run: #6b8c42; --run-light: #e2f5c0; --run-pastel: #f0fad8;
+  --notes: #f0a830; --notes-light: #fff0c8; --notes-pastel: #fff8e5;
+  --journals: #50918d; --journals-light: #c8ede9; --journals-pastel: #e5f8f6;
+  --books: #9070d0; --books-light: #e0d4f8; --books-pastel: #f0eafc;
+  --movies: #e06070; --movies-light: #ffd0d4; --movies-pastel: #ffe8ea;
+
+  --bg: #151710;
+  --bg-card: #1e211a;
+  --bg-card2: #252820;
+  --bg-elevated: #2c302a;
+  --text1: #f0f1e6;
+  --text2: #a8aa9e;
+  --text3: #686a60;
+  --divider: #2e3128;
+  --glow: rgba(205,237,163,.06);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:#0d0f0a;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:32px 16px;color:#fff}
+
+.page-title{font-size:24px;font-weight:900;color:var(--primary-container);margin-bottom:4px;letter-spacing:-.5px}
+.page-subtitle{font-size:12px;color:#686a60;margin-bottom:24px}
+
+.screen-nav{display:flex;gap:5px;margin-bottom:24px;flex-wrap:wrap;justify-content:center}
+.screen-nav button{padding:6px 14px;border:1.5px solid #2e3128;border-radius:50px;background:transparent;color:#686a60;font-family:inherit;font-size:11px;font-weight:600;cursor:pointer;transition:all .2s}
+.screen-nav button:hover{border-color:var(--primary-container);color:var(--primary-container)}
+.screen-nav button.active{background:var(--primary);border-color:var(--primary);color:#fff}
+
+.phone{width:375px;height:812px;background:var(--bg);border-radius:44px;overflow:hidden;box-shadow:0 30px 100px rgba(0,0,0,.6),0 0 0 1.5px #222;position:relative}
+.sbar{height:50px;padding:14px 28px 0;display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:600;color:var(--text1);position:relative;z-index:10}
+.sbar-r{display:flex;gap:5px}
+.sbar-r svg{width:14px;height:14px;fill:var(--text2)}
+
+.bnav{position:absolute;bottom:0;left:0;right:0;height:72px;background:var(--bg-card);border-top:1px solid var(--divider);display:flex;justify-content:space-around;align-items:flex-start;padding:10px 4px 0;z-index:10}
+.bnav-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:4px 8px;border-radius:14px;transition:all .15s}
+.bnav-item svg{width:22px;height:22px;fill:var(--text3);transition:fill .15s}
+.bnav-item span{font-size:9px;color:var(--text3);font-weight:600;transition:color .15s}
+.bnav-item.active svg{fill:var(--primary-container)}
+.bnav-item.active span{color:var(--primary-container)}
+
+.sc{height:calc(100% - 50px - 72px);overflow-y:auto;scrollbar-width:none;position:relative}
+.sc::-webkit-scrollbar{display:none}
+.scr{display:none}.scr.active{display:block}
+
+/* ===== WAVY BACKGROUNDS ===== */
+.wave-bg{position:absolute;top:0;left:0;right:0;pointer-events:none;z-index:0}
+.content-z{position:relative;z-index:1}
+
+/* ===== BLOB CARDS ===== */
+.blob-card{margin:0 16px 12px;background:var(--bg-card);border-radius:24px;padding:18px;position:relative;overflow:hidden}
+.blob-card::before{content:'';position:absolute;top:-30px;right:-30px;width:100px;height:100px;border-radius:50%;opacity:.06;pointer-events:none}
+.blob-card.green::before{background:var(--run)}
+.blob-card.amber::before{background:var(--notes)}
+.blob-card.teal::before{background:var(--journals)}
+.blob-card.purple::before{background:var(--books)}
+.blob-card.red::before{background:var(--movies)}
+
+/* ===== BEAN CHARACTERS ===== */
+.bean{display:inline-flex;align-items:center;justify-content:center;position:relative}
+
+/* ===== PILL / CHIP ===== */
+.pill{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:50px;font-size:11px;font-weight:700}
+
+/* ===== SECTION HEADERS ===== */
+.sec-hdr{display:flex;justify-content:space-between;align-items:center;padding:20px 20px 12px}
+.sec-title{font-size:16px;font-weight:800;color:var(--text1);letter-spacing:-.3px}
+.sec-link{font-size:12px;color:var(--primary-container);font-weight:700;cursor:pointer}
+
+/* ===== ENTRY ITEMS — organic style ===== */
+.entry{display:flex;gap:12px;padding:12px 20px;cursor:pointer;transition:background .12s;align-items:center}
+.entry:hover{background:var(--bg-elevated)}
+.entry-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.entry-body{flex:1}
+.entry-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px}
+.entry-title{font-size:14px;font-weight:700;color:var(--text1)}
+.entry-time{font-size:10px;color:var(--text3);font-weight:600}
+.entry-preview{font-size:12px;color:var(--text2);line-height:1.5}
+.entry-tags{display:flex;gap:5px;margin-top:6px;flex-wrap:wrap}
+.entry-tag{font-size:9px;font-weight:700;padding:4px 10px;border-radius:50px}
+
+/* ===== FAB — bouncy ===== */
+.fab{position:absolute;bottom:86px;right:20px;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:5;transition:transform .2s;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.fab:hover{transform:scale(1.1) rotate(-5deg)}
+.fab svg{width:24px;height:24px;fill:#fff}
+
+/* ===== CALENDAR — Daily Bean style ===== */
+.cal-hdr{display:flex;justify-content:space-between;align-items:center;padding:0 20px 10px}
+.cal-month{font-size:18px;font-weight:800;color:var(--text1);letter-spacing:-.5px}
+.cal-nav{display:flex;gap:12px}
+.cal-nav svg{width:20px;height:20px;fill:var(--text2);cursor:pointer}
+
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;padding:0 14px}
+.cal-lbl{text-align:center;font-size:10px;color:var(--text3);font-weight:700;padding:4px 0}
+.cal-day{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:14px;font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;transition:all .15s;position:relative;gap:2px}
+.cal-day:hover{background:var(--bg-elevated)}
+.cal-day.today{color:var(--primary-container);font-weight:800}
+.cal-day.today::after{content:'';position:absolute;bottom:5px;width:4px;height:4px;border-radius:50%;background:var(--primary-container)}
+.cal-dots{display:flex;gap:2px}
+.cal-dots span{width:4px;height:4px;border-radius:50%}
+
+/* ===== MOOD BEANS ===== */
+.mood-row{display:flex;justify-content:space-around;padding:8px 12px}
+.mood-bean{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 6px;border-radius:20px;cursor:pointer;transition:all .2s;flex:1}
+.mood-bean:hover{background:var(--bg-elevated)}
+.mood-bean.sel{background:var(--bg-elevated);transform:scale(1.08)}
+.mood-bean svg{width:36px;height:36px}
+.mood-name{font-size:9px;color:var(--text3);font-weight:700}
+
+/* ===== ACTIVITY CHIPS ===== */
+.act-grid{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px}
+.act-chip{display:flex;flex-direction:column;align-items:center;gap:5px;width:68px;padding:12px 4px;border-radius:18px;background:var(--bg-card);border:1.5px solid var(--divider);cursor:pointer;transition:all .15s}
+.act-chip:hover{background:var(--bg-elevated);border-color:var(--text3)}
+.act-chip.sel{border-color:var(--primary-container);background:rgba(205,237,163,.06)}
+.act-chip svg{width:24px;height:24px}
+.act-chip span{font-size:8px;color:var(--text3);font-weight:700;text-align:center}
+.act-chip.sel span{color:var(--primary-container)}
+
+/* ===== STREAK ===== */
+.streak{display:flex;align-items:center;gap:12px;padding:14px 18px;margin:0 16px 12px;background:var(--bg-card);border-radius:20px;position:relative;overflow:hidden}
+.streak::after{content:'';position:absolute;right:-10px;top:-10px;width:70px;height:70px;border-radius:50%;background:rgba(205,237,163,.04)}
+.streak-icon svg{width:32px;height:32px}
+.streak-info{flex:1}
+.streak-count{font-size:18px;font-weight:900;color:var(--text1)}
+.streak-label{font-size:11px;color:var(--text3);font-weight:600}
+
+/* ===== HOME STATS ===== */
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px}
+.stat-card{background:var(--bg-card);border-radius:20px;padding:16px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.stat-card:hover{transform:translateY(-2px);background:var(--bg-card2)}
+.stat-card .wave-accent{position:absolute;bottom:-8px;right:-8px;width:60px;height:60px;border-radius:50%;opacity:.06}
+.stat-icon{width:36px;height:36px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.stat-icon svg{width:20px;height:20px;fill:#fff}
+.stat-val{font-size:22px;font-weight:900;color:var(--text1);letter-spacing:-.5px}
+.stat-lbl{font-size:10px;color:var(--text3);font-weight:700;margin-top:2px}
+
+/* ===== RUN BAR CHART ===== */
+.run-bars{display:flex;align-items:flex-end;justify-content:space-around;height:85px;padding:0 20px;margin-bottom:6px}
+.run-bar{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1}
+.run-bar-fill{width:22px;border-radius:11px;transition:height .3s}
+.run-bar-lbl{font-size:9px;color:var(--text3);font-weight:700}
+.run-bar-val{font-size:8px;color:var(--text2);font-weight:700}
+
+/* ===== RUN DETAIL ===== */
+.detail-map{width:100%;height:240px;position:relative;overflow:hidden;background:linear-gradient(145deg,#222a1a,#1a2014,#161a10)}
+.detail-card{margin:-24px 16px 0;position:relative;z-index:2;background:var(--bg-card);border-radius:24px;padding:20px}
+.detail-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.detail-stat{text-align:center;padding:14px 6px;background:var(--bg-elevated);border-radius:16px}
+.detail-stat-v{font-size:20px;font-weight:900;color:var(--primary-container);letter-spacing:-.5px}
+.detail-stat-l{font-size:9px;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-top:3px}
+.detail-stats2{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px}
+.detail-s2{text-align:center;padding:10px 4px;border:1.5px solid var(--divider);border-radius:14px}
+.detail-s2-v{font-size:14px;font-weight:700;color:var(--text1)}
+.detail-s2-l{font-size:8px;color:var(--text3);font-weight:700;text-transform:uppercase;margin-top:2px}
+
+/* ===== ACTIVE RUN ===== */
+.arun{position:relative;height:812px;min-height:100%}
+.arun-map{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(145deg,#222a1a,#181e12);overflow:hidden}
+.arun-grid{position:absolute;top:0;left:0;right:0;bottom:0;opacity:.04;background-image:linear-gradient(rgba(205,237,163,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(205,237,163,.5) 1px,transparent 1px);background-size:40px 40px}
+.arun-top{position:absolute;top:14px;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:0 16px;z-index:3}
+.arun-pill{background:rgba(0,0,0,.55);backdrop-filter:blur(12px);border-radius:50px;padding:7px 16px;display:flex;align-items:center;gap:7px}
+.pulse{width:8px;height:8px;border-radius:50%;background:#66cc66;animation:pls 1.5s ease infinite}
+@keyframes pls{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)}}
+.arun-btn{width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.arun-btn svg{width:18px;height:18px;fill:#fff}
+.arun-panel{position:absolute;bottom:0;left:0;right:0;background:rgba(30,33,26,.92);backdrop-filter:blur(24px);border-radius:30px 30px 0 0;padding:16px 24px 32px;z-index:3;border-top:1px solid var(--divider)}
+.arun-handle{width:36px;height:4px;border-radius:2px;background:var(--divider);margin:0 auto 16px}
+.arun-timer{text-align:center;font-size:56px;font-weight:900;color:var(--text1);letter-spacing:-3px;font-variant-numeric:tabular-nums;margin:4px 0 16px}
+.arun-stats{display:flex;justify-content:space-around;padding:14px 0;border-top:1px solid var(--divider);border-bottom:1px solid var(--divider);margin-bottom:20px}
+.arun-stat{text-align:center}
+.arun-stat-v{font-size:24px;font-weight:800;color:var(--text1);letter-spacing:-.5px}
+.arun-stat-l{font-size:9px;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-top:3px}
+.arun-ctrls{display:flex;align-items:center;justify-content:center;gap:22px}
+.ctrl{display:flex;align-items:center;justify-content:center;border-radius:50%;cursor:pointer;transition:transform .15s}
+.ctrl:hover{transform:scale(1.08)}
+.ctrl-stop{width:50px;height:50px;background:rgba(224,96,112,.1);border:1.5px solid rgba(224,96,112,.3)}
+.ctrl-stop svg{width:20px;height:20px;fill:var(--movies)}
+.ctrl-main{width:72px;height:72px;background:var(--primary);box-shadow:0 8px 28px rgba(76,102,43,.4)}
+.ctrl-main svg{width:32px;height:32px;fill:#fff}
+.ctrl-lock{width:50px;height:50px;background:rgba(76,102,43,.08);border:1.5px solid rgba(76,102,43,.25)}
+.ctrl-lock svg{width:20px;height:20px;fill:var(--primary-container)}
+
+/* ===== BOOKS ===== */
+.shelf{display:flex;gap:12px;padding:0 16px 12px;overflow-x:auto}
+.book-wrap{flex-shrink:0}
+.book-cv{width:105px;height:145px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:transform .2s;box-shadow:0 6px 18px rgba(0,0,0,.25);position:relative;overflow:hidden}
+.book-cv:hover{transform:translateY(-4px)}
+.book-cv svg{width:28px;height:28px;fill:rgba(255,255,255,.7)}
+.book-cv-t{font-size:11px;font-weight:800;color:#fff;text-align:center;padding:0 10px;line-height:1.3}
+.book-cv-a{font-size:8px;color:rgba(255,255,255,.5);font-weight:600}
+.book-meta{padding:8px 0 0}
+.book-meta-t{font-size:11px;font-weight:700;color:var(--text1)}
+.book-meta-a{font-size:10px;color:var(--text3);margin-top:1px}
+.book-prog{margin-top:6px;height:4px;background:var(--divider);border-radius:2px;overflow:hidden;width:105px}
+.book-prog-fill{height:100%;border-radius:2px}
+
+/* ===== MOVIES ===== */
+.movie-card{display:flex;gap:12px;padding:12px 16px;cursor:pointer;transition:background .12s;align-items:center}
+.movie-card:hover{background:var(--bg-elevated)}
+.movie-poster{width:50px;height:70px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.movie-poster svg{width:22px;height:22px;fill:rgba(255,255,255,.5)}
+.movie-info{flex:1}
+.movie-t{font-size:13px;font-weight:700;color:var(--text1)}
+.movie-m{font-size:11px;color:var(--text3);margin-top:2px;font-weight:600}
+.movie-stars{display:flex;align-items:center;gap:2px;margin-top:4px}
+.movie-stars svg{width:12px;height:12px;fill:#ffcc00}
+.movie-stars .num{font-size:10px;color:var(--text3);font-weight:700;margin-left:3px}
+.movie-badge{padding:5px 12px;border-radius:50px;font-size:9px;font-weight:700;flex-shrink:0}
+
+/* ===== APP PILLS ===== */
+.app-row{display:flex;gap:8px;padding:0 16px 6px;overflow-x:auto}
+.app-pill{flex-shrink:0;display:flex;align-items:center;gap:7px;padding:10px 16px;border-radius:16px;background:var(--bg-card);cursor:pointer;transition:all .15s}
+.app-pill:hover{background:var(--bg-elevated)}
+.app-pill svg{width:20px;height:20px}
+.app-pill span{font-size:12px;font-weight:700;color:var(--text1)}
+
+.spacer{height:16px}.spacer-lg{height:32px}
+
+/* Wavy divider */
+.wavy-div{width:100%;height:20px;padding:0 16px;margin:8px 0}
+.wavy-div svg{width:100%;height:100%}
+
+/* Delete btn */
+.del-btn{margin-top:16px;width:100%;padding:12px;border:1.5px solid rgba(224,96,112,.2);border-radius:14px;background:transparent;color:var(--movies);font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
+.del-btn:hover{background:rgba(224,96,112,.05)}
+.del-btn svg{width:16px;height:16px;fill:var(--movies)}
+</style>
+</head>
+<body>
+
+<div class="page-title">GumApp v4</div>
+<div class="page-subtitle">Daily Bean inspired • Cute & Organic • Click to navigate</div>
+
+<div class="screen-nav" id="screenNav">
+  <button class="active" onclick="go('home')">Home</button>
+  <button onclick="go('gumrun')">GumRun</button>
+  <button onclick="go('rundetail')">Run Detail</button>
+  <button onclick="go('activerun')">Active Run</button>
+  <button onclick="go('gumnotes')">GumNotes</button>
+  <button onclick="go('gumjournals')">GumJournals</button>
+  <button onclick="go('gumbooks')">GumBooks</button>
+  <button onclick="go('gumovies')">GumMovies</button>
+</div>
+
+<div class="phone">
+  <div class="sbar" id="sbar">
+    <span>9:41</span>
+    <div class="sbar-r">
+      <svg viewBox="0 0 24 24"><path d="M2 22h4V12H2v10zm6 0h4V8H8v14zm6 0h4V2h-4v20z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3a4.24 4.24 0 00-6 0zm-4-4l2 2a7.07 7.07 0 0110 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/></svg>
+    </div>
+  </div>
+
+  <div class="sc" id="sc">
+
+    <!-- ======================= HOME ======================= -->
+    <div class="scr active" id="s-home">
+      <!-- Wavy header bg -->
+      <div class="wave-bg">
+        <svg viewBox="0 0 375 140" preserveAspectRatio="none" style="width:100%;height:140px">
+          <path d="M0,0 L375,0 L375,90 Q300,140 187,100 Q75,60 0,110 Z" fill="rgba(76,102,43,.08)"/>
+        </svg>
+      </div>
+      <div class="content-z">
+        <!-- Profile -->
+        <div style="display:flex;align-items:center;gap:14px;padding:8px 20px 18px">
+          <div style="width:46px;height:46px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;position:relative">
+            <span style="font-size:20px;font-weight:900;color:var(--primary-container)">G</span>
+            <div style="position:absolute;bottom:-2px;right:-2px;width:14px;height:14px;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center">
+              <div style="width:8px;height:8px;border-radius:50%;background:#66cc66"></div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:12px;color:var(--text3);font-weight:600">Good morning,</div>
+            <div style="font-size:20px;font-weight:900;color:var(--text1);letter-spacing:-.5px">Gam</div>
+          </div>
+          <!-- Notification bell -->
+          <div style="margin-left:auto;width:38px;height:38px;border-radius:50%;background:var(--bg-card);display:flex;align-items:center;justify-content:center;cursor:pointer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--text3)"><path d="M12 22c1.1 0 2-.9 2-2h-4a2 2 0 002 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+          </div>
+        </div>
+
+        <!-- Streak with bean -->
+        <div class="streak">
+          <div class="streak-icon">
+            <svg viewBox="0 0 48 48"><ellipse cx="24" cy="28" rx="16" ry="14" fill="#cdeda3"/><circle cx="18" cy="26" r="2.5" fill="#354e16"/><circle cx="30" cy="26" r="2.5" fill="#354e16"/><path d="M19 32 Q24 37 29 32" stroke="#354e16" stroke-width="2" fill="none" stroke-linecap="round"/><ellipse cx="14" cy="28" rx="3" ry="2" fill="#b8d98e" opacity=".5"/><ellipse cx="34" cy="28" rx="3" ry="2" fill="#b8d98e" opacity=".5"/></svg>
+          </div>
+          <div class="streak-info">
+            <div class="streak-count">12 day streak!</div>
+            <div class="streak-label">You're on fire! Keep going 🌱</div>
+          </div>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--text3)"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </div>
+
+        <!-- Calendar -->
+        <div class="cal-hdr">
+          <div class="cal-month">May 2026</div>
+          <div class="cal-nav">
+            <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+          </div>
+        </div>
+        <div class="cal-grid" style="margin-bottom:14px">
+          <div class="cal-lbl">M</div><div class="cal-lbl">T</div><div class="cal-lbl">W</div>
+          <div class="cal-lbl">T</div><div class="cal-lbl">F</div><div class="cal-lbl">S</div><div class="cal-lbl">S</div>
+          <div class="cal-day"></div><div class="cal-day"></div><div class="cal-day"></div><div class="cal-day"></div>
+          <div class="cal-day">1<div class="cal-dots"><span style="background:var(--run)"></span></div></div>
+          <div class="cal-day">2<div class="cal-dots"><span style="background:var(--run)"></span><span style="background:var(--journals)"></span></div></div>
+          <div class="cal-day">3<div class="cal-dots"><span style="background:var(--journals)"></span><span style="background:var(--books)"></span></div></div>
+          <div class="cal-day">4<div class="cal-dots"><span style="background:var(--run)"></span></div></div>
+          <div class="cal-day">5<div class="cal-dots"><span style="background:var(--run)"></span><span style="background:var(--notes)"></span><span style="background:var(--journals)"></span></div></div>
+          <div class="cal-day">6<div class="cal-dots"><span style="background:var(--journals)"></span></div></div>
+          <div class="cal-day">7<div class="cal-dots"><span style="background:var(--run)"></span><span style="background:var(--journals)"></span><span style="background:var(--movies)"></span></div></div>
+          <div class="cal-day">8<div class="cal-dots"><span style="background:var(--notes)"></span><span style="background:var(--books)"></span></div></div>
+          <div class="cal-day">9<div class="cal-dots"><span style="background:var(--run)"></span></div></div>
+          <div class="cal-day">10<div class="cal-dots"><span style="background:var(--journals)"></span></div></div>
+          <div class="cal-day">11<div class="cal-dots"><span style="background:var(--run)"></span><span style="background:var(--notes)"></span></div></div>
+          <div class="cal-day">12<div class="cal-dots"><span style="background:var(--run)"></span><span style="background:var(--journals)"></span></div></div>
+          <div class="cal-day today">13<div class="cal-dots"><span style="background:var(--run)"></span><span style="background:var(--journals)"></span><span style="background:var(--books)"></span></div></div>
+          <div class="cal-day" style="color:var(--text3)">14</div>
+          <div class="cal-day" style="color:var(--text3)">15</div>
+          <div class="cal-day" style="color:var(--text3)">16</div>
+          <div class="cal-day" style="color:var(--text3)">17</div>
+          <div class="cal-day" style="color:var(--text3)">18</div>
+          <div class="cal-day" style="color:var(--text3)">19</div>
+          <div class="cal-day" style="color:var(--text3)">20</div>
+          <div class="cal-day" style="color:var(--text3)">21</div>
+          <div class="cal-day" style="color:var(--text3)">22</div>
+          <div class="cal-day" style="color:var(--text3)">23</div>
+          <div class="cal-day" style="color:var(--text3)">24</div>
+          <div class="cal-day" style="color:var(--text3)">25</div>
+          <div class="cal-day" style="color:var(--text3)">26</div>
+          <div class="cal-day" style="color:var(--text3)">27</div>
+          <div class="cal-day" style="color:var(--text3)">28</div>
+          <div class="cal-day" style="color:var(--text3)">29</div>
+          <div class="cal-day" style="color:var(--text3)">30</div>
+          <div class="cal-day" style="color:var(--text3)">31</div>
+        </div>
+
+        <!-- Color legend with cute dots -->
+        <div style="display:flex;gap:12px;padding:0 20px 16px;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:var(--run);display:inline-block"></span><span style="font-size:10px;color:var(--text3);font-weight:600">Run</span></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:var(--notes);display:inline-block"></span><span style="font-size:10px;color:var(--text3);font-weight:600">Notes</span></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:var(--journals);display:inline-block"></span><span style="font-size:10px;color:var(--text3);font-weight:600">Journal</span></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:var(--books);display:inline-block"></span><span style="font-size:10px;color:var(--text3);font-weight:600">Books</span></div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:50%;background:var(--movies);display:inline-block"></span><span style="font-size:10px;color:var(--text3);font-weight:600">Movies</span></div>
+        </div>
+
+        <!-- Wavy divider -->
+        <div class="wavy-div"><svg viewBox="0 0 343 12" preserveAspectRatio="none"><path d="M0,6 Q30,0 60,6 Q90,12 120,6 Q150,0 180,6 Q210,12 240,6 Q270,0 300,6 Q330,12 343,6" stroke="var(--divider)" stroke-width="1.5" fill="none"/></svg></div>
+
+        <div class="sec-hdr"><span class="sec-title">Quick stats</span></div>
+        <div class="stat-grid">
+          <div class="stat-card" onclick="go('gumrun')">
+            <div class="wave-accent" style="background:var(--run)"></div>
+            <div class="stat-icon" style="background:var(--run)">
+              <svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg>
+            </div>
+            <div class="stat-val">24.8 km</div>
+            <div class="stat-lbl">This week</div>
+          </div>
+          <div class="stat-card" onclick="go('gumjournals')">
+            <div class="wave-accent" style="background:var(--journals)"></div>
+            <div class="stat-icon" style="background:var(--journals)">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="#fff" stroke-width="2"/><circle cx="9" cy="10.5" r="1.2" fill="#fff"/><circle cx="15" cy="10.5" r="1.2" fill="#fff"/><path d="M8.5 14.5Q12 18 15.5 14.5" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div class="stat-val">Happy</div>
+            <div class="stat-lbl">Today's mood</div>
+          </div>
+          <div class="stat-card" onclick="go('gumbooks')">
+            <div class="wave-accent" style="background:var(--books)"></div>
+            <div class="stat-icon" style="background:var(--books)">
+              <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+            </div>
+            <div class="stat-val">3 books</div>
+            <div class="stat-lbl">Currently reading</div>
+          </div>
+          <div class="stat-card" onclick="go('gumovies')">
+            <div class="wave-accent" style="background:var(--movies)"></div>
+            <div class="stat-icon" style="background:var(--movies)">
+              <svg viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg>
+            </div>
+            <div class="stat-val">12</div>
+            <div class="stat-lbl">In watchlist</div>
+          </div>
+        </div>
+
+        <div class="sec-hdr"><span class="sec-title">Your apps</span></div>
+        <div class="app-row">
+          <div class="app-pill" onclick="go('gumrun')"><svg viewBox="0 0 24 24" fill="var(--run)"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg><span>GumRun</span></div>
+          <div class="app-pill" onclick="go('gumnotes')"><svg viewBox="0 0 24 24" fill="var(--notes)"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg><span>GumNotes</span></div>
+          <div class="app-pill" onclick="go('gumjournals')"><svg viewBox="0 0 24 24" fill="var(--journals)"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg><span>Journals</span></div>
+          <div class="app-pill" onclick="go('gumbooks')"><svg viewBox="0 0 24 24" fill="var(--books)"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg><span>Books</span></div>
+          <div class="app-pill" onclick="go('gumovies')"><svg viewBox="0 0 24 24" fill="var(--movies)"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg><span>Movies</span></div>
+        </div>
+        <div class="spacer-lg"></div>
+      </div>
+    </div>
+
+    <!-- ======================= GUMRUN OVERVIEW ======================= -->
+    <div class="scr" id="s-gumrun">
+      <div class="wave-bg">
+        <svg viewBox="0 0 375 120" preserveAspectRatio="none" style="width:100%;height:120px">
+          <path d="M0,0 L375,0 L375,70 Q280,120 187,80 Q95,40 0,90 Z" fill="rgba(107,140,66,.08)"/>
+        </svg>
+      </div>
+      <div class="content-z">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 20px 16px">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--text2)" style="cursor:pointer" onclick="go('home')"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+          <span style="font-size:18px;font-weight:800;color:var(--text1)">GumRun</span>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--text2)" style="cursor:pointer"><path d="M19.14 12.94c.04-.31.06-.63.06-.94 0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+        </div>
+
+        <div class="blob-card green" style="text-align:center">
+          <!-- Bean mascot -->
+          <svg width="48" height="48" viewBox="0 0 48 48" style="margin-bottom:4px">
+            <ellipse cx="24" cy="28" rx="15" ry="13" fill="#cdeda3"/>
+            <circle cx="19" cy="26" r="2" fill="#354e16"/><circle cx="29" cy="26" r="2" fill="#354e16"/>
+            <path d="M20 31 Q24 35 28 31" stroke="#354e16" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+            <path d="M14 20 Q17 14 24 16" stroke="#cdeda3" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          </svg>
+          <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;font-weight:700">This week</div>
+          <div style="font-size:38px;font-weight:900;color:var(--primary-container);letter-spacing:-2px;margin:2px 0">24.8 km</div>
+          <div style="font-size:12px;color:var(--text3);font-weight:600">Goal: 30 km &bull; 83%</div>
+          <div style="margin:12px auto 0;width:85%;height:8px;background:var(--divider);border-radius:4px;overflow:hidden">
+            <div style="width:83%;height:100%;background:linear-gradient(90deg,var(--run),var(--primary-container));border-radius:4px"></div>
+          </div>
+        </div>
+
+        <div class="sec-hdr"><span class="sec-title">Weekly overview</span></div>
+        <div class="run-bars">
+          <div class="run-bar"><div class="run-bar-val">5.2</div><div class="run-bar-fill" style="height:52px;background:var(--primary-container)"></div><div class="run-bar-lbl">M</div></div>
+          <div class="run-bar"><div class="run-bar-val">3.8</div><div class="run-bar-fill" style="height:38px;background:var(--primary-container)"></div><div class="run-bar-lbl">T</div></div>
+          <div class="run-bar"><div class="run-bar-val">0</div><div class="run-bar-fill" style="height:2px;background:var(--divider)"></div><div class="run-bar-lbl">W</div></div>
+          <div class="run-bar"><div class="run-bar-val">8.1</div><div class="run-bar-fill" style="height:72px;background:var(--primary-container)"></div><div class="run-bar-lbl">T</div></div>
+          <div class="run-bar"><div class="run-bar-val">4.5</div><div class="run-bar-fill" style="height:45px;background:var(--primary-container)"></div><div class="run-bar-lbl">F</div></div>
+          <div class="run-bar"><div class="run-bar-val">3.2</div><div class="run-bar-fill" style="height:32px;background:var(--primary-container)"></div><div class="run-bar-lbl">S</div></div>
+          <div class="run-bar"><div class="run-bar-val">—</div><div class="run-bar-fill" style="height:2px;background:var(--divider)"></div><div class="run-bar-lbl">S</div></div>
+        </div>
+
+        <div class="wavy-div"><svg viewBox="0 0 343 12" preserveAspectRatio="none"><path d="M0,6 Q40,0 80,6 Q120,12 160,6 Q200,0 240,6 Q280,12 320,6 Q340,3 343,6" stroke="var(--divider)" stroke-width="1.5" fill="none"/></svg></div>
+
+        <div class="sec-hdr"><span class="sec-title">Recent runs</span><span class="sec-link">See all</span></div>
+
+        <div class="entry" onclick="go('rundetail')">
+          <div class="entry-dot" style="background:var(--primary-container)"></div>
+          <div class="entry-body">
+            <div class="entry-top"><span class="entry-title">Morning Run</span><span class="entry-time">Today, 6:30 AM</span></div>
+            <div class="entry-tags">
+              <span class="entry-tag" style="background:var(--run-pastel);color:var(--primary)">5.2 km</span>
+              <span class="entry-tag" style="background:var(--run-pastel);color:var(--primary)">29:34</span>
+              <span class="entry-tag" style="background:var(--run-pastel);color:var(--primary)">5'41"/km</span>
+            </div>
+          </div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--text3)"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </div>
+        <div class="entry" onclick="go('rundetail')">
+          <div class="entry-dot" style="background:var(--primary-container)"></div>
+          <div class="entry-body">
+            <div class="entry-top"><span class="entry-title">Evening Jog</span><span class="entry-time">Yesterday, 5:45 PM</span></div>
+            <div class="entry-tags">
+              <span class="entry-tag" style="background:var(--run-pastel);color:var(--primary)">3.8 km</span>
+              <span class="entry-tag" style="background:var(--run-pastel);color:var(--primary)">22:15</span>
+              <span class="entry-tag" style="background:var(--run-pastel);color:var(--primary)">5'51"/km</span>
+            </div>
+          </div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--text3)"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </div>
+        <div class="entry" onclick="go('rundetail')">
+          <div class="entry-dot" style="background:var(--primary-container)"></div>
+          <div class="entry-body">
+            <div class="entry-top"><span class="entry-title">Trail Run</span><span class="entry-time">May 5, 7:00 AM</span></div>
+            <div class="entry-tags">
+              <span class="entry-tag" style="background:var(--run-pastel);color:var(--primary)">8.1 km</span>
+              <span class="entry-tag" style="background:var(--run-pastel);color:var(--primary)">48:22</span>
+              <span class="entry-tag" style="background:var(--run-pastel);color:var(--primary)">5'58"/km</span>
+            </div>
+          </div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--text3)"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </div>
+        <div class="spacer-lg"></div><div class="spacer-lg"></div>
+        <!-- Start run FAB -->
+        <div class="fab" style="background:var(--primary);left:50%;right:auto;transform:translateX(-50%);width:64px;height:64px" onclick="go('activerun')">
+          <svg viewBox="0 0 24 24" width="28" height="28"><path d="M8 5v14l11-7z" fill="#fff"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================= RUN DETAIL ======================= -->
+    <div class="scr" id="s-rundetail">
+      <div class="detail-map">
+        <svg viewBox="0 0 375 240" style="position:absolute;top:0;left:0;width:100%;height:100%">
+          <line x1="0" y1="60" x2="375" y2="60" stroke="rgba(205,237,163,.06)" stroke-width="1.5"/>
+          <line x1="0" y1="120" x2="375" y2="120" stroke="rgba(205,237,163,.06)" stroke-width="1.5"/>
+          <line x1="0" y1="180" x2="375" y2="180" stroke="rgba(205,237,163,.06)" stroke-width="1.5"/>
+          <line x1="100" y1="0" x2="100" y2="240" stroke="rgba(205,237,163,.06)" stroke-width="1.5"/>
+          <line x1="200" y1="0" x2="200" y2="240" stroke="rgba(205,237,163,.06)" stroke-width="1.5"/>
+          <line x1="300" y1="0" x2="300" y2="240" stroke="rgba(205,237,163,.06)" stroke-width="1.5"/>
+          <path d="M 50 190 Q 80 160, 120 130 Q 170 95, 210 85 Q 250 78, 280 60 Q 310 42, 340 50" fill="none" stroke="rgba(205,237,163,.2)" stroke-width="8" stroke-linecap="round"/>
+          <path d="M 50 190 Q 80 160, 120 130 Q 170 95, 210 85 Q 250 78, 280 60 Q 310 42, 340 50" fill="none" stroke="#cdeda3" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="50" cy="190" r="7" fill="#4c662b" stroke="#cdeda3" stroke-width="2.5"/>
+          <circle cx="340" cy="50" r="7" fill="#e06070" stroke="#fff" stroke-width="2.5"/>
+        </svg>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:70px;background:linear-gradient(transparent,var(--bg))"></div>
+        <div style="position:absolute;top:14px;left:16px;width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;cursor:pointer" onclick="go('gumrun')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        </div>
+      </div>
+      <div class="detail-card">
+        <div style="font-size:12px;color:var(--text3);font-weight:600;margin-bottom:4px">Sunday, May 8, 2026 &bull; 6:30 AM</div>
+        <div style="font-size:22px;font-weight:900;color:var(--text1);letter-spacing:-.5px;margin-bottom:16px">Morning Run</div>
+        <div class="detail-stats">
+          <div class="detail-stat"><div class="detail-stat-v">5.2</div><div class="detail-stat-l">km</div></div>
+          <div class="detail-stat"><div class="detail-stat-v">29:34</div><div class="detail-stat-l">duration</div></div>
+          <div class="detail-stat"><div class="detail-stat-v">5'41"</div><div class="detail-stat-l">pace</div></div>
+        </div>
+        <div class="detail-stats2">
+          <div class="detail-s2"><div class="detail-s2-v">10.5</div><div class="detail-s2-l">Avg speed</div></div>
+          <div class="detail-s2"><div class="detail-s2-v">14.2</div><div class="detail-s2-l">Max speed</div></div>
+          <div class="detail-s2"><div class="detail-s2-v">32 m</div><div class="detail-s2-l">Elevation</div></div>
+        </div>
+        <button class="del-btn">
+          <svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+          Delete run
+        </button>
+      </div>
+      <div class="spacer-lg"></div>
+    </div>
+
+    <!-- ======================= ACTIVE RUN ======================= -->
+    <div class="scr" id="s-activerun">
+      <div class="arun">
+        <div class="arun-map">
+          <div class="arun-grid"></div>
+          <svg viewBox="0 0 375 500" style="position:absolute;top:0;left:0;width:100%;height:100%">
+            <path d="M 0 100 Q 100 80, 200 110 Q 300 140, 375 120" stroke="rgba(205,237,163,.08)" stroke-width="18" fill="none"/>
+            <path d="M 0 250 Q 80 230, 180 260 Q 280 290, 375 260" stroke="rgba(205,237,163,.08)" stroke-width="18" fill="none"/>
+            <path d="M 140 0 Q 120 100, 150 200 Q 180 300, 160 420" stroke="rgba(205,237,163,.08)" stroke-width="16" fill="none"/>
+            <path d="M 180 380 Q 170 320, 190 260 Q 210 210, 200 170 Q 190 140, 220 110 Q 245 85, 240 60" fill="none" stroke="rgba(53,78,22,.4)" stroke-width="5" stroke-linecap="round"/>
+            <path d="M 180 380 Q 170 320, 190 260 Q 210 210, 200 170 Q 190 140, 220 110 Q 245 85, 240 60" fill="none" stroke="#cdeda3" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="240" cy="60" r="12" fill="rgba(76,102,43,.2)"/>
+            <circle cx="240" cy="60" r="7" fill="#4c662b" stroke="#cdeda3" stroke-width="2.5"/>
+          </svg>
+        </div>
+        <div class="arun-top">
+          <div class="arun-btn" onclick="go('gumrun')"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
+          <div class="arun-pill"><div class="pulse"></div><span style="font-size:12px;font-weight:700;color:#fff">Running</span></div>
+          <div class="arun-btn"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg></div>
+        </div>
+        <div class="arun-panel">
+          <div class="arun-handle"></div>
+          <div style="text-align:center;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1.2px;font-weight:700">Elapsed time</div>
+          <div class="arun-timer">14:32</div>
+          <div class="arun-stats">
+            <div class="arun-stat"><div class="arun-stat-v">2.4</div><div class="arun-stat-l">km</div></div>
+            <div class="arun-stat"><div class="arun-stat-v">6'03"</div><div class="arun-stat-l">pace</div></div>
+            <div class="arun-stat"><div class="arun-stat-v">142</div><div class="arun-stat-l">bpm</div></div>
+          </div>
+          <div class="arun-ctrls">
+            <div class="ctrl ctrl-stop"><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/></svg></div>
+            <div class="ctrl ctrl-main"><svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg></div>
+            <div class="ctrl ctrl-lock"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================= GUMNOTES ======================= -->
+    <div class="scr" id="s-gumnotes">
+      <div class="wave-bg">
+        <svg viewBox="0 0 375 120" preserveAspectRatio="none" style="width:100%;height:120px">
+          <path d="M0,0 L375,0 L375,70 Q300,120 187,80 Q75,40 0,100 Z" fill="rgba(240,168,48,.06)"/>
+        </svg>
+      </div>
+      <div class="content-z">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 20px 16px">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--text2)" style="cursor:pointer" onclick="go('home')"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+          <span style="font-size:18px;font-weight:800;color:var(--text1)">GumNotes</span>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--text2)" style="cursor:pointer"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+        </div>
+
+        <!-- Search -->
+        <div style="margin:0 16px 12px;background:var(--bg-card);border-radius:50px;padding:11px 18px;display:flex;align-items:center;gap:10px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--text3)"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          <span style="font-size:13px;color:var(--text3);font-weight:600">Search notes...</span>
+        </div>
+
+        <!-- Chips -->
+        <div style="display:flex;gap:7px;padding:0 16px 14px;overflow-x:auto">
+          <div class="pill" style="background:var(--notes-pastel);color:#8a6010">All</div>
+          <div class="pill" style="background:var(--bg-card);color:var(--text3)">Personal</div>
+          <div class="pill" style="background:var(--bg-card);color:var(--text3)">Work</div>
+          <div class="pill" style="background:var(--bg-card);color:var(--text3)">Ideas</div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-dot" style="background:var(--notes)"></div>
+          <div class="entry-body">
+            <div class="entry-top"><span class="entry-title">Project Ideas for Q3</span><span class="entry-time">Today</span></div>
+            <div class="entry-preview">Need to explore new ML frameworks for the recommendation engine...</div>
+            <div class="entry-tags"><span class="entry-tag" style="background:var(--notes-pastel);color:#8a6010">Work</span></div>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="entry-dot" style="background:var(--notes)"></div>
+          <div class="entry-body">
+            <div class="entry-top"><span class="entry-title">Grocery List</span><span class="entry-time">Yesterday</span></div>
+            <div class="entry-preview">Eggs, milk, bread, avocados, chicken breast, spinach...</div>
+            <div class="entry-tags"><span class="entry-tag" style="background:var(--notes-pastel);color:#8a6010">Personal</span></div>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="entry-dot" style="background:var(--notes)"></div>
+          <div class="entry-body">
+            <div class="entry-top"><span class="entry-title">App Architecture Notes</span><span class="entry-time">May 5</span></div>
+            <div class="entry-preview">Clean architecture with MVVM. Use Koin for DI, Room for local DB...</div>
+            <div class="entry-tags"><span class="entry-tag" style="background:var(--notes-pastel);color:#8a6010">Work</span></div>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="entry-dot" style="background:var(--notes)"></div>
+          <div class="entry-body">
+            <div class="entry-top"><span class="entry-title">Book Recommendations</span><span class="entry-time">May 3</span></div>
+            <div class="entry-preview">Atomic Habits, Deep Work, The Pragmatic Programmer...</div>
+            <div class="entry-tags"><span class="entry-tag" style="background:var(--notes-pastel);color:#8a6010">Ideas</span></div>
+          </div>
+        </div>
+        <div class="spacer-lg"></div><div class="spacer-lg"></div>
+        <div class="fab" style="background:var(--notes)">
+          <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================= GUMJOURNALS ======================= -->
+    <div class="scr" id="s-gumjournals">
+      <div class="wave-bg">
+        <svg viewBox="0 0 375 130" preserveAspectRatio="none" style="width:100%;height:130px">
+          <path d="M0,0 L375,0 L375,80 Q280,130 187,90 Q95,50 0,100 Z" fill="rgba(80,145,141,.07)"/>
+        </svg>
+      </div>
+      <div class="content-z">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 20px 12px">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--text2)" style="cursor:pointer" onclick="go('home')"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+          <span style="font-size:18px;font-weight:800;color:var(--text1)">GumJournals</span>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--text2)" style="cursor:pointer"><path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>
+        </div>
+
+        <!-- Mood beans card -->
+        <div class="blob-card teal" style="text-align:center">
+          <div style="font-size:12px;color:var(--text3);font-weight:600;margin-bottom:4px">Thursday, May 14</div>
+          <div style="font-size:16px;font-weight:800;color:var(--text1);margin-bottom:16px">How are you feeling?</div>
+          <div class="mood-row">
+            <div class="mood-bean">
+              <svg viewBox="0 0 48 48"><ellipse cx="24" cy="28" rx="14" ry="12" fill="#9090a8"/><circle cx="20" cy="26" r="2" fill="#505060"/><circle cx="28" cy="26" r="2" fill="#505060"/><path d="M19 33 Q24 30 29 33" stroke="#505060" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M17 22 L20 24" stroke="#505060" stroke-width="1.5" stroke-linecap="round"/><path d="M31 22 L28 24" stroke="#505060" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <div class="mood-name">Weary</div>
+            </div>
+            <div class="mood-bean">
+              <svg viewBox="0 0 48 48"><ellipse cx="24" cy="28" rx="14" ry="12" fill="#88b0d8"/><circle cx="20" cy="26" r="2" fill="#3d5a78"/><circle cx="28" cy="26" r="2" fill="#3d5a78"/><path d="M20 33 Q24 30 28 33" stroke="#3d5a78" stroke-width="1.8" fill="none" stroke-linecap="round"/><circle cx="16" cy="30" r="2" fill="#6898c0" opacity=".4"/></svg>
+              <div class="mood-name">Sad</div>
+            </div>
+            <div class="mood-bean">
+              <svg viewBox="0 0 48 48"><ellipse cx="24" cy="28" rx="14" ry="12" fill="#c8c8a8"/><circle cx="20" cy="26" r="2" fill="#68685a"/><circle cx="28" cy="26" r="2" fill="#68685a"/><line x1="20" y1="32" x2="28" y2="32" stroke="#68685a" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <div class="mood-name">Flat</div>
+            </div>
+            <div class="mood-bean sel">
+              <svg viewBox="0 0 48 48"><ellipse cx="24" cy="28" rx="14" ry="12" fill="#b8d8c8"/><circle cx="20" cy="27" r="2" fill="#3d6858"/><circle cx="28" cy="27" r="2" fill="#3d6858"/><path d="M20 31 Q24 34 28 31" stroke="#3d6858" stroke-width="1.8" fill="none" stroke-linecap="round"/><ellipse cx="16" cy="29" rx="3" ry="2" fill="#a0c8b0" opacity=".4"/><ellipse cx="32" cy="29" rx="3" ry="2" fill="#a0c8b0" opacity=".4"/></svg>
+              <div class="mood-name" style="color:var(--primary-container)">Calm</div>
+            </div>
+            <div class="mood-bean">
+              <svg viewBox="0 0 48 48"><ellipse cx="24" cy="28" rx="14" ry="12" fill="#f8d888"/><circle cx="19" cy="25" r="2" fill="#8a6820"/><circle cx="29" cy="25" r="2" fill="#8a6820"/><path d="M18 30 Q24 37 30 30" stroke="#8a6820" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M14 21 Q18 17 22 20" stroke="#8a6820" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M34 21 Q30 17 26 20" stroke="#8a6820" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+              <div class="mood-name">Ecstatic</div>
+            </div>
+            <div class="mood-bean">
+              <svg viewBox="0 0 48 48"><ellipse cx="24" cy="28" rx="14" ry="12" fill="#cdeda3"/><circle cx="20" cy="26" r="2" fill="#354e16"/><circle cx="28" cy="26" r="2" fill="#354e16"/><path d="M19 31 Q24 36 29 31" stroke="#354e16" stroke-width="1.8" fill="none" stroke-linecap="round"/><ellipse cx="15" cy="28" rx="3" ry="2" fill="#b8d98e" opacity=".4"/><ellipse cx="33" cy="28" rx="3" ry="2" fill="#b8d98e" opacity=".4"/></svg>
+              <div class="mood-name">Happy</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activities -->
+        <div class="sec-hdr"><span class="sec-title">What have you been up to?</span></div>
+        <div class="act-grid">
+          <div class="act-chip sel">
+            <svg viewBox="0 0 24 24" fill="var(--primary-container)"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg>
+            <span style="color:var(--primary-container)">Running</span>
+          </div>
+          <div class="act-chip">
+            <svg viewBox="0 0 24 24" fill="var(--text3)"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+            <span>Reading</span>
+          </div>
+          <div class="act-chip sel">
+            <svg viewBox="0 0 24 24" fill="var(--primary-container)"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+            <span style="color:var(--primary-container)">Coding</span>
+          </div>
+          <div class="act-chip">
+            <svg viewBox="0 0 24 24" fill="var(--text3)"><path d="M8.1 13.34l2.83-2.83L3.91 3.5a2 2 0 000 2.82l4.19 7.02zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.2-1.1-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z"/></svg>
+            <span>Cooking</span>
+          </div>
+          <div class="act-chip">
+            <svg viewBox="0 0 24 24" fill="var(--text3)"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+            <span>Friends</span>
+          </div>
+          <div class="act-chip">
+            <svg viewBox="0 0 24 24" fill="var(--text3)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            <span>Meditate</span>
+          </div>
+          <div class="act-chip">
+            <svg viewBox="0 0 24 24" fill="var(--text3)"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+            <span>Music</span>
+          </div>
+          <div class="act-chip">
+            <svg viewBox="0 0 24 24" fill="var(--text3)"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg>
+            <span>Movies</span>
+          </div>
+        </div>
+
+        <!-- Prompt -->
+        <div style="margin:16px 16px;background:rgba(80,145,141,.1);border-radius:18px;padding:16px;border:1.5px solid rgba(80,145,141,.15)">
+          <div style="font-size:12px;font-weight:800;color:var(--journals-light);margin-bottom:5px">Today's prompt</div>
+          <div style="font-size:12px;color:var(--text2);line-height:1.6;font-weight:500">What's one thing you're grateful for today?</div>
+        </div>
+
+        <div class="wavy-div"><svg viewBox="0 0 343 12" preserveAspectRatio="none"><path d="M0,6 Q40,0 80,6 Q120,12 160,6 Q200,0 240,6 Q280,12 320,6 Q340,3 343,6" stroke="var(--divider)" stroke-width="1.5" fill="none"/></svg></div>
+
+        <div class="sec-hdr"><span class="sec-title">Recent entries</span><span class="sec-link">See all</span></div>
+        <div class="entry">
+          <div class="entry-dot" style="background:var(--journals)"></div>
+          <div class="entry-body">
+            <div class="entry-top"><span class="entry-title">Happy day</span><span class="entry-time">May 13</span></div>
+            <div class="entry-preview">Had a really productive day at work. Finished the new feature module...</div>
+          </div>
+          <svg viewBox="0 0 48 48" width="28" height="28"><ellipse cx="24" cy="28" rx="11" ry="9" fill="#cdeda3"/><circle cx="21" cy="27" r="1.5" fill="#354e16"/><circle cx="27" cy="27" r="1.5" fill="#354e16"/><path d="M21 30 Q24 33 27 30" stroke="#354e16" stroke-width="1.3" fill="none" stroke-linecap="round"/></svg>
+        </div>
+        <div class="entry">
+          <div class="entry-dot" style="background:var(--journals)"></div>
+          <div class="entry-body">
+            <div class="entry-top"><span class="entry-title">Quiet day</span><span class="entry-time">May 12</span></div>
+            <div class="entry-preview">Spent most of it reading and working on personal projects...</div>
+          </div>
+          <svg viewBox="0 0 48 48" width="28" height="28"><ellipse cx="24" cy="28" rx="11" ry="9" fill="#b8d8c8"/><circle cx="21" cy="27" r="1.5" fill="#3d6858"/><circle cx="27" cy="27" r="1.5" fill="#3d6858"/><path d="M21 30 Q24 32 27 30" stroke="#3d6858" stroke-width="1.3" fill="none" stroke-linecap="round"/></svg>
+        </div>
+        <div class="entry">
+          <div class="entry-dot" style="background:var(--journals)"></div>
+          <div class="entry-body">
+            <div class="entry-top"><span class="entry-title">Amazing morning</span><span class="entry-time">May 11</span></div>
+            <div class="entry-preview">Morning run followed by brunch with friends. So excited about the trip...</div>
+          </div>
+          <svg viewBox="0 0 48 48" width="28" height="28"><ellipse cx="24" cy="28" rx="11" ry="9" fill="#f8d888"/><circle cx="21" cy="26" r="1.5" fill="#8a6820"/><circle cx="27" cy="26" r="1.5" fill="#8a6820"/><path d="M20 30 Q24 34 28 30" stroke="#8a6820" stroke-width="1.3" fill="none" stroke-linecap="round"/></svg>
+        </div>
+        <div class="spacer-lg"></div><div class="spacer-lg"></div>
+        <div class="fab" style="background:var(--journals)">
+          <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================= GUMBOOKS ======================= -->
+    <div class="scr" id="s-gumbooks">
+      <div class="wave-bg">
+        <svg viewBox="0 0 375 120" preserveAspectRatio="none" style="width:100%;height:120px">
+          <path d="M0,0 L375,0 L375,60 Q280,120 187,80 Q95,40 0,90 Z" fill="rgba(144,112,208,.06)"/>
+        </svg>
+      </div>
+      <div class="content-z">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 20px 16px">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--text2)" style="cursor:pointer" onclick="go('home')"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+          <span style="font-size:18px;font-weight:800;color:var(--text1)">GumBooks</span>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--text2)" style="cursor:pointer"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        </div>
+
+        <div class="blob-card purple" style="text-align:center">
+          <!-- Book bean -->
+          <svg width="48" height="48" viewBox="0 0 48 48" style="margin-bottom:4px">
+            <ellipse cx="24" cy="28" rx="15" ry="13" fill="#e0d4f8"/>
+            <circle cx="19" cy="26" r="2" fill="#5a3d9a"/><circle cx="29" cy="26" r="2" fill="#5a3d9a"/>
+            <path d="M20 31 Q24 35 28 31" stroke="#5a3d9a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+            <rect x="18" y="16" width="12" height="8" rx="2" fill="#9070d0" opacity=".6"/>
+            <rect x="20" y="17" width="8" height="1.5" rx=".5" fill="#e0d4f8"/>
+            <rect x="20" y="20" width="5" height="1" rx=".5" fill="#e0d4f8"/>
+          </svg>
+          <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;font-weight:700">2026 Reading Challenge</div>
+          <div style="font-size:36px;font-weight:900;color:#c4a4f7;letter-spacing:-2px;margin:4px 0">18 / 30</div>
+          <div style="font-size:12px;color:var(--text3);font-weight:600">books completed</div>
+          <div style="display:flex;justify-content:center;gap:16px;margin-top:14px">
+            <div><span style="font-size:20px;font-weight:900;color:var(--text1)">3</span><br><span style="font-size:9px;color:var(--text3);font-weight:600">Reading</span></div>
+            <div style="width:1px;background:var(--divider)"></div>
+            <div><span style="font-size:20px;font-weight:900;color:var(--text1)">18</span><br><span style="font-size:9px;color:var(--text3);font-weight:600">Finished</span></div>
+            <div style="width:1px;background:var(--divider)"></div>
+            <div><span style="font-size:20px;font-weight:900;color:var(--text1)">7</span><br><span style="font-size:9px;color:var(--text3);font-weight:600">Want</span></div>
+          </div>
+        </div>
+
+        <div class="sec-hdr"><span class="sec-title">Currently reading</span></div>
+        <div class="shelf">
+          <div class="book-wrap">
+            <div class="book-cv" style="background:linear-gradient(145deg,#4a7c59,#2d5a3a)">
+              <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+              <div class="book-cv-t">Atomic Habits</div><div class="book-cv-a">James Clear</div>
+            </div>
+            <div class="book-meta"><div class="book-meta-t">Atomic Habits</div><div class="book-meta-a">James Clear</div></div>
+            <div class="book-prog"><div class="book-prog-fill" style="width:72%;background:var(--books)"></div></div>
+          </div>
+          <div class="book-wrap">
+            <div class="book-cv" style="background:linear-gradient(145deg,#5c4a8a,#3d2d6a)">
+              <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+              <div class="book-cv-t">Deep Work</div><div class="book-cv-a">Cal Newport</div>
+            </div>
+            <div class="book-meta"><div class="book-meta-t">Deep Work</div><div class="book-meta-a">Cal Newport</div></div>
+            <div class="book-prog"><div class="book-prog-fill" style="width:45%;background:var(--books)"></div></div>
+          </div>
+          <div class="book-wrap">
+            <div class="book-cv" style="background:linear-gradient(145deg,#8a5c4a,#6a3d2d)">
+              <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+              <div class="book-cv-t">The Alchemist</div><div class="book-cv-a">Paulo Coelho</div>
+            </div>
+            <div class="book-meta"><div class="book-meta-t">The Alchemist</div><div class="book-meta-a">Paulo Coelho</div></div>
+            <div class="book-prog"><div class="book-prog-fill" style="width:25%;background:var(--books)"></div></div>
+          </div>
+        </div>
+
+        <div class="wavy-div"><svg viewBox="0 0 343 12" preserveAspectRatio="none"><path d="M0,6 Q40,0 80,6 Q120,12 160,6 Q200,0 240,6 Q280,12 320,6 Q340,3 343,6" stroke="var(--divider)" stroke-width="1.5" fill="none"/></svg></div>
+
+        <div class="sec-hdr"><span class="sec-title">Recently finished</span></div>
+        <div class="shelf">
+          <div class="book-wrap">
+            <div class="book-cv" style="background:linear-gradient(145deg,#c44d56,#a03a42)">
+              <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+              <div class="book-cv-t">Clean Code</div><div class="book-cv-a">R. Martin</div>
+            </div>
+            <div class="book-meta"><div class="book-meta-t">Clean Code</div><div class="book-meta-a">R. C. Martin</div></div>
+            <div class="book-prog"><div class="book-prog-fill" style="width:100%;background:var(--books)"></div></div>
+          </div>
+          <div class="book-wrap">
+            <div class="book-cv" style="background:linear-gradient(145deg,#3a6b8a,#2a4d6a)">
+              <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+              <div class="book-cv-t">Dune</div><div class="book-cv-a">F. Herbert</div>
+            </div>
+            <div class="book-meta"><div class="book-meta-t">Dune</div><div class="book-meta-a">Frank Herbert</div></div>
+            <div class="book-prog"><div class="book-prog-fill" style="width:100%;background:var(--books)"></div></div>
+          </div>
+        </div>
+        <div class="spacer-lg"></div><div class="spacer-lg"></div>
+        <div class="fab" style="background:var(--books)">
+          <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================= GUMOVIES ======================= -->
+    <div class="scr" id="s-gumovies">
+      <div class="wave-bg">
+        <svg viewBox="0 0 375 120" preserveAspectRatio="none" style="width:100%;height:120px">
+          <path d="M0,0 L375,0 L375,60 Q280,110 187,70 Q95,30 0,80 Z" fill="rgba(224,96,112,.06)"/>
+        </svg>
+      </div>
+      <div class="content-z">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 20px 16px">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--text2)" style="cursor:pointer" onclick="go('home')"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+          <span style="font-size:18px;font-weight:800;color:var(--text1)">GumMovies</span>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--text2)" style="cursor:pointer"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        </div>
+
+        <!-- Featured -->
+        <div class="blob-card red">
+          <!-- Movie bean -->
+          <svg width="40" height="40" viewBox="0 0 48 48" style="float:right;margin:-4px -4px 0 8px">
+            <ellipse cx="24" cy="28" rx="13" ry="11" fill="#ffd0d4"/>
+            <circle cx="20" cy="26" r="1.8" fill="#8a3040"/><circle cx="28" cy="26" r="1.8" fill="#8a3040"/>
+            <path d="M20 31 Q24 34 28 31" stroke="#8a3040" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <rect x="16" y="18" width="16" height="6" rx="2" fill="#e06070" opacity=".5"/>
+          </svg>
+          <div style="font-size:10px;font-weight:800;color:var(--movies);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Last watched</div>
+          <div style="font-size:20px;font-weight:900;color:var(--text1);margin-bottom:3px">Interstellar</div>
+          <div style="font-size:11px;color:var(--text3);font-weight:600;margin-bottom:8px">2014 &bull; Sci-Fi &bull; 2h 49m</div>
+          <div class="movie-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" style="fill:#555"><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/></svg>
+            <span class="num">4.5</span>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div style="display:flex;padding:0 16px;border-bottom:1.5px solid var(--divider);margin-bottom:10px">
+          <div style="padding:10px 16px;font-size:13px;font-weight:700;color:var(--movies);border-bottom:2.5px solid var(--movies);cursor:pointer">Watched</div>
+          <div style="padding:10px 16px;font-size:13px;font-weight:700;color:var(--text3);cursor:pointer">Watchlist</div>
+          <div style="padding:10px 16px;font-size:13px;font-weight:700;color:var(--text3);cursor:pointer">Favorites</div>
+        </div>
+
+        <div class="movie-card">
+          <div class="movie-poster" style="background:linear-gradient(145deg,#1a3a5a,#0d2040)"><svg viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg></div>
+          <div class="movie-info"><div class="movie-t">Oppenheimer</div><div class="movie-m">2023 &bull; Drama &bull; 3h</div><div class="movie-stars"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><span class="num">4.5</span></div></div>
+          <div class="movie-badge" style="background:var(--run-pastel);color:var(--primary)">Watched</div>
+        </div>
+        <div class="movie-card">
+          <div class="movie-poster" style="background:linear-gradient(145deg,#5a1a1a,#401010)"><svg viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg></div>
+          <div class="movie-info"><div class="movie-t">The Batman</div><div class="movie-m">2022 &bull; Action &bull; 2h 56m</div><div class="movie-stars"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><span class="num">4.0</span></div></div>
+          <div class="movie-badge" style="background:var(--run-pastel);color:var(--primary)">Watched</div>
+        </div>
+        <div class="movie-card">
+          <div class="movie-poster" style="background:linear-gradient(145deg,#3a5a1a,#204010)"><svg viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg></div>
+          <div class="movie-info"><div class="movie-t">Dune: Part Two</div><div class="movie-m">2024 &bull; Sci-Fi &bull; 2h 46m</div><div class="movie-stars"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><span class="num">5.0</span></div></div>
+          <div class="movie-badge" style="background:var(--run-pastel);color:var(--primary)">Watched</div>
+        </div>
+        <div class="movie-card">
+          <div class="movie-poster" style="background:linear-gradient(145deg,#4a3a6a,#2d204a)"><svg viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg></div>
+          <div class="movie-info"><div class="movie-t">Everything Everywhere</div><div class="movie-m">2022 &bull; Comedy &bull; 2h 19m</div><div class="movie-stars"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><span class="num">4.5</span></div></div>
+          <div class="movie-badge" style="background:var(--run-pastel);color:var(--primary)">Watched</div>
+        </div>
+        <div class="spacer-lg"></div><div class="spacer-lg"></div>
+        <div class="fab" style="background:var(--movies)">
+          <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Nav with custom SVG icons -->
+  <div class="bnav" id="bnav">
+    <div class="bnav-item active" onclick="go('home')">
+      <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      <span>Home</span>
+    </div>
+    <div class="bnav-item" onclick="go('gumrun')">
+      <svg viewBox="0 0 24 24"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg>
+      <span>Run</span>
+    </div>
+    <div class="bnav-item" onclick="go('gumnotes')">
+      <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+      <span>Notes</span>
+    </div>
+    <div class="bnav-item" onclick="go('gumjournals')">
+      <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+      <span>Journal</span>
+    </div>
+    <div class="bnav-item" onclick="go('gumbooks')">
+      <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+      <span>Books</span>
+    </div>
+    <div class="bnav-item" onclick="go('gumovies')">
+      <svg viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg>
+      <span>Movies</span>
+    </div>
+  </div>
+</div>
+
+<script>
+const navMap={home:0,gumrun:1,gumnotes:2,gumjournals:3,gumbooks:4,gumovies:5,rundetail:1,activerun:1};
+const hideNav=['activerun','rundetail'];
+
+function go(n){
+  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s-'+n).classList.add('active');
+  document.querySelector('.sc').scrollTop=0;
+
+  const btns=document.querySelectorAll('.screen-nav button');
+  btns.forEach(b=>b.classList.remove('active'));
+  const names=['home','gumrun','rundetail','activerun','gumnotes','gumjournals','gumbooks','gumovies'];
+  const i=names.indexOf(n);if(i>=0)btns[i].classList.add('active');
+
+  const ni=navMap[n]||0;
+  document.querySelectorAll('.bnav-item').forEach((it,j)=>it.classList.toggle('active',j===ni));
+
+  const nav=document.getElementById('bnav');
+  const sc=document.getElementById('sc');
+  const sb=document.getElementById('sbar');
+
+  if(n==='activerun'){
+    nav.style.display='none';sb.style.display='none';
+    sc.style.height='100%';sc.style.overflow='hidden';
+  }else if(hideNav.includes(n)){
+    nav.style.display='none';sb.style.display='flex';
+    sc.style.height='calc(100% - 50px)';sc.style.overflow='auto';
+  }else{
+    nav.style.display='flex';sb.style.display='flex';
+    sc.style.height='calc(100% - 50px - 72px)';sc.style.overflow='auto';
+  }
+}
+
+document.querySelectorAll('.mood-bean').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.mood-bean').forEach(m=>m.classList.remove('sel'));
+    b.classList.add('sel');
+  });
+});
+document.querySelectorAll('.act-chip').forEach(c=>{
+  c.addEventListener('click',()=>c.classList.toggle('sel'));
+});
+</script>
+</body>
+</html>

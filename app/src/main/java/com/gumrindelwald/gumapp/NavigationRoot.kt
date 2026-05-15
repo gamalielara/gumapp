@@ -8,25 +8,21 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navDeepLink
 import androidx.navigation.navigation
 import com.gumrindelwald.presentation.GumrunDashboardRoot
+import com.gumrindelwald.presentation.run_overview.GumRunOverviewScreenRoot
 
 @Composable
 fun NavigationRoot(
     navController: NavHostController,
-    isLoggedIn: Boolean
 ) {
-    NavHost(navController = navController, startDestination = Routes.HOME) {
-        authGraph()
-        gumrunGraph()
+    // TODO
+    NavHost(navController = navController, startDestination = Routes.GUMRUN) {
+        gumrunGraph(navController)
     }
 }
 
-fun NavGraphBuilder.authGraph() {
-    // TODO
-}
-
-fun NavGraphBuilder.gumrunGraph() {
+fun NavGraphBuilder.gumrunGraph(navController: NavHostController) {
     navigation(
-        startDestination = Routes.Gumrun.ACTIVE_RUN,
+        startDestination = Routes.Gumrun.RUN_OVERVIEW,
         route = Routes.GUMRUN
     ) {
         composable(
@@ -34,12 +30,22 @@ fun NavGraphBuilder.gumrunGraph() {
                 navDeepLink {
                     uriPattern = Routes.Gumrun.ACTIVE_RUN_DEEP_LINK
                 }
-            )) {
+            )
+        ) {
             GumrunDashboardRoot(
                 mainActivityClass = MainActivity::class.java,
-                onRunFinished = { },
-                onBack = { }
+                onRunFinished = {
+                    navController.navigateUp()
+                },
+                onBack = {
+                    navController.navigateUp()
+                }
             )
+        }
+        composable(
+            route = Routes.Gumrun.RUN_OVERVIEW
+        ) {
+            GumRunOverviewScreenRoot()
         }
     }
 }

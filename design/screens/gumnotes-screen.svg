@@ -1,0 +1,88 @@
+<svg viewBox="0 0 375 812" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, sans-serif">
+<rect width="375" height="812" fill="#1a1c16"/>
+
+<!-- Status Bar -->
+<text x="28" y="32" fill="#eaebe0" font-size="14" font-weight="600">9:41</text>
+<text x="310" y="32" fill="#9a9c90" font-size="11">●●● ▲ ■</text>
+
+<!-- Header -->
+<text x="20" y="68" fill="#9a9c90" font-size="20">←</text>
+<text x="187" y="68" fill="#eaebe0" font-size="17" font-weight="700" text-anchor="middle">GumNotes</text>
+<text x="355" y="68" fill="#9a9c90" font-size="18" text-anchor="end">⋮</text>
+
+<!-- Search Bar -->
+<rect x="16" y="82" width="343" height="40" rx="50" fill="#232520" stroke="#333530" stroke-width="1"/>
+<text x="38" y="106" fill="#6a6c62" font-size="16">🔍</text>
+<text x="58" y="106" fill="#6a6c62" font-size="13">Search notes...</text>
+
+<!-- Filter Chips -->
+<rect x="16" y="134" width="36" height="26" rx="50" fill="rgba(232,163,23,0.12)"/>
+<text x="34" y="151" fill="#e8a317" font-size="11" font-weight="600" text-anchor="middle">All</text>
+
+<rect x="60" y="134" width="66" height="26" rx="50" fill="#232520" stroke="#333530" stroke-width="1"/>
+<text x="93" y="151" fill="#6a6c62" font-size="11" font-weight="600" text-anchor="middle">Personal</text>
+
+<rect x="134" y="134" width="48" height="26" rx="50" fill="#232520" stroke="#333530" stroke-width="1"/>
+<text x="158" y="151" fill="#6a6c62" font-size="11" font-weight="600" text-anchor="middle">Work</text>
+
+<rect x="190" y="134" width="48" height="26" rx="50" fill="#232520" stroke="#333530" stroke-width="1"/>
+<text x="214" y="151" fill="#6a6c62" font-size="11" font-weight="600" text-anchor="middle">Ideas</text>
+
+<!-- Note Entry 1 -->
+<rect x="20" y="180" width="4" height="60" rx="2" fill="#e8a317"/>
+<text x="36" y="198" fill="#eaebe0" font-size="14" font-weight="600">Project Ideas for Q3</text>
+<text x="340" y="198" fill="#6a6c62" font-size="11" text-anchor="end">Today</text>
+<text x="36" y="216" fill="#9a9c90" font-size="12">Need to explore new ML frameworks for the...</text>
+<rect x="36" y="224" width="42" height="18" rx="50" fill="rgba(232,163,23,0.1)"/>
+<text x="57" y="237" fill="#e8a317" font-size="9" font-weight="600" text-anchor="middle">Work</text>
+
+<!-- Divider -->
+<line x1="36" y1="252" x2="355" y2="252" stroke="#333530" stroke-width="0.5"/>
+
+<!-- Note Entry 2 -->
+<rect x="20" y="264" width="4" height="60" rx="2" fill="#e8a317"/>
+<text x="36" y="282" fill="#eaebe0" font-size="14" font-weight="600">Grocery List</text>
+<text x="340" y="282" fill="#6a6c62" font-size="11" text-anchor="end">Yesterday</text>
+<text x="36" y="300" fill="#9a9c90" font-size="12">Eggs, milk, bread, avocados, chicken breast...</text>
+<rect x="36" y="308" width="62" height="18" rx="50" fill="rgba(232,163,23,0.1)"/>
+<text x="67" y="321" fill="#e8a317" font-size="9" font-weight="600" text-anchor="middle">Personal</text>
+
+<line x1="36" y1="336" x2="355" y2="336" stroke="#333530" stroke-width="0.5"/>
+
+<!-- Note Entry 3 -->
+<rect x="20" y="348" width="4" height="60" rx="2" fill="#e8a317"/>
+<text x="36" y="366" fill="#eaebe0" font-size="14" font-weight="600">App Architecture Notes</text>
+<text x="340" y="366" fill="#6a6c62" font-size="11" text-anchor="end">May 5</text>
+<text x="36" y="384" fill="#9a9c90" font-size="12">Clean architecture with MVVM. Use Koin for DI...</text>
+<rect x="36" y="392" width="42" height="18" rx="50" fill="rgba(232,163,23,0.1)"/>
+<text x="57" y="405" fill="#e8a317" font-size="9" font-weight="600" text-anchor="middle">Work</text>
+
+<line x1="36" y1="420" x2="355" y2="420" stroke="#333530" stroke-width="0.5"/>
+
+<!-- Note Entry 4 -->
+<rect x="20" y="432" width="4" height="60" rx="2" fill="#e8a317"/>
+<text x="36" y="450" fill="#eaebe0" font-size="14" font-weight="600">Book Recommendations</text>
+<text x="340" y="450" fill="#6a6c62" font-size="11" text-anchor="end">May 3</text>
+<text x="36" y="468" fill="#9a9c90" font-size="12">Atomic Habits, Deep Work, The Pragmatic...</text>
+<rect x="36" y="476" width="42" height="18" rx="50" fill="rgba(232,163,23,0.1)"/>
+<text x="57" y="489" fill="#e8a317" font-size="9" font-weight="600" text-anchor="middle">Ideas</text>
+
+<!-- FAB -->
+<circle cx="335" cy="680" r="26" fill="#e8a317"/>
+<text x="335" y="688" fill="#fff" font-size="24" text-anchor="middle">+</text>
+
+<!-- Bottom Navigation -->
+<rect x="0" y="744" width="375" height="68" fill="#232520"/>
+<line x1="0" y1="744" x2="375" y2="744" stroke="#333530" stroke-width="1"/>
+<g text-anchor="middle" font-size="9" font-weight="500">
+  <g fill="#6a6c62"><text x="32" y="772" font-size="18">⌂</text><text x="32" y="787">Home</text></g>
+  <g fill="#6a6c62"><text x="94" y="772" font-size="18">⬆</text><text x="94" y="787">Run</text></g>
+  <g fill="#cdeda3">
+    <rect x="139" y="753" width="35" height="3" rx="1.5" fill="#cdeda3"/>
+    <text x="156" y="772" font-size="18">✎</text><text x="156" y="787" font-weight="600">Notes</text>
+  </g>
+  <g fill="#6a6c62"><text x="218" y="772" font-size="18">☰</text><text x="218" y="787">Journal</text></g>
+  <g fill="#6a6c62"><text x="281" y="772" font-size="18">📖</text><text x="281" y="787">Books</text></g>
+  <g fill="#6a6c62"><text x="343" y="772" font-size="18">🎬</text><text x="343" y="787">Movies</text></g>
+</g>
+</svg>

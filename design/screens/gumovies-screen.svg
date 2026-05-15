@@ -1,0 +1,99 @@
+<svg viewBox="0 0 375 812" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, sans-serif">
+<defs>
+  <linearGradient id="p1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a3a5a"/><stop offset="100%" stop-color="#0d2040"/></linearGradient>
+  <linearGradient id="p2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#5a1a1a"/><stop offset="100%" stop-color="#401010"/></linearGradient>
+  <linearGradient id="p3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3a5a1a"/><stop offset="100%" stop-color="#204010"/></linearGradient>
+  <linearGradient id="p4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4a3a6a"/><stop offset="100%" stop-color="#2d204a"/></linearGradient>
+</defs>
+
+<rect width="375" height="812" fill="#1a1c16"/>
+
+<!-- Status Bar -->
+<text x="28" y="32" fill="#eaebe0" font-size="14" font-weight="600">9:41</text>
+<text x="310" y="32" fill="#9a9c90" font-size="11">●●● ▲ ■</text>
+
+<!-- Header -->
+<text x="20" y="68" fill="#9a9c90" font-size="20">←</text>
+<text x="187" y="68" fill="#eaebe0" font-size="17" font-weight="700" text-anchor="middle">GumMovies</text>
+<text x="355" y="68" fill="#9a9c90" font-size="16" text-anchor="end">🔍</text>
+
+<!-- Featured Card -->
+<rect x="16" y="82" width="343" height="100" rx="16" fill="#232520" stroke="#333530" stroke-width="1"/>
+<circle cx="330" cy="102" r="25" fill="rgba(196,77,86,0.15)"/>
+<text x="30" y="100" fill="#c44d56" font-size="10" font-weight="700" letter-spacing="1">LAST WATCHED</text>
+<text x="30" y="122" fill="#eaebe0" font-size="18" font-weight="700">Interstellar</text>
+<text x="30" y="140" fill="#6a6c62" font-size="11">2014 • Sci-Fi • 2h 49m</text>
+<!-- Stars -->
+<g transform="translate(30,150)">
+  <text fill="#ffc107" font-size="12">★ ★ ★ ★ ☆</text>
+  <text x="76" fill="#6a6c62" font-size="10" font-weight="600" y="0">4.5</text>
+</g>
+
+<!-- Tabs -->
+<line x1="16" y1="210" x2="359" y2="210" stroke="#333530" stroke-width="1"/>
+<text x="45" y="202" fill="#c44d56" font-size="13" font-weight="600" text-anchor="middle">Watched</text>
+<rect x="22" y="207" width="46" height="2.5" rx="1" fill="#c44d56"/>
+<text x="125" y="202" fill="#6a6c62" font-size="13" font-weight="600" text-anchor="middle">Watchlist</text>
+<text x="210" y="202" fill="#6a6c62" font-size="13" font-weight="600" text-anchor="middle">Favorites</text>
+
+<!-- Movie 1: Oppenheimer -->
+<rect x="20" y="226" width="48" height="68" rx="10" fill="url(#p1)"/>
+<text x="44" y="266" fill="rgba(255,255,255,0.6)" font-size="16" text-anchor="middle">🎬</text>
+<text x="80" y="248" fill="#eaebe0" font-size="13" font-weight="600">Oppenheimer</text>
+<text x="80" y="264" fill="#6a6c62" font-size="11">2023 • Drama • 3h</text>
+<g transform="translate(80,272)"><text fill="#ffc107" font-size="10">★★★★☆</text><text x="48" fill="#6a6c62" font-size="10" font-weight="600">4.5</text></g>
+<rect x="300" y="246" width="56" height="22" rx="50" fill="rgba(205,237,163,0.1)"/>
+<text x="328" y="261" fill="#cdeda3" font-size="9" font-weight="600" text-anchor="middle">Watched</text>
+
+<line x1="20" y1="302" x2="355" y2="302" stroke="#333530" stroke-width="0.5"/>
+
+<!-- Movie 2: The Batman -->
+<rect x="20" y="314" width="48" height="68" rx="10" fill="url(#p2)"/>
+<text x="44" y="354" fill="rgba(255,255,255,0.6)" font-size="16" text-anchor="middle">🎬</text>
+<text x="80" y="336" fill="#eaebe0" font-size="13" font-weight="600">The Batman</text>
+<text x="80" y="352" fill="#6a6c62" font-size="11">2022 • Action • 2h 56m</text>
+<g transform="translate(80,360)"><text fill="#ffc107" font-size="10">★★★★</text><text x="40" fill="#6a6c62" font-size="10" font-weight="600">4.0</text></g>
+<rect x="300" y="334" width="56" height="22" rx="50" fill="rgba(205,237,163,0.1)"/>
+<text x="328" y="349" fill="#cdeda3" font-size="9" font-weight="600" text-anchor="middle">Watched</text>
+
+<line x1="20" y1="390" x2="355" y2="390" stroke="#333530" stroke-width="0.5"/>
+
+<!-- Movie 3: Dune Part Two -->
+<rect x="20" y="402" width="48" height="68" rx="10" fill="url(#p3)"/>
+<text x="44" y="442" fill="rgba(255,255,255,0.6)" font-size="16" text-anchor="middle">🎬</text>
+<text x="80" y="424" fill="#eaebe0" font-size="13" font-weight="600">Dune: Part Two</text>
+<text x="80" y="440" fill="#6a6c62" font-size="11">2024 • Sci-Fi • 2h 46m</text>
+<g transform="translate(80,448)"><text fill="#ffc107" font-size="10">★★★★★</text><text x="48" fill="#6a6c62" font-size="10" font-weight="600">5.0</text></g>
+<rect x="300" y="422" width="56" height="22" rx="50" fill="rgba(205,237,163,0.1)"/>
+<text x="328" y="437" fill="#cdeda3" font-size="9" font-weight="600" text-anchor="middle">Watched</text>
+
+<line x1="20" y1="478" x2="355" y2="478" stroke="#333530" stroke-width="0.5"/>
+
+<!-- Movie 4: Everything Everywhere -->
+<rect x="20" y="490" width="48" height="68" rx="10" fill="url(#p4)"/>
+<text x="44" y="530" fill="rgba(255,255,255,0.6)" font-size="16" text-anchor="middle">🎬</text>
+<text x="80" y="512" fill="#eaebe0" font-size="13" font-weight="600">Everything Everywhere</text>
+<text x="80" y="528" fill="#6a6c62" font-size="11">2022 • Comedy • 2h 19m</text>
+<g transform="translate(80,536)"><text fill="#ffc107" font-size="10">★★★★☆</text><text x="48" fill="#6a6c62" font-size="10" font-weight="600">4.5</text></g>
+<rect x="300" y="510" width="56" height="22" rx="50" fill="rgba(205,237,163,0.1)"/>
+<text x="328" y="525" fill="#cdeda3" font-size="9" font-weight="600" text-anchor="middle">Watched</text>
+
+<!-- FAB -->
+<circle cx="335" cy="700" r="26" fill="#c44d56"/>
+<text x="335" y="708" fill="#fff" font-size="24" text-anchor="middle">+</text>
+
+<!-- Bottom Navigation -->
+<rect x="0" y="744" width="375" height="68" fill="#232520"/>
+<line x1="0" y1="744" x2="375" y2="744" stroke="#333530" stroke-width="1"/>
+<g text-anchor="middle" font-size="9" font-weight="500">
+  <g fill="#6a6c62"><text x="32" y="772" font-size="18">⌂</text><text x="32" y="787">Home</text></g>
+  <g fill="#6a6c62"><text x="94" y="772" font-size="18">⬆</text><text x="94" y="787">Run</text></g>
+  <g fill="#6a6c62"><text x="156" y="772" font-size="18">✎</text><text x="156" y="787">Notes</text></g>
+  <g fill="#6a6c62"><text x="218" y="772" font-size="18">☰</text><text x="218" y="787">Journal</text></g>
+  <g fill="#6a6c62"><text x="281" y="772" font-size="18">📖</text><text x="281" y="787">Books</text></g>
+  <g fill="#cdeda3">
+    <rect x="326" y="753" width="35" height="3" rx="1.5" fill="#cdeda3"/>
+    <text x="343" y="772" font-size="18">🎬</text><text x="343" y="787" font-weight="600">Movies</text>
+  </g>
+</g>
+</svg>

@@ -61,7 +61,7 @@ suspend inline fun <reified T> safeCall(execute: () -> HttpResponse): Result<T, 
         return Result.Error(DataError.Network.NO_INTERNET)
     } catch (e: SerializationException) {
         e.printStackTrace()
-        return Result.Error(DataError.Network.SERIALIZATION)
+        return Result.Error(DataError.Network.SERIALIZATION_ERROR)
     } catch (e: Exception) {
         if (e is CancellationException) throw e
         e.printStackTrace()

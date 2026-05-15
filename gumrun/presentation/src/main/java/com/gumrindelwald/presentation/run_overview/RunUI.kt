@@ -1,4 +1,4 @@
-package com.gumrindelwald.presentation.run
+package com.gumrindelwald.presentation.run_overview
 
 data class RunUI(
     val id: String,
@@ -11,4 +11,3 @@ data class RunUI(
     val totalElevation: String,
     val mapPictureURL: String?,
 )
-

@@ -1,0 +1,154 @@
+<svg viewBox="0 0 375 812" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="runGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4c662b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3d5422;stop-opacity:1" />
+    </linearGradient>
+    <style>
+      .status-bar-text { font-family: sans-serif; font-size: 12px; fill: #ffffff; font-weight: 500; }
+      .screen-title { font-family: sans-serif; font-size: 20px; font-weight: 600; fill: #ffffff; }
+      .large-stat { font-family: sans-serif; font-size: 36px; font-weight: 700; fill: #4c662b; }
+      .stat-label { font-family: sans-serif; font-size: 12px; fill: #75796c; font-weight: 500; }
+      .stat-value { font-family: sans-serif; font-size: 16px; font-weight: 600; fill: #1a1c16; }
+      .section-title { font-family: sans-serif; font-size: 14px; font-weight: 600; fill: #75796c; }
+      .run-title { font-family: sans-serif; font-size: 14px; font-weight: 600; fill: #1a1c16; }
+      .run-detail { font-family: sans-serif; font-size: 12px; fill: #75796c; }
+      .nav-label { font-family: sans-serif; font-size: 10px; fill: #1a1c16; font-weight: 500; }
+      .nav-label-active { font-family: sans-serif; font-size: 10px; fill: #4c662b; font-weight: 600; }
+    </style>
+  </defs>
+
+  <!-- Phone frame with bezel -->
+  <rect x="0" y="0" width="375" height="812" rx="40" fill="#ffffff" stroke="#333333" stroke-width="2"/>
+
+  <!-- Status bar background -->
+  <rect x="0" y="0" width="375" height="28" fill="#4c662b" rx="40"/>
+
+  <!-- Status bar content -->
+  <text x="12" y="19" class="status-bar-text">9:41</text>
+
+  <!-- Header with gradient -->
+  <rect x="0" y="28" width="375" height="100" fill="url(#runGradient)"/>
+
+  <!-- Back arrow -->
+  <text x="20" y="66" class="screen-title" text-anchor="start">←</text>
+
+  <!-- Screen title -->
+  <text x="50" y="66" class="screen-title">GumRun</text>
+
+  <!-- Settings icon -->
+  <text x="348" y="66" class="screen-title" text-anchor="end">⚙️</text>
+
+  <!-- Weekly progress section -->
+  <rect x="12" y="138" width="351" height="100" rx="12" fill="#f9faef" stroke="#c5c8b9" stroke-width="1"/>
+
+  <!-- Large stat -->
+  <text x="50" y="172" class="large-stat">24.8 km</text>
+
+  <!-- Goal text -->
+  <text x="50" y="195" class="stat-label">Goal: 30 km</text>
+
+  <!-- Progress bar background -->
+  <rect x="180" y="155" width="170" height="8" rx="4" fill="#e1e4d5"/>
+
+  <!-- Progress bar filled (83%) -->
+  <rect x="180" y="155" width="141.1" height="8" rx="4" fill="#4c662b"/>
+
+  <!-- Percentage text -->
+  <text x="355" y="168" class="stat-label" text-anchor="end">83%</text>
+
+  <!-- Stats grid (3 columns) -->
+  <rect x="12" y="248" width="111" height="80" rx="8" fill="#cdeda3" stroke="#c5c8b9" stroke-width="1"/>
+  <text x="67.5" y="280" class="stat-value" text-anchor="middle">156</text>
+  <text x="67.5" y="308" class="section-title" text-anchor="middle">Total Runs</text>
+
+  <rect x="132" y="248" width="111" height="80" rx="8" fill="#cdeda3" stroke="#c5c8b9" stroke-width="1"/>
+  <text x="187.5" y="280" class="stat-value" text-anchor="middle">5'42"</text>
+  <text x="187.5" y="308" class="section-title" text-anchor="middle">Avg Pace</text>
+
+  <rect x="252" y="248" width="111" height="80" rx="8" fill="#cdeda3" stroke="#c5c8b9" stroke-width="1"/>
+  <text x="307.5" y="280" class="stat-value" text-anchor="middle">842</text>
+  <text x="307.5" y="308" class="section-title" text-anchor="middle">Calories</text>
+
+  <!-- Map placeholder -->
+  <rect x="12" y="338" width="351" height="140" rx="12" fill="#f9faef" stroke="#c5c8b9" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="187.5" y="415" class="stat-label" text-anchor="middle">Map view</text>
+
+  <!-- Recent Runs section -->
+  <text x="12" y="498" class="section-title">Recent Runs</text>
+
+  <!-- Run item 1 -->
+  <g transform="translate(0, 510)">
+    <circle cx="35" cy="12" r="10" fill="#4c662b"/>
+    <text x="35" y="17" class="status-bar-text" text-anchor="middle" fill="#ffffff">▶</text>
+    <text x="60" y="16" class="run-title">Morning Run</text>
+    <text x="60" y="30" class="run-detail">5.2 km • 28m 32s</text>
+  </g>
+
+  <!-- Run item 2 -->
+  <g transform="translate(0, 560)">
+    <circle cx="35" cy="12" r="10" fill="#4c662b"/>
+    <text x="35" y="17" class="status-bar-text" text-anchor="middle" fill="#ffffff">▶</text>
+    <text x="60" y="16" class="run-title">Evening Jog</text>
+    <text x="60" y="30" class="run-detail">3.8 km • 21m 15s</text>
+  </g>
+
+  <!-- Run item 3 -->
+  <g transform="translate(0, 610)">
+    <circle cx="35" cy="12" r="10" fill="#4c662b"/>
+    <text x="35" y="17" class="status-bar-text" text-anchor="middle" fill="#ffffff">▶</text>
+    <text x="60" y="16" class="run-title">Long Run</text>
+    <text x="60" y="30" class="run-detail">8.4 km • 47m 02s</text>
+  </g>
+
+  <!-- Floating Action Button (FAB) -->
+  <circle cx="187.5" cy="680" r="28" fill="#4c662b"/>
+  <text x="187.5" y="688" class="screen-title" text-anchor="middle" fill="#ffffff">▶</text>
+
+  <!-- Bottom navigation bar -->
+  <rect x="0" y="744" width="375" height="68" fill="#f9faef" stroke="#c5c8b9" stroke-width="1" stroke-top="true"/>
+
+  <!-- Nav items -->
+  <!-- Home -->
+  <g transform="translate(22.5, 752)">
+    <text x="0" y="5" class="nav-label" text-anchor="middle">🏠</text>
+    <text x="0" y="30" class="nav-label" text-anchor="middle">Home</text>
+  </g>
+
+  <!-- Run (active) -->
+  <g transform="translate(75, 752)">
+    <circle cx="0" cy="0" r="12" fill="#4c662b"/>
+    <text x="0" y="5" class="nav-label-active" text-anchor="middle" fill="#ffffff">▶</text>
+    <text x="0" y="30" class="nav-label-active" text-anchor="middle">Run</text>
+  </g>
+
+  <!-- Notes -->
+  <g transform="translate(127.5, 752)">
+    <text x="0" y="5" class="nav-label" text-anchor="middle">📝</text>
+    <text x="0" y="30" class="nav-label" text-anchor="middle">Notes</text>
+  </g>
+
+  <!-- Journal -->
+  <g transform="translate(180, 752)">
+    <text x="0" y="5" class="nav-label" text-anchor="middle">📔</text>
+    <text x="0" y="30" class="nav-label" text-anchor="middle">Journal</text>
+  </g>
+
+  <!-- Books -->
+  <g transform="translate(232.5, 752)">
+    <text x="0" y="5" class="nav-label" text-anchor="middle">📚</text>
+    <text x="0" y="30" class="nav-label" text-anchor="middle">Books</text>
+  </g>
+
+  <!-- Movies -->
+  <g transform="translate(285, 752)">
+    <text x="0" y="5" class="nav-label" text-anchor="middle">🎬</text>
+    <text x="0" y="30" class="nav-label" text-anchor="middle">Movies</text>
+  </g>
+
+  <!-- More -->
+  <g transform="translate(337.5, 752)">
+    <text x="0" y="5" class="nav-label" text-anchor="middle">⚙️</text>
+    <text x="0" y="30" class="nav-label" text-anchor="middle">More</text>
+  </g>
+</svg>

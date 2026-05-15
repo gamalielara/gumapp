@@ -1,4 +1,4 @@
-package com.gumrindelwald.presentation.run
+package com.gumrindelwald.presentation.run_overview
 
 import com.gumrindelwald.core.domain.formatted
 import com.gumrindelwald.domain.run.Run

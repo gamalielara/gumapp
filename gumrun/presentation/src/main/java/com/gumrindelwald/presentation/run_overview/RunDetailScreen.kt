@@ -1,4 +1,4 @@
-package com.gumrindelwald.presentation.run_overview.component
+package com.gumrindelwald.presentation.run_overview
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -33,17 +33,16 @@ import com.gumrindelwald.domain.run.Run
 import com.gumrindelwald.gumapp.core.presentation.designsystem.R
 import com.gumrindelwald.presentation.GumAppToolbar
 import com.gumrindelwald.presentation.GumrunScaffold
-import com.gumrindelwald.presentation.run.RunUI
-import com.gumrindelwald.presentation.run.toRunUI
+import com.gumrindelwald.presentation.run_overview.component.RunDataUI
 import java.time.ZonedDateTime
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RunListItem(
-    runUI: RunUI, onDeleteClick: () -> Unit, modifier: Modifier = Modifier
+fun RunDetailScreen(
+    runUI: RunUI, onDeleteClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     GumrunScaffold(
         topAppBar = {
@@ -80,8 +79,7 @@ fun RunListItem(
                     horizontalArrangement = Arrangement.SpaceEvenly,
                     maxItemsInEachRow = 3,
                     verticalArrangement = Arrangement.spacedBy(10.dp),
-
-                    ) {
+                ) {
                     RunDataGrid(runUI = runUI)
                 }
             }
@@ -182,9 +180,9 @@ private fun MapImage(
 
 @Preview
 @Composable
-fun RunListItemPreview() {
+fun RunDetailScreenPreview() {
     GumAppTheme {
-        RunListItem(
+        RunDetailScreen(
             runUI = Run(
                 id = "1",
                 duration = 10.minutes + 30.seconds,
