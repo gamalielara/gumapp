@@ -1,5 +1,6 @@
-package com.gumrindelwald.presentation.run_overview
+package com.gumrindelwald.presentation.screens.run_overview
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -17,7 +18,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForwardIos
-import androidx.compose.material.icons.filled.DirectionsRun
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -25,71 +26,49 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.maps.android.PolyUtil
 import com.gumrindelwald.designsystem.GumAppTheme
 import com.gumrindelwald.presentation.GumAppToolbar
 import com.gumrindelwald.presentation.GumrunScaffold
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-
 fun GumRunOverviewScreenRoot(
-//    viewModel: RunOverviewViewModel = koinViewModel()
+    viewModel: RunOverviewViewModel = koinViewModel(),
+    onStartClick: () -> Unit
 ) {
     RunOverview(
-//        state = viewModel.state,
-        state = RunOverviewState(
-            runs = listOf(
-                RunUI(
-                    id = "1",
-                    duration = "1:00:00",
-                    dateTime = "3 May 2025",
-                    distance = "5 km",
-                    avgSpeed = "10 km/h",
-                    maxSpeed = "10 km/h",
-                    pace = "10:00 min/km",
-                    totalElevation = "10 m",
-                    mapPictureURL = null,
-                ),
-                RunUI(
-                    id = "2",
-                    duration = "1:00:00",
-                    dateTime = "3 May 2025",
-                    distance = "5 km",
-                    avgSpeed = "10 km/h",
-                    maxSpeed = "10 km/h",
-                    pace = "10:00 min/km",
-                    totalElevation = "10 m",
-                    mapPictureURL = null,
-                ),
-                RunUI(
-                    id = "2",
-                    duration = "1:00:00",
-                    dateTime = "3 May 2025",
-                    distance = "5 km",
-                    avgSpeed = "10 km/h",
-                    maxSpeed = "10 km/h",
-                    pace = "10:00 min/km",
-                    totalElevation = "10 m",
-                    mapPictureURL = null,
-                )
-            ),
-        ),
-//        onAction = viewModel::onAction
-        onAction = {},
+        state = viewModel.state,
+        onAction = {
+            when (it) {
+                is RunOverviewAction.OnStartClick -> {
+                    onStartClick()
+                }
+
+                else -> viewModel::onAction
+            }
+        }
     )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun RunOverview(
-    state: RunOverviewState, onAction: (action: RunOverviewAction) -> Unit
+    state: RunOverviewState,
+    onAction: (action: RunOverviewAction) -> Unit
 ) {
     GumrunScaffold(
         topAppBar = {
@@ -98,6 +77,22 @@ private fun RunOverview(
                 title = "Recent Runs",
             )
         },
+        floatingActionButton = {
+            Button(
+                onClick = {
+                    onAction(RunOverviewAction.OnStartClick)
+                },
+                modifier = Modifier
+                    .width(40.dp)
+                    .height(40.dp),
+                contentPadding = PaddingValues(5.dp)
+            ) {
+                Icon(
+                    Icons.Default.PlayArrow, tint = Color.White,
+                    contentDescription = "Play",
+                )
+            }
+        }
     ) { paddingValues ->
         Box(
             modifier = Modifier
@@ -138,13 +133,7 @@ private fun RunOverview(
                                     .background(MaterialTheme.colorScheme.tertiary),
                                 contentAlignment = Alignment.Center
                             ) {
-                                // TODO: change to run map marker
-                                Icon(
-                                    imageVector = Icons.Default.DirectionsRun,
-                                    tint = MaterialTheme.colorScheme.onTertiary,
-                                    contentDescription = null,
-                                    modifier = Modifier.size(20.dp)
-                                )
+                                RunRouteThumbnail(runUI.polylineRoute)
                             }
                             Column(
                                 modifier = Modifier
@@ -211,6 +200,69 @@ private fun RunPill(text: String) {
     }
 }
 
+@Composable
+fun RunRouteThumbnail(
+    encodedPolyline: String?,
+    modifier: Modifier = Modifier
+) {
+    val points = remember(encodedPolyline) {
+        encodedPolyline?.let { PolyUtil.decode(it) } ?: emptyList()
+    }
+
+    val pathColor = MaterialTheme.colorScheme.secondaryContainer
+    val point1Color = MaterialTheme.colorScheme.primaryContainer
+
+    Canvas(
+        modifier = modifier
+            .size(48.dp)
+            .clip(RoundedCornerShape(14.dp))
+    ) {
+        if (points.isEmpty()) return@Canvas
+
+        // Normalize points to fit canvas
+        val minLat = points.minOf { it.latitude }
+        val maxLat = points.maxOf { it.latitude }
+        val minLng = points.minOf { it.longitude }
+        val maxLng = points.maxOf { it.longitude }
+
+        val padding = 8.dp.toPx()
+        val w = size.width - padding * 2
+        val h = size.height - padding * 2
+
+        val normalized = points.map { point ->
+            Offset(
+                x = padding + ((point.longitude - minLng) / (maxLng - minLng).coerceAtLeast(0.0001)).toFloat() * w,
+                y = padding + (1f - ((point.latitude - minLat) / (maxLat - minLat).coerceAtLeast(
+                    0.0001
+                )).toFloat()) * h
+            )
+        }
+
+        // Draw glow/shadow path
+        val path = Path().apply {
+            moveTo(normalized.first().x, normalized.first().y)
+            normalized.drop(1).forEach { lineTo(it.x, it.y) }
+        }
+
+        drawPath(
+            path, color = pathColor.copy(alpha = 0.15f),
+            style = Stroke(width = 5.dp.toPx(), cap = StrokeCap.Round)
+        )
+        drawPath(
+            path, color = pathColor,
+            style = Stroke(width = 2.dp.toPx(), cap = StrokeCap.Round)
+        )
+
+        // Start & end markers
+        drawCircle(
+            point1Color,
+            radius = 3.dp.toPx(),
+            center = normalized.first()
+        )
+        drawCircle(point1Color, radius = 3.dp.toPx(), center = normalized.last())
+    }
+}
+
 @Preview
 @Composable
 private fun RunOverviewPreview() {
@@ -228,6 +280,7 @@ private fun RunOverviewPreview() {
                         pace = "10:00 min/km",
                         totalElevation = "10 m",
                         mapPictureURL = null,
+                        polylineRoute = "~lqi@mfnfSjA_BzCcDgAcDjAcB"
                     ),
                     RunUI(
                         id = "2",
@@ -239,6 +292,7 @@ private fun RunOverviewPreview() {
                         pace = "10:00 min/km",
                         totalElevation = "10 m",
                         mapPictureURL = null,
+                        polylineRoute = "~lqi@mfnfSjA_BzCcDgAcDjAcB"
                     ),
                     RunUI(
                         id = "2",
@@ -250,6 +304,7 @@ private fun RunOverviewPreview() {
                         pace = "10:00 min/km",
                         totalElevation = "10 m",
                         mapPictureURL = null,
+                        polylineRoute = "~lqi@mfnfSjA_BzCcDgAcDjAcB"
                     )
                 ),
             ),

@@ -14,6 +14,7 @@ dependencies {
     implementation(project(":core:domain"))
 
     implementation(libs.google.maps.android.compose)
+    implementation(libs.google.maps.android.utils.ktx)
     implementation(libs.androidx.activity.compose)
 
 }

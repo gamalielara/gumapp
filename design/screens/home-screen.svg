@@ -1,168 +1,201 @@
-<svg viewBox="0 0 375 812" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, sans-serif">
+<svg viewBox="0 0 375 812" xmlns="http://www.w3.org/2000/svg" font-family="Google Sans, system-ui, sans-serif">
 <defs>
   <clipPath id="phone"><rect width="375" height="812" rx="0"/></clipPath>
 </defs>
 <g clip-path="url(#phone)">
-<!-- Background -->
-<rect width="375" height="812" fill="#1a1c16"/>
+<rect width="375" height="812" fill="#151710"/>
+
+<!-- Wavy header background -->
+<path d="M0,0 L375,0 L375,90 Q300,140 187,100 Q75,60 0,110 Z" fill="rgba(76,102,43,.08)"/>
 
 <!-- Status Bar -->
-<text x="28" y="32" fill="#eaebe0" font-size="14" font-weight="600">9:41</text>
-<text x="310" y="32" fill="#9a9c90" font-size="11">●●● ▲ ■</text>
-
-<!-- Profile -->
-<circle cx="37" cy="72" r="21" fill="#4c662b"/>
-<text x="37" y="77" fill="#cdeda3" font-size="16" font-weight="800" text-anchor="middle">G</text>
-<text x="68" y="66" fill="#6a6c62" font-size="12">Good morning,</text>
-<text x="68" y="83" fill="#eaebe0" font-size="18" font-weight="700">Gam</text>
-
-<!-- Streak Badge -->
-<rect x="16" y="100" width="343" height="52" rx="16" fill="#232520" stroke="#333530" stroke-width="1"/>
-<text x="34" y="132" font-size="22">🔥</text>
-<text x="60" y="124" fill="#eaebe0" font-size="18" font-weight="800">12 day streak</text>
-<text x="60" y="140" fill="#6a6c62" font-size="11">Keep it going!</text>
-<text x="342" y="130" fill="#6a6c62" font-size="18" text-anchor="end">›</text>
-
-<!-- Calendar Header -->
-<text x="20" y="182" fill="#eaebe0" font-size="17" font-weight="700">May 2026</text>
-<text x="330" y="182" fill="#9a9c90" font-size="16" text-anchor="end">‹  ›</text>
-
-<!-- Day Labels -->
-<g font-size="10" fill="#6a6c62" font-weight="600" text-anchor="middle">
-  <text x="43" y="204">M</text><text x="92" y="204">T</text><text x="141" y="204">W</text>
-  <text x="190" y="204">T</text><text x="239" y="204">F</text><text x="288" y="204">S</text><text x="337" y="204">S</text>
+<text x="28" y="32" fill="#f0f1e6" font-size="14" font-weight="600">9:41</text>
+<g transform="translate(310,22)">
+  <rect x="0" y="2" width="14" height="8" rx="1.5" fill="none" stroke="#a8aa9e" stroke-width="1.2"/>
+  <rect x="2" y="4" width="8" height="4" rx="0.8" fill="#a8aa9e"/>
+  <rect x="14.5" y="4.5" width="1.5" height="3" rx="0.5" fill="#a8aa9e"/>
+</g>
+<g transform="translate(286,22)">
+  <path d="M1,10 L3,10 L3,4 L1,4Z M5,10 L7,10 L7,2 L5,2Z M9,10 L11,10 L11,0 L9,0Z" fill="#a8aa9e"/>
 </g>
 
-<!-- Calendar Days -->
-<g font-size="12" font-weight="500" text-anchor="middle">
-  <!-- Row 1: May starts on Friday -->
-  <text x="239" y="228" fill="#9a9c90">1</text><circle cx="239" cy="234" r="2.5" fill="#4c662b"/>
-  <text x="288" y="228" fill="#9a9c90">2</text>
-  <g transform="translate(284,234)"><circle r="2" fill="#4c662b"/><circle cx="6" r="2" fill="#386663"/></g>
-  <text x="337" y="228" fill="#9a9c90">3</text>
-  <g transform="translate(333,234)"><circle r="2" fill="#386663"/><circle cx="6" r="2" fill="#7c5cbf"/></g>
+<!-- Profile Row -->
+<circle cx="44" cy="68" r="23" fill="#4c662b"/>
+<text x="44" y="76" fill="#cdeda3" font-size="20" font-weight="900" text-anchor="middle">G</text>
+<circle cx="58" cy="82" r="7" fill="#151710"/>
+<circle cx="58" cy="82" r="4" fill="#66cc66"/>
+<text x="78" y="62" fill="#686a60" font-size="12" font-weight="600">Good morning,</text>
+<text x="78" y="82" fill="#f0f1e6" font-size="20" font-weight="900">Gam</text>
+<!-- Bell icon -->
+<circle cx="340" cy="68" r="19" fill="#1e211a"/>
+<path d="M334,65 C334,61 336.7,58 340,58 C343.3,58 346,61 346,65 L346,70 L348,72 L348,73 L332,73 L332,72 L334,70Z" fill="#686a60"/>
+<circle cx="340" cy="75.5" r="2" fill="#686a60"/>
 
-  <!-- Row 2: 4-10 -->
-  <text x="43" y="256" fill="#9a9c90">4</text><circle cx="43" cy="262" r="2.5" fill="#4c662b"/>
-  <text x="92" y="256" fill="#9a9c90">5</text>
-  <g transform="translate(85,262)"><circle r="2" fill="#4c662b"/><circle cx="5" r="2" fill="#e8a317"/><circle cx="10" r="2" fill="#386663"/></g>
-  <text x="141" y="256" fill="#9a9c90">6</text><circle cx="141" cy="262" r="2.5" fill="#386663"/>
-  <text x="190" y="256" fill="#9a9c90">7</text>
-  <g transform="translate(183,262)"><circle r="2" fill="#4c662b"/><circle cx="5" r="2" fill="#386663"/><circle cx="10" r="2" fill="#c44d56"/></g>
-  <text x="239" y="256" fill="#9a9c90">8</text>
-  <g transform="translate(235,262)"><circle r="2" fill="#e8a317"/><circle cx="6" r="2" fill="#7c5cbf"/></g>
-  <text x="288" y="256" fill="#9a9c90">9</text><circle cx="288" cy="262" r="2.5" fill="#4c662b"/>
-  <text x="337" y="256" fill="#9a9c90">10</text><circle cx="337" cy="262" r="2.5" fill="#386663"/>
+<!-- Streak Card with Bean -->
+<rect x="16" y="100" width="343" height="64" rx="20" fill="#1e211a"/>
+<!-- Decorative blob -->
+<circle cx="340" cy="110" r="35" fill="rgba(205,237,163,0.04)"/>
+<!-- Bean mascot -->
+<g transform="translate(28,108)">
+  <ellipse cx="20" cy="22" rx="16" ry="14" fill="#cdeda3"/>
+  <circle cx="14" cy="20" r="2.5" fill="#354e16"/>
+  <circle cx="26" cy="20" r="2.5" fill="#354e16"/>
+  <path d="M15,26 Q20,31 25,26" stroke="#354e16" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="10" cy="22" rx="3" ry="2" fill="#b8d98e" opacity=".5"/>
+  <ellipse cx="30" cy="22" rx="3" ry="2" fill="#b8d98e" opacity=".5"/>
+</g>
+<text x="78" y="126" fill="#f0f1e6" font-size="18" font-weight="900">12 day streak!</text>
+<text x="78" y="146" fill="#686a60" font-size="11" font-weight="600">You're on fire! Keep going</text>
+<path d="M338,126 L344,132 L338,138" fill="none" stroke="#686a60" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 
-  <!-- Row 3: 11-17 -->
-  <text x="43" y="284" fill="#9a9c90">11</text>
-  <g transform="translate(39,290)"><circle r="2" fill="#4c662b"/><circle cx="6" r="2" fill="#e8a317"/></g>
-  <text x="92" y="284" fill="#9a9c90">12</text>
-  <g transform="translate(88,290)"><circle r="2" fill="#4c662b"/><circle cx="6" r="2" fill="#386663"/></g>
-  <text x="141" y="284" fill="#cdeda3" font-weight="700">13</text>
-  <g transform="translate(134,290)"><circle r="2" fill="#4c662b"/><circle cx="5" r="2" fill="#386663"/><circle cx="10" r="2" fill="#7c5cbf"/></g>
-  <text x="190" y="284" fill="#6a6c62">14</text>
-  <text x="239" y="284" fill="#6a6c62">15</text>
-  <text x="288" y="284" fill="#6a6c62">16</text>
-  <text x="337" y="284" fill="#6a6c62">17</text>
+<!-- Calendar Section -->
+<text x="20" y="196" fill="#f0f1e6" font-size="18" font-weight="800">May 2026</text>
+<path d="M330,188 L324,194 L330,200" fill="none" stroke="#a8aa9e" stroke-width="2" stroke-linecap="round"/>
+<path d="M345,188 L351,194 L345,200" fill="none" stroke="#a8aa9e" stroke-width="2" stroke-linecap="round"/>
 
-  <!-- Row 4: 18-24 -->
-  <text x="43" y="312" fill="#6a6c62">18</text><text x="92" y="312" fill="#6a6c62">19</text>
-  <text x="141" y="312" fill="#6a6c62">20</text><text x="190" y="312" fill="#6a6c62">21</text>
-  <text x="239" y="312" fill="#6a6c62">22</text><text x="288" y="312" fill="#6a6c62">23</text>
-  <text x="337" y="312" fill="#6a6c62">24</text>
-
-  <!-- Row 5: 25-31 -->
-  <text x="43" y="340" fill="#6a6c62">25</text><text x="92" y="340" fill="#6a6c62">26</text>
-  <text x="141" y="340" fill="#6a6c62">27</text><text x="190" y="340" fill="#6a6c62">28</text>
-  <text x="239" y="340" fill="#6a6c62">29</text><text x="288" y="340" fill="#6a6c62">30</text>
-  <text x="337" y="340" fill="#6a6c62">31</text>
+<!-- Day labels -->
+<g text-anchor="middle" font-size="10" fill="#686a60" font-weight="700">
+  <text x="43" y="222">M</text><text x="90" y="222">T</text><text x="137" y="222">W</text>
+  <text x="184" y="222">T</text><text x="231" y="222">F</text><text x="278" y="222">S</text>
+  <text x="325" y="222">S</text>
 </g>
 
-<!-- Color Legend -->
-<g transform="translate(20,362)" font-size="10" fill="#6a6c62">
-  <circle r="4" cx="4" cy="0" fill="#4c662b"/><text x="12" y="4">Run</text>
-  <circle r="4" cx="54" cy="0" fill="#e8a317"/><text x="62" y="4">Notes</text>
-  <circle r="4" cx="114" cy="0" fill="#386663"/><text x="122" y="4">Journal</text>
-  <circle r="4" cx="180" cy="0" fill="#7c5cbf"/><text x="188" y="4">Books</text>
-  <circle r="4" cx="242" cy="0" fill="#c44d56"/><text x="250" y="4">Movies</text>
+<!-- Calendar days row 1 (May 1-3) -->
+<g text-anchor="middle" font-size="12" font-weight="600" fill="#a8aa9e">
+  <!-- Empty Mon-Thu -->
+  <!-- Fri 1 -->
+  <text x="231" y="248">1</text>
+  <circle cx="231" cy="255" r="2" fill="#6b8c42"/>
+  <!-- Sat 2 -->
+  <text x="278" y="248">2</text>
+  <circle cx="274" cy="255" r="2" fill="#6b8c42"/>
+  <circle cx="282" cy="255" r="2" fill="#50918d"/>
+  <!-- Sun 3 -->
+  <text x="325" y="248">3</text>
+  <circle cx="321" cy="255" r="2" fill="#50918d"/>
+  <circle cx="329" cy="255" r="2" fill="#9070d0"/>
 </g>
 
-<!-- Quick Stats Header -->
-<text x="20" y="400" fill="#eaebe0" font-size="16" font-weight="700">Quick stats</text>
+<!-- Row 2: 4-10 -->
+<g text-anchor="middle" font-size="12" font-weight="600" fill="#a8aa9e">
+  <text x="43" y="278">4</text><circle cx="43" cy="285" r="2" fill="#6b8c42"/>
+  <text x="90" y="278">5</text><circle cx="84" cy="285" r="2" fill="#6b8c42"/><circle cx="90" cy="285" r="2" fill="#f0a830"/><circle cx="96" cy="285" r="2" fill="#50918d"/>
+  <text x="137" y="278">6</text><circle cx="137" cy="285" r="2" fill="#50918d"/>
+  <text x="184" y="278">7</text><circle cx="178" cy="285" r="2" fill="#6b8c42"/><circle cx="184" cy="285" r="2" fill="#50918d"/><circle cx="190" cy="285" r="2" fill="#e06070"/>
+  <text x="231" y="278">8</text><circle cx="227" cy="285" r="2" fill="#f0a830"/><circle cx="235" cy="285" r="2" fill="#9070d0"/>
+  <text x="278" y="278">9</text><circle cx="278" cy="285" r="2" fill="#6b8c42"/>
+  <text x="325" y="278">10</text><circle cx="325" cy="285" r="2" fill="#50918d"/>
+</g>
 
-<!-- Stats Grid 2x2 -->
-<rect x="16" y="414" width="166" height="90" rx="16" fill="#232520" stroke="#333530" stroke-width="1"/>
-<rect x="30" y="428" width="32" height="32" rx="10" fill="#4c662b"/>
-<text x="39" y="448" fill="#cdeda3" font-size="16" text-anchor="middle">⬆</text>
-<text x="30" y="480" fill="#eaebe0" font-size="20" font-weight="800">24.8 km</text>
-<text x="30" y="494" fill="#6a6c62" font-size="10" font-weight="500">This week</text>
+<!-- Row 3: 11-17 (13=today) -->
+<g text-anchor="middle" font-size="12" font-weight="600">
+  <text x="43" y="308" fill="#a8aa9e">11</text><circle cx="39" cy="315" r="2" fill="#6b8c42"/><circle cx="47" cy="315" r="2" fill="#f0a830"/>
+  <text x="90" y="308" fill="#a8aa9e">12</text><circle cx="86" cy="315" r="2" fill="#6b8c42"/><circle cx="94" cy="315" r="2" fill="#50918d"/>
+  <!-- Today: 13 -->
+  <text x="137" y="308" fill="#cdeda3" font-weight="800">13</text>
+  <circle cx="131" cy="315" r="2" fill="#6b8c42"/><circle cx="137" cy="315" r="2" fill="#50918d"/><circle cx="143" cy="315" r="2" fill="#9070d0"/>
+  <rect x="122" y="319" width="30" height="3" rx="1.5" fill="#cdeda3" opacity=".3"/>
+  <text x="184" y="308" fill="#686a60">14</text>
+  <text x="231" y="308" fill="#686a60">15</text>
+  <text x="278" y="308" fill="#686a60">16</text>
+  <text x="325" y="308" fill="#686a60">17</text>
+</g>
 
-<rect x="192" y="414" width="166" height="90" rx="16" fill="#232520" stroke="#333530" stroke-width="1"/>
-<rect x="206" y="428" width="32" height="32" rx="10" fill="#386663"/>
-<text x="215" y="448" fill="#bcece7" font-size="16" text-anchor="middle">☺</text>
-<text x="206" y="480" fill="#eaebe0" font-size="20" font-weight="800">😊 Happy</text>
-<text x="206" y="494" fill="#6a6c62" font-size="10" font-weight="500">Today's mood</text>
+<!-- Row 4-5: 18-31 (dimmed) -->
+<g text-anchor="middle" font-size="12" font-weight="600" fill="#686a60">
+  <text x="43" y="338">18</text><text x="90" y="338">19</text><text x="137" y="338">20</text>
+  <text x="184" y="338">21</text><text x="231" y="338">22</text><text x="278" y="338">23</text><text x="325" y="338">24</text>
+  <text x="43" y="368">25</text><text x="90" y="368">26</text><text x="137" y="368">27</text>
+  <text x="184" y="368">28</text><text x="231" y="368">29</text><text x="278" y="368">30</text><text x="325" y="368">31</text>
+</g>
 
-<rect x="16" y="514" width="166" height="90" rx="16" fill="#232520" stroke="#333530" stroke-width="1"/>
-<rect x="30" y="528" width="32" height="32" rx="10" fill="#7c5cbf"/>
-<text x="39" y="548" fill="#e8e0f8" font-size="16" text-anchor="middle">📖</text>
-<text x="30" y="580" fill="#eaebe0" font-size="20" font-weight="800">3 books</text>
-<text x="30" y="594" fill="#6a6c62" font-size="10" font-weight="500">Currently reading</text>
+<!-- Color legend -->
+<g font-size="10" font-weight="600" fill="#686a60">
+  <circle cx="24" cy="394" r="4" fill="#6b8c42"/><text x="34" y="397">Run</text>
+  <circle cx="80" cy="394" r="4" fill="#f0a830"/><text x="90" y="397">Notes</text>
+  <circle cx="146" cy="394" r="4" fill="#50918d"/><text x="156" y="397">Journal</text>
+  <circle cx="220" cy="394" r="4" fill="#9070d0"/><text x="230" y="397">Books</text>
+  <circle cx="292" cy="394" r="4" fill="#e06070"/><text x="302" y="397">Movies</text>
+</g>
 
-<rect x="192" y="514" width="166" height="90" rx="16" fill="#232520" stroke="#333530" stroke-width="1"/>
-<rect x="206" y="528" width="32" height="32" rx="10" fill="#c44d56"/>
-<text x="215" y="548" fill="#ffdad6" font-size="16" text-anchor="middle">🎬</text>
-<text x="206" y="580" fill="#eaebe0" font-size="20" font-weight="800">12</text>
-<text x="206" y="594" fill="#6a6c62" font-size="10" font-weight="500">In watchlist</text>
+<!-- Wavy divider -->
+<path d="M16,418 Q46,410 76,418 Q106,426 136,418 Q166,410 196,418 Q226,426 256,418 Q286,410 316,418 Q346,426 359,418" stroke="#2e3128" stroke-width="1.5" fill="none"/>
 
-<!-- Your Apps Header -->
-<text x="20" y="636" fill="#eaebe0" font-size="16" font-weight="700">Your apps</text>
+<!-- Quick Stats Section -->
+<text x="20" y="450" fill="#f0f1e6" font-size="16" font-weight="800">Quick stats</text>
 
-<!-- App Pills -->
-<rect x="16" y="648" width="88" height="36" rx="14" fill="#232520" stroke="#333530" stroke-width="1"/>
-<circle cx="34" cy="666" r="8" fill="#4c662b" opacity="0.3"/>
-<text x="34" y="670" fill="#4c662b" font-size="12" text-anchor="middle">▶</text>
-<text x="50" y="670" fill="#eaebe0" font-size="12" font-weight="600">GumRun</text>
+<!-- Stat Card 1: Run -->
+<rect x="16" y="462" width="165" height="110" rx="20" fill="#1e211a"/>
+<circle cx="162" cy="468" r="30" fill="rgba(107,140,66,0.06)"/>
+<rect x="28" y="474" width="36" height="36" rx="12" fill="#6b8c42"/>
+<path d="M40,480 C44,480 46,483 46,486 L46,497 L50,499 L50,500 L40,500 L38,498 L39,494 L42,496 L42,490 L40,490 C38,490 37,489 36,488 L35,487 C35,486 35,485 36,485 L41,483 L41,490 L40,490" fill="#fff" transform="translate(2,1) scale(0.55)"/>
+<text x="28" y="530" fill="#f0f1e6" font-size="22" font-weight="900">24.8 km</text>
+<text x="28" y="546" fill="#686a60" font-size="10" font-weight="700">This week</text>
 
-<rect x="112" y="648" width="82" height="36" rx="14" fill="#232520" stroke="#333530" stroke-width="1"/>
-<circle cx="130" cy="666" r="8" fill="#e8a317" opacity="0.3"/>
-<text x="130" y="670" fill="#e8a317" font-size="12" text-anchor="middle">✎</text>
-<text x="146" y="670" fill="#eaebe0" font-size="12" font-weight="600">Notes</text>
+<!-- Stat Card 2: Mood -->
+<rect x="193" y="462" width="165" height="110" rx="20" fill="#1e211a"/>
+<circle cx="340" cy="468" r="30" fill="rgba(80,145,141,0.06)"/>
+<rect x="205" y="474" width="36" height="36" rx="12" fill="#50918d"/>
+<circle cx="223" cy="492" r="10" fill="none" stroke="#fff" stroke-width="1.8"/>
+<circle cx="220" cy="490" r="1.2" fill="#fff"/>
+<circle cx="226" cy="490" r="1.2" fill="#fff"/>
+<path d="M218,494 Q223,498 228,494" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>
+<text x="205" y="530" fill="#f0f1e6" font-size="22" font-weight="900">Happy</text>
+<text x="205" y="546" fill="#686a60" font-size="10" font-weight="700">Today's mood</text>
 
-<rect x="202" y="648" width="86" height="36" rx="14" fill="#232520" stroke="#333530" stroke-width="1"/>
-<circle cx="220" cy="666" r="8" fill="#386663" opacity="0.3"/>
-<text x="220" y="670" fill="#386663" font-size="12" text-anchor="middle">☰</text>
-<text x="236" y="670" fill="#eaebe0" font-size="12" font-weight="600">Journal</text>
+<!-- Stat Card 3: Books -->
+<rect x="16" y="584" width="165" height="110" rx="20" fill="#1e211a"/>
+<circle cx="162" cy="590" r="30" fill="rgba(144,112,208,0.06)"/>
+<rect x="28" y="596" width="36" height="36" rx="12" fill="#9070d0"/>
+<path d="M38,606 L38,622 C38,623 39,624 40,624 L52,624 C53,624 54,623 54,622 L54,606 C54,605 53,604 52,604 L40,604 C39,604 38,605 38,606Z M42,604 L42,614 L44.5,612 L47,614 L47,604" fill="#fff"/>
+<text x="28" y="652" fill="#f0f1e6" font-size="22" font-weight="900">3 books</text>
+<text x="28" y="668" fill="#686a60" font-size="10" font-weight="700">Currently reading</text>
 
-<rect x="296" y="648" width="62" height="36" rx="14" fill="#232520" stroke="#333530" stroke-width="1"/>
-<circle cx="314" cy="666" r="8" fill="#7c5cbf" opacity="0.3"/>
-<text x="334" y="670" fill="#eaebe0" font-size="12" font-weight="600">…</text>
+<!-- Stat Card 4: Movies -->
+<rect x="193" y="584" width="165" height="110" rx="20" fill="#1e211a"/>
+<circle cx="340" cy="590" r="30" fill="rgba(224,96,112,0.06)"/>
+<rect x="205" y="596" width="36" height="36" rx="12" fill="#e06070"/>
+<path d="M215,604 L217,608 L220,608 L218,610 L222,610 L220,612 L225,612 L223,614 L230,614 L230,624 L215,624 Z M228,608 L230,608 L228,610 L231,610 L229,612" fill="#fff" opacity="0.9"/>
+<text x="205" y="652" fill="#f0f1e6" font-size="22" font-weight="900">12</text>
+<text x="205" y="668" fill="#686a60" font-size="10" font-weight="700">In watchlist</text>
 
 <!-- Bottom Navigation -->
-<rect x="0" y="744" width="375" height="68" fill="#232520"/>
-<line x1="0" y1="744" x2="375" y2="744" stroke="#333530" stroke-width="1"/>
+<rect x="0" y="740" width="375" height="72" fill="#1e211a"/>
+<line x1="0" y1="740" x2="375" y2="740" stroke="#2e3128" stroke-width="1"/>
 
-<g text-anchor="middle" font-size="9" font-weight="500">
+<!-- Active indicator -->
+<rect x="15" y="741" width="35" height="3" rx="1.5" fill="#cdeda3"/>
+
+<g text-anchor="middle" font-size="9" font-weight="600">
+  <!-- Home (active) -->
   <g fill="#cdeda3">
-    <rect x="15" y="753" width="35" height="3" rx="1.5" fill="#cdeda3"/>
-    <text x="32" y="772" font-size="20">⌂</text>
-    <text x="32" y="787" font-weight="600">Home</text>
+    <path d="M26,760 L32,754 L38,760 L38,770 L34,770 L34,764 L30,764 L30,770 L26,770Z" fill="#cdeda3"/>
+    <text x="32" y="782">Home</text>
   </g>
-  <g fill="#6a6c62">
-    <text x="94" y="772" font-size="18">⬆</text><text x="94" y="787">Run</text>
+  <!-- Run -->
+  <g fill="#686a60">
+    <path d="M89,756 C91,756 92,755 92,754 C92,753 91,752 89,752 C87,752 86,753 86,754 C86,755 87,756 89,756Z M87,770 L88,766 L90,768 L90,774 L92,774 L92,768 L90,766 L90.5,764 C92,766 94,766 96,766 L96,764 C94,764 93,763 92,762 L91,761 C91,760 90,760 89,760 L86,761 L86,766 L88,766 L87,770Z" fill="#686a60" transform="scale(0.9) translate(6,2)"/>
+    <text x="94" y="782">Run</text>
   </g>
-  <g fill="#6a6c62">
-    <text x="156" y="772" font-size="18">✎</text><text x="156" y="787">Notes</text>
+  <!-- Notes -->
+  <g fill="#686a60">
+    <path d="M149,758 L149,772 L163,772 L163,762 L159,758Z M158,759 L162,763 L158,763Z" fill="#686a60"/>
+    <text x="156" y="782">Notes</text>
   </g>
-  <g fill="#6a6c62">
-    <text x="218" y="772" font-size="18">☰</text><text x="218" y="787">Journal</text>
+  <!-- Journal -->
+  <g fill="#686a60">
+    <path d="M212,758 L212,772 L224,772 L224,758Z M214,760 L222,760 L222,762 L214,762Z M214,764 L222,764 L222,766 L214,766Z M214,768 L219,768 L219,770 L214,770Z" fill="#686a60"/>
+    <text x="218" y="782">Journal</text>
   </g>
-  <g fill="#6a6c62">
-    <text x="281" y="772" font-size="18">📖</text><text x="281" y="787">Books</text>
+  <!-- Books -->
+  <g fill="#686a60">
+    <path d="M275,758 L275,772 C275,773 276,774 277,774 L287,774 C288,774 289,773 289,772 L289,758 C289,757 288,756 287,756 L277,756 C276,756 275,757 275,758Z M279,756 L279,764 L281,762 L283,764 L283,756" fill="#686a60"/>
+    <text x="281" y="782">Books</text>
   </g>
-  <g fill="#6a6c62">
-    <text x="343" y="772" font-size="18">🎬</text><text x="343" y="787">Movies</text>
+  <!-- Movies -->
+  <g fill="#686a60">
+    <path d="M337,758 L339,762 L342,762 L340,764 L343,764 L341,766 L348,766 L348,774 L337,774Z M345,762 L348,762 L346,764 L349,764 L347,766" fill="#686a60"/>
+    <text x="343" y="782">Movies</text>
   </g>
 </g>
 </g>

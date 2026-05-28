@@ -1,6 +1,7 @@
 package com.gumrindelwald.domain.run
 
 import com.gumrindelwald.domain.RunLocation
+import com.gumrindelwald.domain.RunLocationTimestamp
 import java.time.ZonedDateTime
 import kotlin.time.Duration
 import kotlin.time.DurationUnit
@@ -14,6 +15,7 @@ data class Run(
     val maxSpeedKmH: Double,
     val totalElevationMeters: Int,
     val mapPictureURL: String?,
+    val locations: List<List<RunLocationTimestamp>>,
 
     ) {
     val avgSpeedKmH: Double

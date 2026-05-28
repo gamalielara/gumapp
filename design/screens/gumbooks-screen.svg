@@ -1,114 +1,136 @@
-<svg viewBox="0 0 375 812" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, sans-serif">
+<svg viewBox="0 0 375 812" xmlns="http://www.w3.org/2000/svg" font-family="Google Sans, system-ui, sans-serif">
 <defs>
   <linearGradient id="bk1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4a7c59"/><stop offset="100%" stop-color="#2d5a3a"/></linearGradient>
-  <linearGradient id="bk2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#5c4a8a"/><stop offset="100%" stop-color="#3d2d6a"/></linearGradient>
-  <linearGradient id="bk3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8a5c4a"/><stop offset="100%" stop-color="#6a3d2d"/></linearGradient>
+  <linearGradient id="bk2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7c5cbf"/><stop offset="100%" stop-color="#5a3d9a"/></linearGradient>
+  <linearGradient id="bk3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8a6040"/><stop offset="100%" stop-color="#6a4428"/></linearGradient>
   <linearGradient id="bk4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c44d56"/><stop offset="100%" stop-color="#a03a42"/></linearGradient>
   <linearGradient id="bk5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3a6b8a"/><stop offset="100%" stop-color="#2a4d6a"/></linearGradient>
 </defs>
 
-<rect width="375" height="812" fill="#1a1c16"/>
+<rect width="375" height="812" fill="#151710"/>
+
+<!-- Wavy header background -->
+<path d="M0,0 L375,0 L375,80 Q290,130 187,90 Q85,50 0,100 Z" fill="rgba(144,112,208,.06)"/>
 
 <!-- Status Bar -->
-<text x="28" y="32" fill="#eaebe0" font-size="14" font-weight="600">9:41</text>
-<text x="310" y="32" fill="#9a9c90" font-size="11">●●● ▲ ■</text>
+<text x="28" y="32" fill="#f0f1e6" font-size="14" font-weight="600">9:41</text>
+<g transform="translate(310,22)">
+  <rect x="0" y="2" width="14" height="8" rx="1.5" fill="none" stroke="#a8aa9e" stroke-width="1.2"/>
+  <rect x="2" y="4" width="8" height="4" rx="0.8" fill="#a8aa9e"/>
+</g>
 
 <!-- Header -->
-<text x="20" y="68" fill="#9a9c90" font-size="20">←</text>
-<text x="187" y="68" fill="#eaebe0" font-size="17" font-weight="700" text-anchor="middle">GumBooks</text>
-<text x="355" y="68" fill="#9a9c90" font-size="16" text-anchor="end">🔍</text>
+<path d="M28,62 L22,68 L28,74" fill="none" stroke="#a8aa9e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="187" y="72" fill="#f0f1e6" font-size="18" font-weight="800" text-anchor="middle">GumBooks</text>
+<!-- Search icon -->
+<circle cx="348" cy="66" r="6" fill="none" stroke="#a8aa9e" stroke-width="1.5"/>
+<line x1="352" y1="70" x2="356" y2="74" stroke="#a8aa9e" stroke-width="1.5" stroke-linecap="round"/>
 
 <!-- Reading Challenge Card -->
-<rect x="16" y="82" width="343" height="130" rx="16" fill="#232520" stroke="#333530" stroke-width="1"/>
-<text x="187" y="104" fill="#6a6c62" font-size="11" font-weight="600" text-anchor="middle" letter-spacing="0.8">2026 READING CHALLENGE</text>
-<text x="187" y="138" fill="#c4a4f7" font-size="34" font-weight="900" text-anchor="middle" letter-spacing="-2">18 / 30</text>
-<text x="187" y="156" fill="#6a6c62" font-size="12" text-anchor="middle">books completed</text>
+<rect x="16" y="90" width="343" height="130" rx="24" fill="#1e211a"/>
+<!-- Decorative blobs -->
+<circle cx="340" cy="100" r="45" fill="rgba(144,112,208,0.04)"/>
+<circle cx="30" cy="200" r="20" fill="rgba(144,112,208,0.03)"/>
+
+<text x="187" y="114" fill="#686a60" font-size="11" font-weight="700" text-anchor="middle" letter-spacing="0.8">2026 READING CHALLENGE</text>
+<text x="187" y="150" fill="#c4a4f7" font-size="34" font-weight="900" text-anchor="middle" letter-spacing="-2">18 / 30</text>
+<text x="187" y="168" fill="#686a60" font-size="12" text-anchor="middle" font-weight="600">books completed</text>
 
 <!-- Stats row -->
-<text x="100" y="182" fill="#eaebe0" font-size="18" font-weight="800" text-anchor="middle">3</text>
-<text x="100" y="196" fill="#6a6c62" font-size="9" text-anchor="middle">Reading</text>
-<line x1="140" y1="170" x2="140" y2="200" stroke="#333530" stroke-width="1"/>
-<text x="187" y="182" fill="#eaebe0" font-size="18" font-weight="800" text-anchor="middle">18</text>
-<text x="187" y="196" fill="#6a6c62" font-size="9" text-anchor="middle">Finished</text>
-<line x1="234" y1="170" x2="234" y2="200" stroke="#333530" stroke-width="1"/>
-<text x="275" y="182" fill="#eaebe0" font-size="18" font-weight="800" text-anchor="middle">7</text>
-<text x="275" y="196" fill="#6a6c62" font-size="9" text-anchor="middle">Want</text>
+<g text-anchor="middle">
+  <text x="100" y="194" fill="#f0f1e6" font-size="18" font-weight="900">3</text>
+  <text x="100" y="208" fill="#686a60" font-size="9" font-weight="700">Reading</text>
+  <line x1="140" y1="184" x2="140" y2="210" stroke="#2e3128" stroke-width="1"/>
+  <text x="187" y="194" fill="#f0f1e6" font-size="18" font-weight="900">18</text>
+  <text x="187" y="208" fill="#686a60" font-size="9" font-weight="700">Finished</text>
+  <line x1="234" y1="184" x2="234" y2="210" stroke="#2e3128" stroke-width="1"/>
+  <text x="275" y="194" fill="#f0f1e6" font-size="18" font-weight="900">7</text>
+  <text x="275" y="208" fill="#686a60" font-size="9" font-weight="700">Want</text>
+</g>
 
-<!-- Currently Reading -->
-<text x="20" y="240" fill="#eaebe0" font-size="16" font-weight="700">Currently reading</text>
+<!-- Currently Reading Section -->
+<text x="20" y="248" fill="#f0f1e6" font-size="16" font-weight="800">Currently reading</text>
 
-<!-- Book 1 -->
-<rect x="16" y="254" width="100" height="140" rx="10" fill="url(#bk1)"/>
-<text x="66" y="310" fill="rgba(255,255,255,0.8)" font-size="16" text-anchor="middle">📖</text>
-<text x="66" y="334" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">Atomic</text>
-<text x="66" y="346" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">Habits</text>
-<text x="66" y="362" fill="rgba(255,255,255,0.6)" font-size="8" text-anchor="middle">James Clear</text>
-<!-- Progress -->
-<text x="66" y="408" fill="#eaebe0" font-size="11" font-weight="600" text-anchor="middle">Atomic Habits</text>
-<text x="66" y="422" fill="#6a6c62" font-size="10" text-anchor="middle">James Clear</text>
-<rect x="16" y="430" width="100" height="3" rx="1.5" fill="#333530"/>
-<rect x="16" y="430" width="72" height="3" rx="1.5" fill="#7c5cbf"/>
+<!-- Book 1: Atomic Habits -->
+<rect x="16" y="262" width="105" height="145" rx="14" fill="url(#bk1)"/>
+<!-- Book icon -->
+<path d="M52,310 L52,330 C52,332 54,334 56,334 L76,334 C78,334 80,332 80,330 L80,310 C80,308 78,306 76,306 L56,306 C54,306 52,308 52,310Z M60,306 L60,318 L64,315 L68,318 L68,306" fill="rgba(255,255,255,0.25)"/>
+<text x="66" y="352" fill="#fff" font-size="10" font-weight="800" text-anchor="middle">Atomic</text>
+<text x="66" y="364" fill="#fff" font-size="10" font-weight="800" text-anchor="middle">Habits</text>
+<text x="66" y="380" fill="rgba(255,255,255,0.5)" font-size="8" font-weight="600" text-anchor="middle">James Clear</text>
 
-<!-- Book 2 -->
-<rect x="126" y="254" width="100" height="140" rx="10" fill="url(#bk2)"/>
-<text x="176" y="310" fill="rgba(255,255,255,0.8)" font-size="16" text-anchor="middle">📖</text>
-<text x="176" y="334" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">Deep</text>
-<text x="176" y="346" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">Work</text>
-<text x="176" y="362" fill="rgba(255,255,255,0.6)" font-size="8" text-anchor="middle">Cal Newport</text>
-<text x="176" y="408" fill="#eaebe0" font-size="11" font-weight="600" text-anchor="middle">Deep Work</text>
-<text x="176" y="422" fill="#6a6c62" font-size="10" text-anchor="middle">Cal Newport</text>
-<rect x="126" y="430" width="100" height="3" rx="1.5" fill="#333530"/>
-<rect x="126" y="430" width="45" height="3" rx="1.5" fill="#7c5cbf"/>
+<!-- Book 1 meta -->
+<text x="66" y="420" fill="#f0f1e6" font-size="11" font-weight="700" text-anchor="middle">Atomic Habits</text>
+<text x="66" y="434" fill="#686a60" font-size="10" text-anchor="middle">James Clear</text>
+<rect x="16" y="442" width="105" height="4" rx="2" fill="#2e3128"/>
+<rect x="16" y="442" width="76" height="4" rx="2" fill="#9070d0"/>
 
-<!-- Book 3 -->
-<rect x="236" y="254" width="100" height="140" rx="10" fill="url(#bk3)"/>
-<text x="286" y="310" fill="rgba(255,255,255,0.8)" font-size="16" text-anchor="middle">📖</text>
-<text x="286" y="334" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">The</text>
-<text x="286" y="346" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">Alchemist</text>
-<text x="286" y="362" fill="rgba(255,255,255,0.6)" font-size="8" text-anchor="middle">Paulo Coelho</text>
-<text x="286" y="408" fill="#eaebe0" font-size="11" font-weight="600" text-anchor="middle">The Alchemist</text>
-<text x="286" y="422" fill="#6a6c62" font-size="10" text-anchor="middle">Paulo Coelho</text>
-<rect x="236" y="430" width="100" height="3" rx="1.5" fill="#333530"/>
-<rect x="236" y="430" width="25" height="3" rx="1.5" fill="#7c5cbf"/>
+<!-- Book 2: Deep Work -->
+<rect x="133" y="262" width="105" height="145" rx="14" fill="url(#bk2)"/>
+<path d="M170,310 L170,330 C170,332 172,334 174,334 L194,334 C196,334 198,332 198,330 L198,310 C198,308 196,306 194,306 L174,306 C172,306 170,308 170,310Z M178,306 L178,318 L182,315 L186,318 L186,306" fill="rgba(255,255,255,0.25)"/>
+<text x="185" y="352" fill="#fff" font-size="10" font-weight="800" text-anchor="middle">Deep</text>
+<text x="185" y="364" fill="#fff" font-size="10" font-weight="800" text-anchor="middle">Work</text>
+<text x="185" y="380" fill="rgba(255,255,255,0.5)" font-size="8" font-weight="600" text-anchor="middle">Cal Newport</text>
 
-<!-- Recently Finished -->
-<text x="20" y="470" fill="#eaebe0" font-size="16" font-weight="700">Recently finished</text>
+<text x="185" y="420" fill="#f0f1e6" font-size="11" font-weight="700" text-anchor="middle">Deep Work</text>
+<text x="185" y="434" fill="#686a60" font-size="10" text-anchor="middle">Cal Newport</text>
+<rect x="133" y="442" width="105" height="4" rx="2" fill="#2e3128"/>
+<rect x="133" y="442" width="47" height="4" rx="2" fill="#9070d0"/>
 
-<!-- Book 4 -->
-<rect x="16" y="484" width="100" height="140" rx="10" fill="url(#bk4)"/>
-<text x="66" y="540" fill="rgba(255,255,255,0.8)" font-size="16" text-anchor="middle">📖</text>
-<text x="66" y="564" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">Clean</text>
-<text x="66" y="576" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">Code</text>
-<text x="66" y="592" fill="rgba(255,255,255,0.6)" font-size="8" text-anchor="middle">R. Martin</text>
-<text x="66" y="638" fill="#eaebe0" font-size="11" font-weight="600" text-anchor="middle">Clean Code</text>
-<text x="66" y="652" fill="#6a6c62" font-size="10" text-anchor="middle">R. C. Martin</text>
-<rect x="16" y="660" width="100" height="3" rx="1.5" fill="#7c5cbf"/>
+<!-- Book 3: The Alchemist -->
+<rect x="250" y="262" width="105" height="145" rx="14" fill="url(#bk3)"/>
+<path d="M286,310 L286,330 C286,332 288,334 290,334 L310,334 C312,334 314,332 314,330 L314,310 C314,308 312,306 310,306 L290,306 C288,306 286,308 286,310Z M294,306 L294,318 L298,315 L302,318 L302,306" fill="rgba(255,255,255,0.25)"/>
+<text x="302" y="352" fill="#fff" font-size="10" font-weight="800" text-anchor="middle">The</text>
+<text x="302" y="364" fill="#fff" font-size="10" font-weight="800" text-anchor="middle">Alchemist</text>
+<text x="302" y="380" fill="rgba(255,255,255,0.5)" font-size="8" font-weight="600" text-anchor="middle">Paulo Coelho</text>
 
-<!-- Book 5 -->
-<rect x="126" y="484" width="100" height="140" rx="10" fill="url(#bk5)"/>
-<text x="176" y="540" fill="rgba(255,255,255,0.8)" font-size="16" text-anchor="middle">📖</text>
-<text x="176" y="564" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">Dune</text>
-<text x="176" y="592" fill="rgba(255,255,255,0.6)" font-size="8" text-anchor="middle">F. Herbert</text>
-<text x="176" y="638" fill="#eaebe0" font-size="11" font-weight="600" text-anchor="middle">Dune</text>
-<text x="176" y="652" fill="#6a6c62" font-size="10" text-anchor="middle">Frank Herbert</text>
-<rect x="126" y="660" width="100" height="3" rx="1.5" fill="#7c5cbf"/>
+<text x="302" y="420" fill="#f0f1e6" font-size="11" font-weight="700" text-anchor="middle">The Alchemist</text>
+<text x="302" y="434" fill="#686a60" font-size="10" text-anchor="middle">Paulo Coelho</text>
+<rect x="250" y="442" width="105" height="4" rx="2" fill="#2e3128"/>
+<rect x="250" y="442" width="26" height="4" rx="2" fill="#9070d0"/>
+
+<!-- Wavy divider -->
+<path d="M16,468 Q46,460 76,468 Q106,476 136,468 Q166,460 196,468 Q226,476 256,468 Q286,460 316,468 Q346,476 359,468" stroke="#2e3128" stroke-width="1.5" fill="none"/>
+
+<!-- Recently Finished Section -->
+<text x="20" y="496" fill="#f0f1e6" font-size="16" font-weight="800">Recently finished</text>
+
+<!-- Book 4: Clean Code -->
+<rect x="16" y="510" width="105" height="145" rx="14" fill="url(#bk4)"/>
+<path d="M52,540 L52,560 C52,562 54,564 56,564 L76,564 C78,564 80,562 80,560 L80,540 C80,538 78,536 76,536 L56,536 C54,536 52,538 52,540Z" fill="rgba(255,255,255,0.25)"/>
+<text x="66" y="582" fill="#fff" font-size="10" font-weight="800" text-anchor="middle">Clean</text>
+<text x="66" y="594" fill="#fff" font-size="10" font-weight="800" text-anchor="middle">Code</text>
+<text x="66" y="610" fill="rgba(255,255,255,0.5)" font-size="8" font-weight="600" text-anchor="middle">R. Martin</text>
+
+<text x="66" y="668" fill="#f0f1e6" font-size="11" font-weight="700" text-anchor="middle">Clean Code</text>
+<text x="66" y="682" fill="#686a60" font-size="10" text-anchor="middle">R. C. Martin</text>
+<rect x="16" y="690" width="105" height="4" rx="2" fill="#9070d0"/>
+
+<!-- Book 5: Dune -->
+<rect x="133" y="510" width="105" height="145" rx="14" fill="url(#bk5)"/>
+<path d="M170,540 L170,560 C170,562 172,564 174,564 L194,564 C196,564 198,562 198,560 L198,540 C198,538 196,536 194,536 L174,536 C172,536 170,538 170,540Z" fill="rgba(255,255,255,0.25)"/>
+<text x="185" y="582" fill="#fff" font-size="10" font-weight="800" text-anchor="middle">Dune</text>
+<text x="185" y="610" fill="rgba(255,255,255,0.5)" font-size="8" font-weight="600" text-anchor="middle">F. Herbert</text>
+
+<text x="185" y="668" fill="#f0f1e6" font-size="11" font-weight="700" text-anchor="middle">Dune</text>
+<text x="185" y="682" fill="#686a60" font-size="10" text-anchor="middle">Frank Herbert</text>
+<rect x="133" y="690" width="105" height="4" rx="2" fill="#9070d0"/>
 
 <!-- FAB -->
-<circle cx="335" cy="700" r="26" fill="#7c5cbf"/>
-<text x="335" y="708" fill="#fff" font-size="24" text-anchor="middle">+</text>
+<circle cx="335" cy="700" r="26" fill="#9070d0"/>
+<line x1="335" y1="688" x2="335" y2="712" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+<line x1="323" y1="700" x2="347" y2="700" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
 
 <!-- Bottom Navigation -->
-<rect x="0" y="744" width="375" height="68" fill="#232520"/>
-<line x1="0" y1="744" x2="375" y2="744" stroke="#333530" stroke-width="1"/>
-<g text-anchor="middle" font-size="9" font-weight="500">
-  <g fill="#6a6c62"><text x="32" y="772" font-size="18">⌂</text><text x="32" y="787">Home</text></g>
-  <g fill="#6a6c62"><text x="94" y="772" font-size="18">⬆</text><text x="94" y="787">Run</text></g>
-  <g fill="#6a6c62"><text x="156" y="772" font-size="18">✎</text><text x="156" y="787">Notes</text></g>
-  <g fill="#6a6c62"><text x="218" y="772" font-size="18">☰</text><text x="218" y="787">Journal</text></g>
-  <g fill="#cdeda3">
-    <rect x="263" y="753" width="35" height="3" rx="1.5" fill="#cdeda3"/>
-    <text x="281" y="772" font-size="18">📖</text><text x="281" y="787" font-weight="600">Books</text>
-  </g>
-  <g fill="#6a6c62"><text x="343" y="772" font-size="18">🎬</text><text x="343" y="787">Movies</text></g>
+<rect x="0" y="740" width="375" height="72" fill="#1e211a"/>
+<line x1="0" y1="740" x2="375" y2="740" stroke="#2e3128" stroke-width="1"/>
+<rect x="263" y="741" width="35" height="3" rx="1.5" fill="#cdeda3"/>
+<g text-anchor="middle" font-size="9" font-weight="600">
+  <g fill="#686a60"><path d="M26,760 L32,754 L38,760 L38,770 L34,770 L34,764 L30,764 L30,770 L26,770Z"/><text x="32" y="782">Home</text></g>
+  <g fill="#686a60"><text x="94" y="770" font-size="16">🏃</text><text x="94" y="782">Run</text></g>
+  <g fill="#686a60"><text x="156" y="770" font-size="16">📝</text><text x="156" y="782">Notes</text></g>
+  <g fill="#686a60"><text x="218" y="770" font-size="16">📓</text><text x="218" y="782">Journal</text></g>
+  <g fill="#cdeda3"><text x="281" y="770" font-size="16">📖</text><text x="281" y="782" font-weight="700">Books</text></g>
+  <g fill="#686a60"><text x="343" y="770" font-size="16">🎬</text><text x="343" y="782">Movies</text></g>
 </g>
 </svg>

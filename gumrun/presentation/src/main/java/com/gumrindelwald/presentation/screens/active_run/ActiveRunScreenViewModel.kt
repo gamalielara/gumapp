@@ -1,4 +1,4 @@
-package com.gumrindelwald.presentation
+package com.gumrindelwald.presentation.screens.active_run
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -12,6 +12,7 @@ import com.gumrindelwald.domain.RunLocation
 import com.gumrindelwald.domain.RunningTracker
 import com.gumrindelwald.domain.run.Run
 import com.gumrindelwald.domain.run.RunRepository
+import com.gumrindelwald.presentation.asUIText
 import com.gumrindelwald.presentation.util.ActiveRunState
 import com.gumrindelwald.presentation.util.RunningActiveScreenAction
 import com.gumrindelwald.presentation.util.RunningStatusTracker
@@ -28,7 +29,7 @@ import kotlinx.coroutines.launch
 import java.time.ZoneId
 import java.time.ZonedDateTime
 
-class DashboardViewModel(
+class ActiveRunScreenViewModel(
     val runningTracker: RunningTracker,
     val runningStatusTracker: RunningStatusTracker,
     val runRepository: RunRepository
@@ -38,20 +39,20 @@ class DashboardViewModel(
 
     var state by mutableStateOf(
         ActiveRunState(
-            shouldTrack = RunningTrackerService.isTracking
+            shouldTrack = RunningTrackerService.Companion.isTracking
         )
     )
         private set
 
     private val shouldTrack = snapshotFlow { state.shouldTrack }.stateIn(
-        viewModelScope, SharingStarted.Lazily, state.shouldTrack
+        viewModelScope, SharingStarted.Companion.Lazily, state.shouldTrack
     )
 
     private val _hasLocationPerm = MutableStateFlow(false)
 
     private val isTracking = combine(shouldTrack, _hasLocationPerm) { shouldTrack, hasLocPerm ->
         shouldTrack && hasLocPerm
-    }.stateIn(viewModelScope, SharingStarted.Lazily, false)
+    }.stateIn(viewModelScope, SharingStarted.Companion.Lazily, false)
 
     init {
         _hasLocationPerm.onEach { hasPerm ->
@@ -158,6 +159,7 @@ class DashboardViewModel(
                 maxSpeedKmH = LocationCalculator.getMaxSpeedKmH(state.runData.locations),
                 totalElevationMeters = LocationCalculator.getTotalElevationMeters(state.runData.locations),
                 mapPictureURL = null,
+                locations = locations
             )
 
 

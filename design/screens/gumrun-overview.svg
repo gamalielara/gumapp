@@ -1,111 +1,190 @@
-<svg viewBox="0 0 375 812" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, sans-serif">
-<rect width="375" height="812" fill="#1a1c16"/>
+<svg viewBox="0 0 375 812" xmlns="http://www.w3.org/2000/svg" font-family="Google Sans, system-ui, sans-serif">
+<rect width="375" height="812" fill="#151710"/>
+
+<!-- Wavy header background -->
+<path d="M0,0 L375,0 L375,70 Q280,120 187,80 Q95,40 0,90 Z" fill="rgba(107,140,66,.08)"/>
 
 <!-- Status Bar -->
-<text x="28" y="32" fill="#eaebe0" font-size="14" font-weight="600">9:41</text>
-<text x="310" y="32" fill="#9a9c90" font-size="11">●●● ▲ ■</text>
-
-<!-- Header -->
-<text x="20" y="68" fill="#9a9c90" font-size="20">←</text>
-<text x="187" y="68" fill="#eaebe0" font-size="17" font-weight="700" text-anchor="middle">GumRun</text>
-<text x="350" y="68" fill="#9a9c90" font-size="18">⚙</text>
-
-<!-- Weekly Summary Card -->
-<rect x="16" y="86" width="343" height="110" rx="16" fill="#232520" stroke="#333530" stroke-width="1"/>
-<text x="187" y="110" fill="#6a6c62" font-size="11" font-weight="600" text-anchor="middle" letter-spacing="0.8">THIS WEEK</text>
-<text x="187" y="148" fill="#cdeda3" font-size="36" font-weight="900" text-anchor="middle" letter-spacing="-2">24.8 km</text>
-<text x="187" y="166" fill="#6a6c62" font-size="12" text-anchor="middle">Goal: 30 km • 83%</text>
-<!-- Progress bar -->
-<rect x="40" y="176" width="295" height="6" rx="3" fill="#333530"/>
-<rect x="40" y="176" width="245" height="6" rx="3" fill="#cdeda3"/>
-
-<!-- Weekly Overview -->
-<text x="20" y="226" fill="#eaebe0" font-size="16" font-weight="700">Weekly overview</text>
-
-<!-- Bar Chart -->
-<g text-anchor="middle">
-  <!-- M -->
-  <text x="38" y="244" fill="#9a9c90" font-size="8" font-weight="600">5.2</text>
-  <rect x="28" y="250" width="20" height="52" rx="6" fill="#cdeda3"/>
-  <text x="38" y="314" fill="#6a6c62" font-size="9" font-weight="500">M</text>
-
-  <!-- T -->
-  <text x="86" y="258" fill="#9a9c90" font-size="8" font-weight="600">3.8</text>
-  <rect x="76" y="264" width="20" height="38" rx="6" fill="#cdeda3"/>
-  <text x="86" y="314" fill="#6a6c62" font-size="9" font-weight="500">T</text>
-
-  <!-- W -->
-  <text x="134" y="298" fill="#9a9c90" font-size="8" font-weight="600">0</text>
-  <rect x="124" y="300" width="20" height="2" rx="1" fill="#333530"/>
-  <text x="134" y="314" fill="#6a6c62" font-size="9" font-weight="500">W</text>
-
-  <!-- T -->
-  <text x="182" y="232" fill="#9a9c90" font-size="8" font-weight="600">8.1</text>
-  <rect x="172" y="232" width="20" height="70" rx="6" fill="#cdeda3"/>
-  <text x="182" y="314" fill="#6a6c62" font-size="9" font-weight="500">T</text>
-
-  <!-- F -->
-  <text x="230" y="257" fill="#9a9c90" font-size="8" font-weight="600">4.5</text>
-  <rect x="220" y="257" width="20" height="45" rx="6" fill="#cdeda3"/>
-  <text x="230" y="314" fill="#6a6c62" font-size="9" font-weight="500">F</text>
-
-  <!-- S -->
-  <text x="278" y="270" fill="#9a9c90" font-size="8" font-weight="600">3.2</text>
-  <rect x="268" y="270" width="20" height="32" rx="6" fill="#cdeda3"/>
-  <text x="278" y="314" fill="#6a6c62" font-size="9" font-weight="500">S</text>
-
-  <!-- S -->
-  <text x="326" y="298" fill="#9a9c90" font-size="8" font-weight="600">—</text>
-  <rect x="316" y="300" width="20" height="2" rx="1" fill="#333530"/>
-  <text x="326" y="314" fill="#6a6c62" font-size="9" font-weight="500">S</text>
+<text x="28" y="32" fill="#f0f1e6" font-size="14" font-weight="600">9:41</text>
+<g transform="translate(310,22)">
+  <rect x="0" y="2" width="14" height="8" rx="1.5" fill="none" stroke="#a8aa9e" stroke-width="1.2"/>
+  <rect x="2" y="4" width="8" height="4" rx="0.8" fill="#a8aa9e"/>
+  <rect x="14.5" y="4.5" width="1.5" height="3" rx="0.5" fill="#a8aa9e"/>
 </g>
 
-<!-- Recent Runs -->
-<text x="20" y="348" fill="#eaebe0" font-size="16" font-weight="700">Recent runs</text>
-<text x="355" y="348" fill="#cdeda3" font-size="12" font-weight="600" text-anchor="end">See all</text>
+<!-- Header -->
+<path d="M28,62 L22,68 L28,74" fill="none" stroke="#a8aa9e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="187" y="72" fill="#f0f1e6" font-size="18" font-weight="800" text-anchor="middle">GumRun</text>
+<!-- Settings gear icon -->
+<circle cx="350" cy="68" r="8" fill="none" stroke="#a8aa9e" stroke-width="1.5"/>
+<circle cx="350" cy="68" r="2.5" fill="#a8aa9e"/>
+<g transform="translate(350,68)">
+  <line x1="0" y1="-10" x2="0" y2="-7" stroke="#a8aa9e" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="0" y1="7" x2="0" y2="10" stroke="#a8aa9e" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="-10" y1="0" x2="-7" y2="0" stroke="#a8aa9e" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="7" y1="0" x2="10" y2="0" stroke="#a8aa9e" stroke-width="1.5" stroke-linecap="round"/>
+</g>
 
-<!-- Run Entry 1 -->
-<rect x="20" y="362" width="4" height="56" rx="2" fill="#cdeda3"/>
-<text x="36" y="378" fill="#eaebe0" font-size="14" font-weight="600">Morning Run</text>
-<text x="340" y="378" fill="#6a6c62" font-size="11" text-anchor="end">Today, 6:30 AM</text>
-<rect x="36" y="388" width="56" height="22" rx="50" fill="rgba(205,237,163,0.12)"/>
-<text x="64" y="403" fill="#cdeda3" font-size="10" font-weight="600" text-anchor="middle">5.2 km</text>
-<rect x="98" y="388" width="52" height="22" rx="50" fill="rgba(205,237,163,0.12)"/>
-<text x="124" y="403" fill="#cdeda3" font-size="10" font-weight="600" text-anchor="middle">29:34</text>
-<rect x="156" y="388" width="62" height="22" rx="50" fill="rgba(205,237,163,0.12)"/>
-<text x="187" y="403" fill="#cdeda3" font-size="10" font-weight="600" text-anchor="middle">5'41"/km</text>
-<text x="355" y="398" fill="#6a6c62" font-size="16" text-anchor="end">›</text>
+<!-- Weekly Summary Blob Card -->
+<rect x="16" y="92" width="343" height="150" rx="24" fill="#1e211a"/>
+<!-- Decorative blob -->
+<circle cx="340" cy="100" r="50" fill="rgba(107,140,66,0.06)"/>
+<circle cx="30" cy="220" r="30" fill="rgba(205,237,163,0.03)"/>
 
-<!-- Divider -->
-<line x1="36" y1="424" x2="355" y2="424" stroke="#333530" stroke-width="0.5"/>
+<!-- Bean mascot with sweatband -->
+<g transform="translate(147,102)">
+  <ellipse cx="24" cy="22" rx="15" ry="13" fill="#cdeda3"/>
+  <circle cx="19" cy="20" r="2" fill="#354e16"/>
+  <circle cx="29" cy="20" r="2" fill="#354e16"/>
+  <path d="M20,25 Q24,29 28,25" stroke="#354e16" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <!-- Sweatband -->
+  <path d="M14,16 Q17,12 24,14 Q31,12 34,16" stroke="#e06070" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+</g>
 
-<!-- Run Entry 2 -->
-<rect x="20" y="434" width="4" height="56" rx="2" fill="#cdeda3"/>
-<text x="36" y="450" fill="#eaebe0" font-size="14" font-weight="600">Evening Jog</text>
-<text x="340" y="450" fill="#6a6c62" font-size="11" text-anchor="end">Yesterday, 5:45 PM</text>
-<rect x="36" y="460" width="56" height="22" rx="50" fill="rgba(205,237,163,0.12)"/>
-<text x="64" y="475" fill="#cdeda3" font-size="10" font-weight="600" text-anchor="middle">3.8 km</text>
-<rect x="98" y="460" width="52" height="22" rx="50" fill="rgba(205,237,163,0.12)"/>
-<text x="124" y="475" fill="#cdeda3" font-size="10" font-weight="600" text-anchor="middle">22:15</text>
-<rect x="156" y="460" width="62" height="22" rx="50" fill="rgba(205,237,163,0.12)"/>
-<text x="187" y="475" fill="#cdeda3" font-size="10" font-weight="600" text-anchor="middle">5'51"/km</text>
-<text x="355" y="470" fill="#6a6c62" font-size="16" text-anchor="end">›</text>
+<text x="187" y="150" fill="#686a60" font-size="11" text-anchor="middle" font-weight="700" letter-spacing="0.8">THIS WEEK</text>
+<text x="187" y="186" fill="#cdeda3" font-size="38" font-weight="900" text-anchor="middle" letter-spacing="-2">24.8 km</text>
+<text x="187" y="204" fill="#686a60" font-size="12" text-anchor="middle" font-weight="600">Goal: 30 km · 83%</text>
+<!-- Progress bar -->
+<rect x="50" y="216" width="275" height="8" rx="4" fill="#2e3128"/>
+<rect x="50" y="216" width="228" height="8" rx="4" fill="#cdeda3"/>
 
-<line x1="36" y1="496" x2="355" y2="496" stroke="#333530" stroke-width="0.5"/>
+<!-- Weekly Overview Section -->
+<text x="20" y="270" fill="#f0f1e6" font-size="16" font-weight="800">Weekly overview</text>
 
-<!-- Run Entry 3 -->
-<rect x="20" y="506" width="4" height="56" rx="2" fill="#cdeda3"/>
-<text x="36" y="522" fill="#eaebe0" font-size="14" font-weight="600">Trail Run</text>
-<text x="340" y="522" fill="#6a6c62" font-size="11" text-anchor="end">May 5, 7:00 AM</text>
-<rect x="36" y="532" width="56" height="22" rx="50" fill="rgba(205,237,163,0.12)"/>
-<text x="64" y="547" fill="#cdeda3" font-size="10" font-weight="600" text-anchor="middle">8.1 km</text>
-<rect x="98" y="532" width="52" height="22" rx="50" fill="rgba(205,237,163,0.12)"/>
-<text x="124" y="547" fill="#cdeda3" font-size="10" font-weight="600" text-anchor="middle">48:22</text>
-<rect x="156" y="532" width="62" height="22" rx="50" fill="rgba(205,237,163,0.12)"/>
-<text x="187" y="547" fill="#cdeda3" font-size="10" font-weight="600" text-anchor="middle">5'58"/km</text>
-<text x="355" y="540" fill="#6a6c62" font-size="16" text-anchor="end">›</text>
+<!-- Bar Chart -->
+<g transform="translate(0,284)">
+  <!-- Bar backgrounds -->
+  <g text-anchor="middle" font-size="9" font-weight="700">
+    <!-- Mon -->
+    <text x="40" y="-2" fill="#a8aa9e" font-size="8" font-weight="700">5.2</text>
+    <rect x="28" y="4" width="24" height="52" rx="12" fill="#cdeda3"/>
+    <text x="40" y="68" fill="#686a60">M</text>
+    <!-- Tue -->
+    <text x="88" y="12" fill="#a8aa9e" font-size="8" font-weight="700">3.8</text>
+    <rect x="76" y="18" width="24" height="38" rx="12" fill="#cdeda3"/>
+    <text x="88" y="68" fill="#686a60">T</text>
+    <!-- Wed -->
+    <rect x="124" y="52" width="24" height="4" rx="2" fill="#2e3128"/>
+    <text x="136" y="48" fill="#686a60" font-size="8" font-weight="700">0</text>
+    <text x="136" y="68" fill="#686a60">W</text>
+    <!-- Thu -->
+    <text x="184" y="-14" fill="#a8aa9e" font-size="8" font-weight="700">8.1</text>
+    <rect x="172" y="-8" width="24" height="64" rx="12" fill="#cdeda3"/>
+    <text x="184" y="68" fill="#686a60">T</text>
+    <!-- Fri -->
+    <text x="232" y="6" fill="#a8aa9e" font-size="8" font-weight="700">4.5</text>
+    <rect x="220" y="12" width="24" height="44" rx="12" fill="#cdeda3"/>
+    <text x="232" y="68" fill="#686a60">F</text>
+    <!-- Sat -->
+    <text x="280" y="18" fill="#a8aa9e" font-size="8" font-weight="700">3.2</text>
+    <rect x="268" y="24" width="24" height="32" rx="12" fill="#cdeda3"/>
+    <text x="280" y="68" fill="#686a60">S</text>
+    <!-- Sun -->
+    <rect x="316" y="52" width="24" height="4" rx="2" fill="#2e3128"/>
+    <text x="328" y="48" fill="#686a60" font-size="8" font-weight="700">—</text>
+    <text x="328" y="68" fill="#686a60">S</text>
+  </g>
+</g>
 
-<!-- FAB — Start Run -->
-<circle cx="187" cy="640" r="30" fill="#4c662b"/>
-<text x="187" y="647" fill="#fff" font-size="28" text-anchor="middle">▶</text>
+<!-- Wavy divider -->
+<path d="M16,368 Q46,360 76,368 Q106,376 136,368 Q166,360 196,368 Q226,376 256,368 Q286,360 316,368 Q346,376 359,368" stroke="#2e3128" stroke-width="1.5" fill="none"/>
+
+<!-- Recent Runs Section -->
+<text x="20" y="396" fill="#f0f1e6" font-size="16" font-weight="800">Recent runs</text>
+<text x="355" y="396" fill="#cdeda3" font-size="12" font-weight="700" text-anchor="end">See all</text>
+
+<!-- Run Entry 1: Morning Run — route thumbnail -->
+<g transform="translate(20,410)">
+  <rect width="48" height="48" rx="14" fill="#1e211a"/>
+  <path d="M10,38 L14,28 Q18,18 24,22 Q30,26 32,16 L38,10" fill="none" stroke="rgba(205,237,163,.15)" stroke-width="5" stroke-linecap="round"/>
+  <path d="M10,38 L14,28 Q18,18 24,22 Q30,26 32,16 L38,10" fill="none" stroke="#cdeda3" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="10" cy="38" r="2.5" fill="#4c662b"/><circle cx="38" cy="10" r="2.5" fill="#e06070"/>
+</g>
+<text x="80" y="424" fill="#f0f1e6" font-size="14" font-weight="700">Morning Run</text>
+<text x="355" y="424" fill="#686a60" font-size="10" font-weight="600" text-anchor="end">Today, 6:30 AM</text>
+<g transform="translate(80,432)">
+  <rect x="0" y="0" width="52" height="20" rx="10" fill="#f0fad8"/>
+  <text x="26" y="14" fill="#4c662b" font-size="9" font-weight="700" text-anchor="middle">5.2 km</text>
+  <rect x="58" y="0" width="48" height="20" rx="10" fill="#f0fad8"/>
+  <text x="82" y="14" fill="#4c662b" font-size="9" font-weight="700" text-anchor="middle">29:34</text>
+  <rect x="112" y="0" width="58" height="20" rx="10" fill="#f0fad8"/>
+  <text x="141" y="14" fill="#4c662b" font-size="9" font-weight="700" text-anchor="middle">5'41"/km</text>
+</g>
+<path d="M350,434 L356,440 L350,446" fill="none" stroke="#686a60" stroke-width="1.5" stroke-linecap="round"/>
+
+<!-- Run Entry 2: Evening Jog — loop route -->
+<path d="M20,472 Q180,466 340,472" stroke="#2e3128" stroke-width="0.5" fill="none"/>
+<g transform="translate(20,480)">
+  <rect width="48" height="48" rx="14" fill="#1e211a"/>
+  <path d="M8,34 Q12,24 20,28 Q28,32 32,20 Q36,12 40,14" fill="none" stroke="rgba(205,237,163,.15)" stroke-width="5" stroke-linecap="round"/>
+  <path d="M8,34 Q12,24 20,28 Q28,32 32,20 Q36,12 40,14" fill="none" stroke="#cdeda3" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="8" cy="34" r="2.5" fill="#4c662b"/><circle cx="40" cy="14" r="2.5" fill="#e06070"/>
+</g>
+<text x="80" y="496" fill="#f0f1e6" font-size="14" font-weight="700">Evening Jog</text>
+<text x="355" y="496" fill="#686a60" font-size="10" font-weight="600" text-anchor="end">Yesterday, 5:45 PM</text>
+<g transform="translate(80,502)">
+  <rect x="0" y="0" width="52" height="20" rx="10" fill="#f0fad8"/>
+  <text x="26" y="14" fill="#4c662b" font-size="9" font-weight="700" text-anchor="middle">3.8 km</text>
+  <rect x="58" y="0" width="48" height="20" rx="10" fill="#f0fad8"/>
+  <text x="82" y="14" fill="#4c662b" font-size="9" font-weight="700" text-anchor="middle">22:15</text>
+  <rect x="112" y="0" width="58" height="20" rx="10" fill="#f0fad8"/>
+  <text x="141" y="14" fill="#4c662b" font-size="9" font-weight="700" text-anchor="middle">5'51"/km</text>
+</g>
+<path d="M350,504 L356,510 L350,516" fill="none" stroke="#686a60" stroke-width="1.5" stroke-linecap="round"/>
+
+<!-- Run Entry 3: Trail Run — winding trail route -->
+<path d="M20,542 Q180,536 340,542" stroke="#2e3128" stroke-width="0.5" fill="none"/>
+<g transform="translate(20,550)">
+  <rect width="48" height="48" rx="14" fill="#1e211a"/>
+  <path d="M12,40 Q10,30 16,24 Q22,18 20,12 Q18,8 28,10 Q38,12 36,22 Q34,30 38,36" fill="none" stroke="rgba(205,237,163,.15)" stroke-width="5" stroke-linecap="round"/>
+  <path d="M12,40 Q10,30 16,24 Q22,18 20,12 Q18,8 28,10 Q38,12 36,22 Q34,30 38,36" fill="none" stroke="#cdeda3" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="12" cy="40" r="2.5" fill="#4c662b"/><circle cx="38" cy="36" r="2.5" fill="#e06070"/>
+</g>
+<text x="80" y="566" fill="#f0f1e6" font-size="14" font-weight="700">Trail Run</text>
+<text x="355" y="566" fill="#686a60" font-size="10" font-weight="600" text-anchor="end">May 5, 7:00 AM</text>
+<g transform="translate(80,572)">
+  <rect x="0" y="0" width="52" height="20" rx="10" fill="#f0fad8"/>
+  <text x="26" y="14" fill="#4c662b" font-size="9" font-weight="700" text-anchor="middle">8.1 km</text>
+  <rect x="58" y="0" width="48" height="20" rx="10" fill="#f0fad8"/>
+  <text x="82" y="14" fill="#4c662b" font-size="9" font-weight="700" text-anchor="middle">48:22</text>
+  <rect x="112" y="0" width="58" height="20" rx="10" fill="#f0fad8"/>
+  <text x="141" y="14" fill="#4c662b" font-size="9" font-weight="700" text-anchor="middle">5'58"/km</text>
+</g>
+<path d="M350,574 L356,580 L350,586" fill="none" stroke="#686a60" stroke-width="1.5" stroke-linecap="round"/>
+
+<!-- Start Run FAB -->
+<circle cx="187" cy="680" r="32" fill="#4c662b"/>
+<path d="M180,668 L198,680 L180,692Z" fill="#fff"/>
+
+<!-- Bottom Navigation -->
+<rect x="0" y="740" width="375" height="72" fill="#1e211a"/>
+<line x1="0" y1="740" x2="375" y2="740" stroke="#2e3128" stroke-width="1"/>
+<g text-anchor="middle" font-size="9" font-weight="600">
+  <g fill="#686a60">
+    <path d="M26,760 L32,754 L38,760 L38,770 L34,770 L34,764 L30,764 L30,770 L26,770Z" fill="#686a60"/>
+    <text x="32" y="782">Home</text>
+  </g>
+  <!-- Run (active) -->
+  <rect x="77" y="741" width="35" height="3" rx="1.5" fill="#cdeda3"/>
+  <g fill="#cdeda3">
+    <path d="M89,756 C91,756 92,755 92,754 C92,753 91,752 89,752 C87,752 86,753 86,754 C86,755 87,756 89,756Z M87,770 L88,766 L90,768 L90,774 L92,774 L92,768 L90,766 L90.5,764 C92,766 94,766 96,766 L96,764 C94,764 93,763 92,762 L91,761 C91,760 90,760 89,760 L86,761 L86,766 L88,766 L87,770Z" fill="#cdeda3" transform="scale(0.9) translate(6,2)"/>
+    <text x="94" y="782" font-weight="700">Run</text>
+  </g>
+  <g fill="#686a60">
+    <path d="M149,758 L149,772 L163,772 L163,762 L159,758Z" fill="#686a60"/>
+    <text x="156" y="782">Notes</text>
+  </g>
+  <g fill="#686a60">
+    <path d="M212,758 L212,772 L224,772 L224,758Z M214,760 L222,760 L222,762 L214,762Z M214,764 L222,764 L222,766 L214,766Z" fill="#686a60"/>
+    <text x="218" y="782">Journal</text>
+  </g>
+  <g fill="#686a60">
+    <path d="M275,758 L275,772 C275,773 276,774 277,774 L287,774 C288,774 289,773 289,772 L289,758 L275,758Z M279,756 L279,764 L281,762 L283,764 L283,756" fill="#686a60"/>
+    <text x="281" y="782">Books</text>
+  </g>
+  <g fill="#686a60">
+    <path d="M337,758 L339,762 L342,762 L340,764 L348,764 L348,774 L337,774Z" fill="#686a60"/>
+    <text x="343" y="782">Movies</text>
+  </g>
+</g>
 </svg>

@@ -1,4 +1,4 @@
-package com.gumrindelwald.presentation.run_overview
+package com.gumrindelwald.presentation.screens.run_overview
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

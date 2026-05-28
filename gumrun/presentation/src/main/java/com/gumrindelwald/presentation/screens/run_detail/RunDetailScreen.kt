@@ -1,4 +1,4 @@
-package com.gumrindelwald.presentation.run_overview
+package com.gumrindelwald.presentation.screens.run_detail
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -33,7 +33,9 @@ import com.gumrindelwald.domain.run.Run
 import com.gumrindelwald.gumapp.core.presentation.designsystem.R
 import com.gumrindelwald.presentation.GumAppToolbar
 import com.gumrindelwald.presentation.GumrunScaffold
-import com.gumrindelwald.presentation.run_overview.component.RunDataUI
+import com.gumrindelwald.presentation.screens.run_overview.RunUI
+import com.gumrindelwald.presentation.screens.run_overview.component.RunDataUI
+import com.gumrindelwald.presentation.screens.run_overview.toRunUI
 import java.time.ZonedDateTime
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
@@ -191,7 +193,8 @@ fun RunDetailScreenPreview() {
                 location = RunLocation(0.0, 0.0),
                 maxSpeedKmH = 15.28372,
                 totalElevationMeters = 12,
-                mapPictureURL = null
+                mapPictureURL = null,
+                locations = emptyList()
             ).toRunUI(),
             onDeleteClick = {},
         )

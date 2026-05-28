@@ -16,7 +16,8 @@ fun RunEntity.toRun(): Run {
         location = RunLocation(lat, long),
         maxSpeedKmH = maxSpeedKmH,
         totalElevationMeters = totalElevationMeters,
-        mapPictureURL = mapPictureURL
+        mapPictureURL = mapPictureURL,
+        locations = locations
     )
 }
 
@@ -31,6 +32,7 @@ fun Run.toRunEntity(): RunEntity {
         avgSpeedKmH = avgSpeedKmH,
         maxSpeedKmH = maxSpeedKmH,
         totalElevationMeters = totalElevationMeters,
-        mapPictureURL = mapPictureURL
+        mapPictureURL = mapPictureURL,
+        locations = locations.toString()
     )
 }

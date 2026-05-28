@@ -1,4 +1,4 @@
-package com.gumrindelwald.presentation
+package com.gumrindelwald.presentation.screens.active_run
 
 import android.Manifest
 import android.app.Activity
@@ -55,6 +55,10 @@ import com.gumrindelwald.core.domain.roundToDecimals
 import com.gumrindelwald.designsystem.GumAppActionButton
 import com.gumrindelwald.designsystem.GumAppDialog
 import com.gumrindelwald.gumapp.core.presentation.designsystem.R
+import com.gumrindelwald.presentation.GumAppToolbar
+import com.gumrindelwald.presentation.GumrunMap
+import com.gumrindelwald.presentation.GumrunScaffold
+import com.gumrindelwald.presentation.ObserveAsEvents
 import com.gumrindelwald.presentation.util.ActiveRunState
 import com.gumrindelwald.presentation.util.KILOMETER_TO_METER
 import com.gumrindelwald.presentation.util.RunningActiveScreenAction
@@ -66,12 +70,12 @@ import java.io.ByteArrayOutputStream
 
 @Composable
 
-fun GumrunDashboardRoot(
+fun ActiveRunScreenRoot(
     mainActivityClass: Class<*>,
     onRunFinished: () -> Unit,
     onBack: () -> Unit
 ) {
-    val viewModel: DashboardViewModel = koinViewModel()
+    val viewModel: ActiveRunScreenViewModel = koinViewModel()
     val context = LocalContext.current
 
     ObserveAsEvents(flow = viewModel.eventFlow) { event ->
@@ -88,7 +92,7 @@ fun GumrunDashboardRoot(
         }
     }
 
-    Dashboard(
+    ActiveRunScreen(
         state = viewModel.state,
         onClick = { action ->
             when (action) {
@@ -109,7 +113,7 @@ fun GumrunDashboardRoot(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @GoogleMapComposable
-private fun Dashboard(
+private fun ActiveRunScreen(
     state: ActiveRunState,
     onClick: (RunningActiveScreenAction) -> Unit,
     mainActivityClass: Class<*>,
@@ -454,8 +458,8 @@ private fun Context.checkHaslocationPermission(): Boolean {
 
 @Preview
 @Composable
-private fun DashboardPreview() {
-    Dashboard(
+private fun ActiveRunScreenPreview() {
+    ActiveRunScreen(
         state = ActiveRunState(), onClick = {}, mainActivityClass = ComponentActivity::class.java
     )
 

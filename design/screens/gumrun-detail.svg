@@ -1,68 +1,136 @@
-<svg viewBox="0 0 375 812" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, sans-serif">
+<svg viewBox="0 0 375 812" xmlns="http://www.w3.org/2000/svg" font-family="Google Sans, system-ui, sans-serif">
 <defs>
   <linearGradient id="mapG" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%" stop-color="#2a3520"/><stop offset="50%" stop-color="#1e2818"/><stop offset="100%" stop-color="#1a2214"/>
-  </linearGradient>
-  <linearGradient id="mapFade" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#1a1c16" stop-opacity="0"/><stop offset="100%" stop-color="#1a1c16"/>
+    <stop offset="0%" stop-color="#222a1a"/><stop offset="50%" stop-color="#1a2014"/><stop offset="100%" stop-color="#161a10"/>
   </linearGradient>
 </defs>
 
-<rect width="375" height="812" fill="#1a1c16"/>
+<rect width="375" height="812" fill="#151710"/>
 
 <!-- Map Area -->
-<rect width="375" height="240" fill="url(#mapG)"/>
+<rect width="375" height="260" fill="url(#mapG)"/>
 <!-- Grid lines -->
-<line x1="0" y1="60" x2="375" y2="60" stroke="rgba(205,237,163,0.08)" stroke-width="1.5"/>
-<line x1="0" y1="120" x2="375" y2="120" stroke="rgba(205,237,163,0.08)" stroke-width="1.5"/>
-<line x1="0" y1="180" x2="375" y2="180" stroke="rgba(205,237,163,0.08)" stroke-width="1.5"/>
-<line x1="100" y1="0" x2="100" y2="240" stroke="rgba(205,237,163,0.08)" stroke-width="1.5"/>
-<line x1="200" y1="0" x2="200" y2="240" stroke="rgba(205,237,163,0.08)" stroke-width="1.5"/>
-<line x1="300" y1="0" x2="300" y2="240" stroke="rgba(205,237,163,0.08)" stroke-width="1.5"/>
-<!-- Route -->
-<path d="M 50 190 Q 80 160, 120 130 Q 170 95, 210 85 Q 250 78, 280 60 Q 310 42, 340 50" fill="none" stroke="rgba(205,237,163,0.25)" stroke-width="6" stroke-linecap="round"/>
-<path d="M 50 190 Q 80 160, 120 130 Q 170 95, 210 85 Q 250 78, 280 60 Q 310 42, 340 50" fill="none" stroke="#cdeda3" stroke-width="3" stroke-linecap="round"/>
-<circle cx="50" cy="190" r="6" fill="#4c662b" stroke="#cdeda3" stroke-width="2"/>
-<circle cx="340" cy="50" r="6" fill="#c44d56" stroke="#fff" stroke-width="2"/>
-<!-- Fade -->
-<rect y="180" width="375" height="60" fill="url(#mapFade)"/>
+<line x1="0" y1="60" x2="375" y2="60" stroke="rgba(205,237,163,.06)" stroke-width="1.5"/>
+<line x1="0" y1="120" x2="375" y2="120" stroke="rgba(205,237,163,.06)" stroke-width="1.5"/>
+<line x1="0" y1="180" x2="375" y2="180" stroke="rgba(205,237,163,.06)" stroke-width="1.5"/>
+<line x1="100" y1="0" x2="100" y2="260" stroke="rgba(205,237,163,.06)" stroke-width="1.5"/>
+<line x1="200" y1="0" x2="200" y2="260" stroke="rgba(205,237,163,.06)" stroke-width="1.5"/>
+<line x1="300" y1="0" x2="300" y2="260" stroke="rgba(205,237,163,.06)" stroke-width="1.5"/>
+<!-- Route path glow -->
+<path d="M50,200 Q80,170 120,140 Q170,105 210,95 Q250,88 280,70 Q310,52 340,60" fill="none" stroke="rgba(205,237,163,.2)" stroke-width="8" stroke-linecap="round"/>
+<!-- Route path -->
+<path d="M50,200 Q80,170 120,140 Q170,105 210,95 Q250,88 280,70 Q310,52 340,60" fill="none" stroke="#cdeda3" stroke-width="3" stroke-linecap="round"/>
+<!-- Start marker -->
+<circle cx="50" cy="200" r="9" fill="rgba(76,102,43,0.3)"/>
+<circle cx="50" cy="200" r="6" fill="#4c662b" stroke="#cdeda3" stroke-width="2"/>
+<!-- End marker -->
+<circle cx="340" cy="60" r="9" fill="rgba(224,96,112,0.3)"/>
+<circle cx="340" cy="60" r="6" fill="#e06070" stroke="#fff" stroke-width="2"/>
+<!-- Gradient fade at bottom -->
+<rect x="0" y="190" width="375" height="70" fill="url(#mapFade)"/>
+<defs><linearGradient id="mapFade" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(21,23,16,0)"/><stop offset="100%" stop-color="#151710"/></linearGradient></defs>
 
 <!-- Back button -->
-<circle cx="34" cy="30" r="18" fill="rgba(0,0,0,0.5)"/>
-<text x="34" y="36" fill="#fff" font-size="16" text-anchor="middle">←</text>
+<circle cx="35" cy="56" r="19" fill="rgba(0,0,0,0.45)"/>
+<path d="M39,50 L33,56 L39,62" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 
-<!-- Detail Card -->
-<rect x="16" y="220" width="343" height="280" rx="20" fill="#232520" stroke="#333530" stroke-width="1"/>
-<text x="34" y="248" fill="#6a6c62" font-size="12">Sunday, May 8, 2026 • 6:30 AM</text>
-<text x="34" y="272" fill="#eaebe0" font-size="20" font-weight="700">Morning Run</text>
+<!-- Status Bar overlay -->
+<text x="28" y="32" fill="#f0f1e6" font-size="14" font-weight="600">9:41</text>
 
-<!-- Main Stats (3-col) -->
-<rect x="30" y="288" width="100" height="64" rx="14" fill="#2e312a"/>
-<text x="80" y="318" fill="#cdeda3" font-size="22" font-weight="700" text-anchor="middle">5.2</text>
-<text x="80" y="336" fill="#6a6c62" font-size="9" font-weight="600" text-anchor="middle" letter-spacing="0.4">KM</text>
+<!-- Detail Card (overlapping map) -->
+<rect x="16" y="236" width="343" height="310" rx="24" fill="#1e211a"/>
+<!-- Decorative blob -->
+<circle cx="340" cy="250" r="40" fill="rgba(107,140,66,0.04)"/>
 
-<rect x="138" y="288" width="100" height="64" rx="14" fill="#2e312a"/>
-<text x="188" y="318" fill="#cdeda3" font-size="22" font-weight="700" text-anchor="middle">29:34</text>
-<text x="188" y="336" fill="#6a6c62" font-size="9" font-weight="600" text-anchor="middle" letter-spacing="0.4">DURATION</text>
+<text x="30" y="264" fill="#686a60" font-size="12" font-weight="600">Sunday, May 8, 2026 · 6:30 AM</text>
+<text x="30" y="292" fill="#f0f1e6" font-size="22" font-weight="900" letter-spacing="-0.5">Morning Run</text>
 
-<rect x="246" y="288" width="100" height="64" rx="14" fill="#2e312a"/>
-<text x="296" y="318" fill="#cdeda3" font-size="22" font-weight="700" text-anchor="middle">5'41"</text>
-<text x="296" y="336" fill="#6a6c62" font-size="9" font-weight="600" text-anchor="middle" letter-spacing="0.4">PACE</text>
+<!-- Primary Stats Grid -->
+<g transform="translate(30,306)">
+  <!-- Distance -->
+  <rect x="0" y="0" width="95" height="70" rx="16" fill="#252820"/>
+  <text x="47" y="36" fill="#cdeda3" font-size="22" font-weight="900" text-anchor="middle">5.2</text>
+  <text x="47" y="52" fill="#686a60" font-size="9" font-weight="700" text-anchor="middle" letter-spacing="0.4">KM</text>
+  <!-- Duration -->
+  <rect x="103" y="0" width="95" height="70" rx="16" fill="#252820"/>
+  <text x="150" y="36" fill="#cdeda3" font-size="22" font-weight="900" text-anchor="middle">29:34</text>
+  <text x="150" y="52" fill="#686a60" font-size="9" font-weight="700" text-anchor="middle" letter-spacing="0.4">DURATION</text>
+  <!-- Pace -->
+  <rect x="206" y="0" width="95" height="70" rx="16" fill="#252820"/>
+  <text x="253" y="36" fill="#cdeda3" font-size="22" font-weight="900" text-anchor="middle">5'41"</text>
+  <text x="253" y="52" fill="#686a60" font-size="9" font-weight="700" text-anchor="middle" letter-spacing="0.4">PACE</text>
+</g>
 
 <!-- Secondary Stats -->
-<rect x="30" y="364" width="100" height="50" rx="12" fill="none" stroke="#333530" stroke-width="1"/>
-<text x="80" y="388" fill="#eaebe0" font-size="14" font-weight="600" text-anchor="middle">10.5</text>
-<text x="80" y="404" fill="#6a6c62" font-size="8" font-weight="600" text-anchor="middle" letter-spacing="0.3">AVG SPEED</text>
+<g transform="translate(30,388)">
+  <!-- Avg Speed -->
+  <rect x="0" y="0" width="95" height="56" rx="14" fill="none" stroke="#2e3128" stroke-width="1.5"/>
+  <text x="47" y="28" fill="#f0f1e6" font-size="14" font-weight="700" text-anchor="middle">10.5</text>
+  <text x="47" y="42" fill="#686a60" font-size="8" font-weight="700" text-anchor="middle" letter-spacing="0.3">AVG SPEED</text>
+  <!-- Max Speed -->
+  <rect x="103" y="0" width="95" height="56" rx="14" fill="none" stroke="#2e3128" stroke-width="1.5"/>
+  <text x="150" y="28" fill="#f0f1e6" font-size="14" font-weight="700" text-anchor="middle">14.2</text>
+  <text x="150" y="42" fill="#686a60" font-size="8" font-weight="700" text-anchor="middle" letter-spacing="0.3">MAX SPEED</text>
+  <!-- Elevation -->
+  <rect x="206" y="0" width="95" height="56" rx="14" fill="none" stroke="#2e3128" stroke-width="1.5"/>
+  <text x="253" y="28" fill="#f0f1e6" font-size="14" font-weight="700" text-anchor="middle">32 m</text>
+  <text x="253" y="42" fill="#686a60" font-size="8" font-weight="700" text-anchor="middle" letter-spacing="0.3">ELEVATION</text>
+</g>
 
-<rect x="138" y="364" width="100" height="50" rx="12" fill="none" stroke="#333530" stroke-width="1"/>
-<text x="188" y="388" fill="#eaebe0" font-size="14" font-weight="600" text-anchor="middle">14.2</text>
-<text x="188" y="404" fill="#6a6c62" font-size="8" font-weight="600" text-anchor="middle" letter-spacing="0.3">MAX SPEED</text>
+<!-- Wavy divider -->
+<path d="M30,466 Q60,458 90,466 Q120,474 150,466 Q180,458 210,466 Q240,474 270,466 Q300,458 330,466 Q345,470 345,466" stroke="#2e3128" stroke-width="1.5" fill="none"/>
 
-<rect x="246" y="364" width="100" height="50" rx="12" fill="none" stroke="#333530" stroke-width="1"/>
-<text x="296" y="388" fill="#eaebe0" font-size="14" font-weight="600" text-anchor="middle">32 m</text>
-<text x="296" y="404" fill="#6a6c62" font-size="8" font-weight="600" text-anchor="middle" letter-spacing="0.3">ELEVATION</text>
+<!-- Splits Section -->
+<text x="30" y="496" fill="#f0f1e6" font-size="16" font-weight="800">Splits</text>
 
-<!-- Delete button -->
-<rect x="30" y="430" width="316" height="40" rx="12" fill="none" stroke="rgba(196,77,86,0.25)" stroke-width="1"/>
-<text x="187" y="455" fill="#c44d56" font-size="12" font-weight="600" text-anchor="middle">🗑  Delete run</text>
+<g transform="translate(30,508)">
+  <!-- Split header -->
+  <text x="0" y="12" fill="#686a60" font-size="9" font-weight="700">KM</text>
+  <text x="140" y="12" fill="#686a60" font-size="9" font-weight="700" text-anchor="middle">PACE</text>
+  <text x="260" y="12" fill="#686a60" font-size="9" font-weight="700" text-anchor="middle">ELEV</text>
+
+  <line x1="0" y1="18" x2="305" y2="18" stroke="#2e3128" stroke-width="0.5"/>
+
+  <text x="0" y="36" fill="#f0f1e6" font-size="13" font-weight="600">1</text>
+  <text x="140" y="36" fill="#cdeda3" font-size="13" font-weight="700" text-anchor="middle">5'28"</text>
+  <rect x="200" y="24" width="60" height="14" rx="7" fill="#f0fad8"/>
+  <text x="230" y="35" fill="#4c662b" font-size="9" font-weight="700" text-anchor="middle">+8 m</text>
+
+  <text x="0" y="58" fill="#f0f1e6" font-size="13" font-weight="600">2</text>
+  <text x="140" y="58" fill="#cdeda3" font-size="13" font-weight="700" text-anchor="middle">5'35"</text>
+  <rect x="200" y="46" width="60" height="14" rx="7" fill="#f0fad8"/>
+  <text x="230" y="57" fill="#4c662b" font-size="9" font-weight="700" text-anchor="middle">+12 m</text>
+
+  <text x="0" y="80" fill="#f0f1e6" font-size="13" font-weight="600">3</text>
+  <text x="140" y="80" fill="#cdeda3" font-size="13" font-weight="700" text-anchor="middle">5'42"</text>
+  <rect x="200" y="68" width="60" height="14" rx="7" fill="#ffe8ea"/>
+  <text x="230" y="79" fill="#a0404a" font-size="9" font-weight="700" text-anchor="middle">-3 m</text>
+
+  <text x="0" y="102" fill="#f0f1e6" font-size="13" font-weight="600">4</text>
+  <text x="140" y="102" fill="#cdeda3" font-size="13" font-weight="700" text-anchor="middle">5'50"</text>
+  <rect x="200" y="90" width="60" height="14" rx="7" fill="#f0fad8"/>
+  <text x="230" y="101" fill="#4c662b" font-size="9" font-weight="700" text-anchor="middle">+6 m</text>
+
+  <text x="0" y="124" fill="#f0f1e6" font-size="13" font-weight="600">5</text>
+  <text x="140" y="124" fill="#cdeda3" font-size="13" font-weight="700" text-anchor="middle">5'59"</text>
+  <rect x="200" y="112" width="60" height="14" rx="7" fill="#f0fad8"/>
+  <text x="230" y="123" fill="#4c662b" font-size="9" font-weight="700" text-anchor="middle">+9 m</text>
+</g>
+
+<!-- Delete Button -->
+<rect x="30" y="666" width="315" height="44" rx="14" fill="none" stroke="rgba(224,96,112,0.2)" stroke-width="1.5"/>
+<text x="187" y="693" fill="#e06070" font-size="12" font-weight="700" text-anchor="middle">Delete run</text>
+
+<!-- Bottom Navigation -->
+<rect x="0" y="740" width="375" height="72" fill="#1e211a"/>
+<line x1="0" y1="740" x2="375" y2="740" stroke="#2e3128" stroke-width="1"/>
+<rect x="77" y="741" width="35" height="3" rx="1.5" fill="#cdeda3"/>
+<g text-anchor="middle" font-size="9" font-weight="600">
+  <g fill="#686a60"><path d="M26,760 L32,754 L38,760 L38,770 L34,770 L34,764 L30,764 L30,770 L26,770Z"/><text x="32" y="782">Home</text></g>
+  <g fill="#cdeda3"><text x="94" y="770" font-size="16">🏃</text><text x="94" y="782" font-weight="700">Run</text></g>
+  <g fill="#686a60"><text x="156" y="770" font-size="16">📝</text><text x="156" y="782">Notes</text></g>
+  <g fill="#686a60"><text x="218" y="770" font-size="16">📓</text><text x="218" y="782">Journal</text></g>
+  <g fill="#686a60"><text x="281" y="770" font-size="16">📖</text><text x="281" y="782">Books</text></g>
+  <g fill="#686a60"><text x="343" y="770" font-size="16">🎬</text><text x="343" y="782">Movies</text></g>
+</g>
 </svg>

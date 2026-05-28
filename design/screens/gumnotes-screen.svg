@@ -1,88 +1,103 @@
-<svg viewBox="0 0 375 812" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, sans-serif">
-<rect width="375" height="812" fill="#1a1c16"/>
+<svg viewBox="0 0 375 812" xmlns="http://www.w3.org/2000/svg" font-family="Google Sans, system-ui, sans-serif">
+<rect width="375" height="812" fill="#151710"/>
+
+<!-- Wavy header background -->
+<path d="M0,0 L375,0 L375,70 Q300,120 187,80 Q75,40 0,100 Z" fill="rgba(240,168,48,.06)"/>
 
 <!-- Status Bar -->
-<text x="28" y="32" fill="#eaebe0" font-size="14" font-weight="600">9:41</text>
-<text x="310" y="32" fill="#9a9c90" font-size="11">●●● ▲ ■</text>
+<text x="28" y="32" fill="#f0f1e6" font-size="14" font-weight="600">9:41</text>
+<g transform="translate(310,22)">
+  <rect x="0" y="2" width="14" height="8" rx="1.5" fill="none" stroke="#a8aa9e" stroke-width="1.2"/>
+  <rect x="2" y="4" width="8" height="4" rx="0.8" fill="#a8aa9e"/>
+</g>
 
 <!-- Header -->
-<text x="20" y="68" fill="#9a9c90" font-size="20">←</text>
-<text x="187" y="68" fill="#eaebe0" font-size="17" font-weight="700" text-anchor="middle">GumNotes</text>
-<text x="355" y="68" fill="#9a9c90" font-size="18" text-anchor="end">⋮</text>
+<path d="M28,62 L22,68 L28,74" fill="none" stroke="#a8aa9e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="187" y="72" fill="#f0f1e6" font-size="18" font-weight="800" text-anchor="middle">GumNotes</text>
+<!-- More icon -->
+<circle cx="350" cy="68" r="2.5" fill="#a8aa9e"/>
+<circle cx="350" cy="58" r="2.5" fill="#a8aa9e"/>
+<circle cx="350" cy="78" r="2.5" fill="#a8aa9e"/>
 
-<!-- Search Bar -->
-<rect x="16" y="82" width="343" height="40" rx="50" fill="#232520" stroke="#333530" stroke-width="1"/>
-<text x="38" y="106" fill="#6a6c62" font-size="16">🔍</text>
-<text x="58" y="106" fill="#6a6c62" font-size="13">Search notes...</text>
+<!-- Search Bar (pill shape) -->
+<rect x="16" y="90" width="343" height="42" rx="21" fill="#1e211a"/>
+<circle cx="40" cy="111" r="6" fill="none" stroke="#686a60" stroke-width="1.5"/>
+<line x1="44" y1="115" x2="48" y2="119" stroke="#686a60" stroke-width="1.5" stroke-linecap="round"/>
+<text x="58" y="116" fill="#686a60" font-size="13" font-weight="600">Search notes...</text>
 
 <!-- Filter Chips -->
-<rect x="16" y="134" width="36" height="26" rx="50" fill="rgba(232,163,23,0.12)"/>
-<text x="34" y="151" fill="#e8a317" font-size="11" font-weight="600" text-anchor="middle">All</text>
-
-<rect x="60" y="134" width="66" height="26" rx="50" fill="#232520" stroke="#333530" stroke-width="1"/>
-<text x="93" y="151" fill="#6a6c62" font-size="11" font-weight="600" text-anchor="middle">Personal</text>
-
-<rect x="134" y="134" width="48" height="26" rx="50" fill="#232520" stroke="#333530" stroke-width="1"/>
-<text x="158" y="151" fill="#6a6c62" font-size="11" font-weight="600" text-anchor="middle">Work</text>
-
-<rect x="190" y="134" width="48" height="26" rx="50" fill="#232520" stroke="#333530" stroke-width="1"/>
-<text x="214" y="151" fill="#6a6c62" font-size="11" font-weight="600" text-anchor="middle">Ideas</text>
+<rect x="16" y="144" width="36" height="26" rx="13" fill="rgba(240,168,48,0.15)"/>
+<text x="34" y="161" fill="#f0a830" font-size="11" font-weight="700" text-anchor="middle">All</text>
+<rect x="60" y="144" width="66" height="26" rx="13" fill="#1e211a"/>
+<text x="93" y="161" fill="#686a60" font-size="11" font-weight="600" text-anchor="middle">Personal</text>
+<rect x="134" y="144" width="48" height="26" rx="13" fill="#1e211a"/>
+<text x="158" y="161" fill="#686a60" font-size="11" font-weight="600" text-anchor="middle">Work</text>
+<rect x="190" y="144" width="48" height="26" rx="13" fill="#1e211a"/>
+<text x="214" y="161" fill="#686a60" font-size="11" font-weight="600" text-anchor="middle">Ideas</text>
 
 <!-- Note Entry 1 -->
-<rect x="20" y="180" width="4" height="60" rx="2" fill="#e8a317"/>
-<text x="36" y="198" fill="#eaebe0" font-size="14" font-weight="600">Project Ideas for Q3</text>
-<text x="340" y="198" fill="#6a6c62" font-size="11" text-anchor="end">Today</text>
-<text x="36" y="216" fill="#9a9c90" font-size="12">Need to explore new ML frameworks for the...</text>
-<rect x="36" y="224" width="42" height="18" rx="50" fill="rgba(232,163,23,0.1)"/>
-<text x="57" y="237" fill="#e8a317" font-size="9" font-weight="600" text-anchor="middle">Work</text>
+<rect x="20" y="188" width="4" height="60" rx="2" fill="#f0a830"/>
+<text x="36" y="206" fill="#f0f1e6" font-size="14" font-weight="700">Project Ideas for Q3</text>
+<text x="340" y="206" fill="#686a60" font-size="10" font-weight="600" text-anchor="end">Today</text>
+<text x="36" y="224" fill="#a8aa9e" font-size="12">Need to explore new ML frameworks for the...</text>
+<rect x="36" y="232" width="42" height="18" rx="9" fill="rgba(240,168,48,0.1)"/>
+<text x="57" y="245" fill="#f0a830" font-size="9" font-weight="700" text-anchor="middle">Work</text>
 
-<!-- Divider -->
-<line x1="36" y1="252" x2="355" y2="252" stroke="#333530" stroke-width="0.5"/>
+<path d="M36,260 Q66,254 96,260 Q126,266 156,260 Q186,254 216,260 Q246,266 276,260 Q306,254 340,260" stroke="#2e3128" stroke-width="0.5" fill="none"/>
 
 <!-- Note Entry 2 -->
-<rect x="20" y="264" width="4" height="60" rx="2" fill="#e8a317"/>
-<text x="36" y="282" fill="#eaebe0" font-size="14" font-weight="600">Grocery List</text>
-<text x="340" y="282" fill="#6a6c62" font-size="11" text-anchor="end">Yesterday</text>
-<text x="36" y="300" fill="#9a9c90" font-size="12">Eggs, milk, bread, avocados, chicken breast...</text>
-<rect x="36" y="308" width="62" height="18" rx="50" fill="rgba(232,163,23,0.1)"/>
-<text x="67" y="321" fill="#e8a317" font-size="9" font-weight="600" text-anchor="middle">Personal</text>
+<rect x="20" y="272" width="4" height="60" rx="2" fill="#f0a830"/>
+<text x="36" y="290" fill="#f0f1e6" font-size="14" font-weight="700">Grocery List</text>
+<text x="340" y="290" fill="#686a60" font-size="10" font-weight="600" text-anchor="end">Yesterday</text>
+<text x="36" y="308" fill="#a8aa9e" font-size="12">Eggs, milk, bread, avocados, chicken breast...</text>
+<rect x="36" y="316" width="62" height="18" rx="9" fill="rgba(240,168,48,0.1)"/>
+<text x="67" y="329" fill="#f0a830" font-size="9" font-weight="700" text-anchor="middle">Personal</text>
 
-<line x1="36" y1="336" x2="355" y2="336" stroke="#333530" stroke-width="0.5"/>
+<path d="M36,344 Q66,338 96,344 Q126,350 156,344 Q186,338 216,344 Q246,350 276,344 Q306,338 340,344" stroke="#2e3128" stroke-width="0.5" fill="none"/>
 
 <!-- Note Entry 3 -->
-<rect x="20" y="348" width="4" height="60" rx="2" fill="#e8a317"/>
-<text x="36" y="366" fill="#eaebe0" font-size="14" font-weight="600">App Architecture Notes</text>
-<text x="340" y="366" fill="#6a6c62" font-size="11" text-anchor="end">May 5</text>
-<text x="36" y="384" fill="#9a9c90" font-size="12">Clean architecture with MVVM. Use Koin for DI...</text>
-<rect x="36" y="392" width="42" height="18" rx="50" fill="rgba(232,163,23,0.1)"/>
-<text x="57" y="405" fill="#e8a317" font-size="9" font-weight="600" text-anchor="middle">Work</text>
+<rect x="20" y="356" width="4" height="60" rx="2" fill="#f0a830"/>
+<text x="36" y="374" fill="#f0f1e6" font-size="14" font-weight="700">App Architecture Notes</text>
+<text x="340" y="374" fill="#686a60" font-size="10" font-weight="600" text-anchor="end">May 5</text>
+<text x="36" y="392" fill="#a8aa9e" font-size="12">Clean architecture with MVVM. Use Koin for DI...</text>
+<rect x="36" y="400" width="42" height="18" rx="9" fill="rgba(240,168,48,0.1)"/>
+<text x="57" y="413" fill="#f0a830" font-size="9" font-weight="700" text-anchor="middle">Work</text>
 
-<line x1="36" y1="420" x2="355" y2="420" stroke="#333530" stroke-width="0.5"/>
+<path d="M36,428 Q66,422 96,428 Q126,434 156,428 Q186,422 216,428 Q246,434 276,428 Q306,422 340,428" stroke="#2e3128" stroke-width="0.5" fill="none"/>
 
 <!-- Note Entry 4 -->
-<rect x="20" y="432" width="4" height="60" rx="2" fill="#e8a317"/>
-<text x="36" y="450" fill="#eaebe0" font-size="14" font-weight="600">Book Recommendations</text>
-<text x="340" y="450" fill="#6a6c62" font-size="11" text-anchor="end">May 3</text>
-<text x="36" y="468" fill="#9a9c90" font-size="12">Atomic Habits, Deep Work, The Pragmatic...</text>
-<rect x="36" y="476" width="42" height="18" rx="50" fill="rgba(232,163,23,0.1)"/>
-<text x="57" y="489" fill="#e8a317" font-size="9" font-weight="600" text-anchor="middle">Ideas</text>
+<rect x="20" y="440" width="4" height="60" rx="2" fill="#f0a830"/>
+<text x="36" y="458" fill="#f0f1e6" font-size="14" font-weight="700">Book Recommendations</text>
+<text x="340" y="458" fill="#686a60" font-size="10" font-weight="600" text-anchor="end">May 3</text>
+<text x="36" y="476" fill="#a8aa9e" font-size="12">Atomic Habits, Deep Work, The Pragmatic...</text>
+<rect x="36" y="484" width="42" height="18" rx="9" fill="rgba(240,168,48,0.1)"/>
+<text x="57" y="497" fill="#f0a830" font-size="9" font-weight="700" text-anchor="middle">Ideas</text>
+
+<path d="M36,512 Q66,506 96,512 Q126,518 156,512 Q186,506 216,512 Q246,518 276,512 Q306,506 340,512" stroke="#2e3128" stroke-width="0.5" fill="none"/>
+
+<!-- Note Entry 5 -->
+<rect x="20" y="524" width="4" height="60" rx="2" fill="#f0a830"/>
+<text x="36" y="542" fill="#f0f1e6" font-size="14" font-weight="700">Workout Routine</text>
+<text x="340" y="542" fill="#686a60" font-size="10" font-weight="600" text-anchor="end">Apr 28</text>
+<text x="36" y="560" fill="#a8aa9e" font-size="12">Push/Pull/Legs split, 4 days per week...</text>
+<rect x="36" y="568" width="62" height="18" rx="9" fill="rgba(240,168,48,0.1)"/>
+<text x="67" y="581" fill="#f0a830" font-size="9" font-weight="700" text-anchor="middle">Personal</text>
 
 <!-- FAB -->
-<circle cx="335" cy="680" r="26" fill="#e8a317"/>
-<text x="335" y="688" fill="#fff" font-size="24" text-anchor="middle">+</text>
+<circle cx="335" cy="680" r="26" fill="#f0a830"/>
+<line x1="335" y1="668" x2="335" y2="692" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+<line x1="323" y1="680" x2="347" y2="680" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
 
 <!-- Bottom Navigation -->
-<rect x="0" y="744" width="375" height="68" fill="#232520"/>
-<line x1="0" y1="744" x2="375" y2="744" stroke="#333530" stroke-width="1"/>
-<g text-anchor="middle" font-size="9" font-weight="500">
-  <g fill="#6a6c62"><text x="32" y="772" font-size="18">⌂</text><text x="32" y="787">Home</text></g>
-  <g fill="#6a6c62"><text x="94" y="772" font-size="18">⬆</text><text x="94" y="787">Run</text></g>
-  <g fill="#cdeda3">
-    <rect x="139" y="753" width="35" height="3" rx="1.5" fill="#cdeda3"/>
-    <text x="156" y="772" font-size="18">✎</text><text x="156" y="787" font-weight="600">Notes</text>
-  </g>
-  <g fill="#6a6c62"><text x="218" y="772" font-size="18">☰</text><text x="218" y="787">Journal</text></g>
-  <g fill="#6a6c62"><text x="281" y="772" font-size="18">📖</text><text x="281" y="787">Books</text></g>
-  <g fill="#6a6c62"><text x="343" y="772" font-size="18">🎬</text><text x="343" y="787">Movies</text></g>
+<rect x="0" y="740" width="375" height="72" fill="#1e211a"/>
+<line x1="0" y1="740" x2="375" y2="740" stroke="#2e3128" stroke-width="1"/>
+<rect x="139" y="741" width="35" height="3" rx="1.5" fill="#cdeda3"/>
+<g text-anchor="middle" font-size="9" font-weight="600">
+  <g fill="#686a60"><path d="M26,760 L32,754 L38,760 L38,770 L34,770 L34,764 L30,764 L30,770 L26,770Z"/><text x="32" y="782">Home</text></g>
+  <g fill="#686a60"><text x="94" y="770" font-size="16">🏃</text><text x="94" y="782">Run</text></g>
+  <g fill="#cdeda3"><text x="156" y="770" font-size="16">📝</text><text x="156" y="782" font-weight="700">Notes</text></g>
+  <g fill="#686a60"><text x="218" y="770" font-size="16">📓</text><text x="218" y="782">Journal</text></g>
+  <g fill="#686a60"><text x="281" y="770" font-size="16">📖</text><text x="281" y="782">Books</text></g>
+  <g fill="#686a60"><text x="343" y="770" font-size="16">🎬</text><text x="343" y="782">Movies</text></g>
 </g>
 </svg>

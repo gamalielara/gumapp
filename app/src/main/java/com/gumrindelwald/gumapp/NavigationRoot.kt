@@ -7,8 +7,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navDeepLink
 import androidx.navigation.navigation
-import com.gumrindelwald.presentation.GumrunDashboardRoot
-import com.gumrindelwald.presentation.run_overview.GumRunOverviewScreenRoot
+import com.gumrindelwald.presentation.screens.active_run.ActiveRunScreenRoot
+import com.gumrindelwald.presentation.screens.run_overview.GumRunOverviewScreenRoot
 
 @Composable
 fun NavigationRoot(
@@ -32,7 +32,7 @@ fun NavGraphBuilder.gumrunGraph(navController: NavHostController) {
                 }
             )
         ) {
-            GumrunDashboardRoot(
+            ActiveRunScreenRoot(
                 mainActivityClass = MainActivity::class.java,
                 onRunFinished = {
                     navController.navigateUp()
@@ -45,7 +45,11 @@ fun NavGraphBuilder.gumrunGraph(navController: NavHostController) {
         composable(
             route = Routes.Gumrun.RUN_OVERVIEW
         ) {
-            GumRunOverviewScreenRoot()
+            GumRunOverviewScreenRoot(
+                onStartClick = {
+                    navController.navigate(Routes.Gumrun.ACTIVE_RUN)
+                }
+            )
         }
     }
 }

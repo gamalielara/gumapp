@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GumApp v4 — Daily Bean Inspired</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Product+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --primary: #4c662b;
@@ -29,7 +30,7 @@
   --glow: rgba(205,237,163,.06);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Nunito',sans-serif;background:#0d0f0a;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:32px 16px;color:#fff}
+body{font-family:'Google Sans','Product Sans',system-ui,sans-serif;background:#0d0f0a;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:32px 16px;color:#fff}
 
 .page-title{font-size:24px;font-weight:900;color:var(--primary-container);margin-bottom:4px;letter-spacing:-.5px}
 .page-subtitle{font-size:12px;color:#686a60;margin-bottom:24px}
@@ -83,6 +84,7 @@ body{font-family:'Nunito',sans-serif;background:#0d0f0a;display:flex;flex-direct
 .entry{display:flex;gap:12px;padding:12px 20px;cursor:pointer;transition:background .12s;align-items:center}
 .entry:hover{background:var(--bg-elevated)}
 .entry-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.run-thumb{width:48px;height:48px;border-radius:14px;background:var(--bg-card);flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .entry-body{flex:1}
 .entry-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px}
 .entry-title{font-size:14px;font-weight:700;color:var(--text1)}
@@ -456,7 +458,9 @@ body{font-family:'Nunito',sans-serif;background:#0d0f0a;display:flex;flex-direct
         <div class="sec-hdr"><span class="sec-title">Recent runs</span><span class="sec-link">See all</span></div>
 
         <div class="entry" onclick="go('rundetail')">
-          <div class="entry-dot" style="background:var(--primary-container)"></div>
+          <div class="run-thumb">
+            <svg viewBox="0 0 48 48" width="48" height="48"><rect width="48" height="48" rx="14" fill="var(--bg-card)"/><path d="M10,38 L14,28 Q18,18 24,22 Q30,26 32,16 L38,10" fill="none" stroke="rgba(205,237,163,.15)" stroke-width="6" stroke-linecap="round"/><path d="M10,38 L14,28 Q18,18 24,22 Q30,26 32,16 L38,10" fill="none" stroke="var(--primary-container)" stroke-width="2" stroke-linecap="round"/><circle cx="10" cy="38" r="3" fill="var(--primary)"/><circle cx="38" cy="10" r="3" fill="var(--movies)" stroke="#fff" stroke-width="1"/></svg>
+          </div>
           <div class="entry-body">
             <div class="entry-top"><span class="entry-title">Morning Run</span><span class="entry-time">Today, 6:30 AM</span></div>
             <div class="entry-tags">
@@ -468,7 +472,9 @@ body{font-family:'Nunito',sans-serif;background:#0d0f0a;display:flex;flex-direct
           <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--text3)"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
         </div>
         <div class="entry" onclick="go('rundetail')">
-          <div class="entry-dot" style="background:var(--primary-container)"></div>
+          <div class="run-thumb">
+            <svg viewBox="0 0 48 48" width="48" height="48"><rect width="48" height="48" rx="14" fill="var(--bg-card)"/><path d="M8,34 Q12,24 20,28 Q28,32 32,20 Q36,12 40,14" fill="none" stroke="rgba(205,237,163,.15)" stroke-width="6" stroke-linecap="round"/><path d="M8,34 Q12,24 20,28 Q28,32 32,20 Q36,12 40,14" fill="none" stroke="var(--primary-container)" stroke-width="2" stroke-linecap="round"/><circle cx="8" cy="34" r="3" fill="var(--primary)"/><circle cx="40" cy="14" r="3" fill="var(--movies)" stroke="#fff" stroke-width="1"/></svg>
+          </div>
           <div class="entry-body">
             <div class="entry-top"><span class="entry-title">Evening Jog</span><span class="entry-time">Yesterday, 5:45 PM</span></div>
             <div class="entry-tags">
@@ -480,7 +486,9 @@ body{font-family:'Nunito',sans-serif;background:#0d0f0a;display:flex;flex-direct
           <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--text3)"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
         </div>
         <div class="entry" onclick="go('rundetail')">
-          <div class="entry-dot" style="background:var(--primary-container)"></div>
+          <div class="run-thumb">
+            <svg viewBox="0 0 48 48" width="48" height="48"><rect width="48" height="48" rx="14" fill="var(--bg-card)"/><path d="M12,40 Q10,30 16,24 Q22,18 20,12 Q18,8 28,10 Q38,12 36,22 Q34,30 38,36" fill="none" stroke="rgba(205,237,163,.15)" stroke-width="6" stroke-linecap="round"/><path d="M12,40 Q10,30 16,24 Q22,18 20,12 Q18,8 28,10 Q38,12 36,22 Q34,30 38,36" fill="none" stroke="var(--primary-container)" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="40" r="3" fill="var(--primary)"/><circle cx="38" cy="36" r="3" fill="var(--movies)" stroke="#fff" stroke-width="1"/></svg>
+          </div>
           <div class="entry-body">
             <div class="entry-top"><span class="entry-title">Trail Run</span><span class="entry-time">May 5, 7:00 AM</span></div>
             <div class="entry-tags">
