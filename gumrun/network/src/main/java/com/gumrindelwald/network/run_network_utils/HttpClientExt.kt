@@ -15,7 +15,7 @@ suspend inline fun <reified T> safeCall(execute: () -> HttpResponse): Result<T, 
     } catch (e: UnresolvedAddressException) {
         return Result.Error(DataError.Network.NO_INTERNET)
     } catch (e: SerializationException) {
-        return Result.Error(DataError.Network.SERIALIZATION)
+        return Result.Error(DataError.Network.SERIALIZATION_ERROR)
     } catch (e: Exception) {
         coroutineContext.ensureActive()
         return Result.Error(DataError.Network.UNKNOWN)
@@ -30,7 +30,7 @@ suspend inline fun <reified T> responseToResult(response: HttpResponse): Result<
             try {
                 Result.Success(response.body<T>())
             } catch (e: SerializationException) {
-                Result.Error(DataError.Network.SERIALIZATION)
+                Result.Error(DataError.Network.SERIALIZATION_ERROR)
             }
         }
 

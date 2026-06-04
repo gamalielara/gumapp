@@ -1,6 +1,5 @@
 package com.gumrindelwald.network
 
-import com.gumrindelwald.network.BuildConfig
 import com.gumrindelwald.core.domain.util.DataError
 import com.gumrindelwald.core.domain.util.Result
 import io.ktor.client.HttpClient
@@ -64,7 +63,7 @@ suspend inline fun <reified T> safeCall(execute: () -> HttpResponse): Result<T, 
         return Result.Error(DataError.Network.NO_INTERNET)
     } catch (e: SerializationException) {
         e.printStackTrace()
-        return Result.Error(DataError.Network.SERIALIZATION)
+        return Result.Error(DataError.Network.SERIALIZATION_ERROR)
     } catch (e: Exception) {
         if (e is CancellationException) {
             // Parent coroutines need to get this cancellation error so they can handle the err

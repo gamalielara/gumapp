@@ -17,7 +17,7 @@ fun RunEntity.toRun(): Run {
         maxSpeedKmH = maxSpeedKmH,
         totalElevationMeters = totalElevationMeters,
         mapPictureURL = mapPictureURL,
-        locations = locations
+        polylineEncodedRoute = polylineEncodedRoute
     )
 }
 
@@ -33,6 +33,6 @@ fun Run.toRunEntity(): RunEntity {
         maxSpeedKmH = maxSpeedKmH,
         totalElevationMeters = totalElevationMeters,
         mapPictureURL = mapPictureURL,
-        locations = locations.toString()
+        polylineEncodedRoute = polylineEncodedRoute,
     )
 }

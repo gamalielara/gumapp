@@ -1,8 +1,10 @@
 package com.gumrindelwald.gumapp
 
 import android.app.Application
+import com.gumrindelwald.data.di.GumrunDataModule
 import com.gumrindelwald.gumapp.di.appModule
 import com.gumrindelwald.location.di.LocationModule
+import com.gumrindelwald.network.di.NetworkDataSourceModule
 import com.gumrindelwald.presentation.di.GumRunPresentationModule
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
@@ -29,8 +31,9 @@ class GumAppModules : Application() {
                 appModule,
                 GumRunPresentationModule,
                 LocationModule,
-
-                )
+                NetworkDataSourceModule,
+                GumrunDataModule
+            )
         }
     }
 }

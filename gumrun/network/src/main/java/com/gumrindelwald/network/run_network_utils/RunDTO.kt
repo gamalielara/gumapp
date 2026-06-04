@@ -13,5 +13,7 @@ data class RunDTO(
     val avgSpeedKmH: Double,
     val maxSpeedKmH: Double,
     val totalElevationMeters: Int,
-    val mapPictureURL: String?
+    val mapPictureURL: String?,
+    val polylineEncoded: String
+
 )

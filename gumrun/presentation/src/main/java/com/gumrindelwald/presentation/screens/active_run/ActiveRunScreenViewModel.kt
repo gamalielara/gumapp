@@ -6,6 +6,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.PolyUtil
 import com.gumrindelwald.core.domain.util.Result
 import com.gumrindelwald.domain.LocationCalculator
 import com.gumrindelwald.domain.RunLocation
@@ -150,6 +152,14 @@ class ActiveRunScreenViewModel(
 
         state = state.copy(isSavingRun = true)
         viewModelScope.launch {
+            val polylineRouteEncodedRoute =
+                locations.flatten().map { LatLng(it.location.lat, it.location.long) }.let {
+                    if (it.isNotEmpty()) {
+                        PolyUtil.encode(it)
+                    } else null
+                }
+
+
             val run = Run(
                 id = null,
                 duration = state.elapsedTime,
@@ -159,7 +169,7 @@ class ActiveRunScreenViewModel(
                 maxSpeedKmH = LocationCalculator.getMaxSpeedKmH(state.runData.locations),
                 totalElevationMeters = LocationCalculator.getTotalElevationMeters(state.runData.locations),
                 mapPictureURL = null,
-                locations = locations
+                polylineEncodedRoute = polylineRouteEncodedRoute
             )
 
 

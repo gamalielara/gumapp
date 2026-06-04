@@ -1,8 +1,6 @@
 package com.gumrindelwald.presentation.screens.run_overview
 
 
-import com.google.android.gms.maps.model.LatLng
-import com.google.maps.android.PolyUtil
 import com.gumrindelwald.core.domain.formatted
 import com.gumrindelwald.domain.run.Run
 import com.gumrindelwald.presentation.util.toFormattedKilometers
@@ -22,13 +20,6 @@ fun Run.toRunUI(): RunUI {
 
     val distanceKM = distanceMeters / 1000.0
 
-    val polylineRoute = locations.flatten().map { LatLng(it.location.lat, it.location.long) }.let {
-        if (it.isNotEmpty()) {
-            PolyUtil.encode(it)
-        } else null
-    }
-
-
 
     return RunUI(
         id = id!!,
@@ -40,6 +31,6 @@ fun Run.toRunUI(): RunUI {
         pace = duration.toFormattedPace(distanceKM),
         totalElevation = totalElevationMeters.toFormattedMeters(),
         mapPictureURL = mapPictureURL,
-        polylineRoute = polylineRoute
+        polylineRoute = polylineEncodedRoute
     )
 }

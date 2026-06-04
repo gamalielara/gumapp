@@ -194,7 +194,7 @@ fun RunDetailScreenPreview() {
                 maxSpeedKmH = 15.28372,
                 totalElevationMeters = 12,
                 mapPictureURL = null,
-                locations = emptyList()
+                polylineEncodedRoute = null,
             ).toRunUI(),
             onDeleteClick = {},
         )

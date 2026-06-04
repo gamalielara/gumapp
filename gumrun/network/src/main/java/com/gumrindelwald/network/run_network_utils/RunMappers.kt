@@ -19,7 +19,8 @@ fun RunDTO.toRun() = Run(
     location = RunLocation(lat, long),
     maxSpeedKmH = maxSpeedKmH,
     totalElevationMeters = totalElevationMeters,
-    mapPictureURL = mapPictureURL
+    mapPictureURL = mapPictureURL,
+    polylineEncodedRoute = polylineEncoded
 )
 
 @RequiresApi(Build.VERSION_CODES.O)
