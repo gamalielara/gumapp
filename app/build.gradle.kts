@@ -88,4 +88,6 @@ dependencies {
     implementation(project(":gumrun:database"))
     implementation(project(":gumrun:data"))
     implementation(project(":gumrun:network"))
+    implementation(project(":core:network"))
+    implementation(project(":core:data"))
 }

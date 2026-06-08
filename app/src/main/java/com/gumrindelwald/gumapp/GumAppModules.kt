@@ -1,8 +1,11 @@
 package com.gumrindelwald.gumapp
 
 import android.app.Application
+import com.gumrindelwald.core.data.di.CoreDataModule
+import com.gumrindelwald.core.network.di.coreNetworkModule
 import com.gumrindelwald.data.di.GumrunDataModule
 import com.gumrindelwald.gumapp.di.appModule
+import com.gumrindelwald.gumrun.database.di.DatabaseModule
 import com.gumrindelwald.location.di.LocationModule
 import com.gumrindelwald.network.di.NetworkDataSourceModule
 import com.gumrindelwald.presentation.di.GumRunPresentationModule
@@ -31,8 +34,11 @@ class GumAppModules : Application() {
                 appModule,
                 GumRunPresentationModule,
                 LocationModule,
+                coreNetworkModule,
                 NetworkDataSourceModule,
-                GumrunDataModule
+                GumrunDataModule,
+                DatabaseModule,
+                CoreDataModule
             )
         }
     }

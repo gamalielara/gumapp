@@ -1,4 +1,4 @@
-package com.gumrindelwald.network
+package com.gumrindelwald.core.network
 
 import com.example.core.data.networking.AccessTokenRequest
 import com.example.core.data.networking.AccessTokenResponse
@@ -6,7 +6,7 @@ import com.gumrindelwald.core.domain.post
 import com.gumrindelwald.core.domain.util.AuthInfo
 import com.gumrindelwald.core.domain.util.Result
 import com.gumrindelwald.core.domain.util.SessionStorage
-import com.gumrindelwald.network.BuildConfig
+import com.gumrindelwald.core.network.BuildConfig
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.auth.Auth

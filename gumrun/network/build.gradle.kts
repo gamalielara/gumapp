@@ -13,5 +13,6 @@ dependencies {
 
     implementation(project(":core:data"))
     implementation(project(":core:domain"))
+    implementation(project(":core:network"))
     implementation(project(":gumrun:domain"))
 }
